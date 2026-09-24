@@ -443,6 +443,7 @@
             btn.addEventListener("click", () => {
                 const sampleType = btn.getAttribute("data-eval");
                 triggerEvaluationSample(sampleType);
+                evalButtons.forEach(item => item.setAttribute("aria-pressed", String(item === btn)));
             });
         });
 
@@ -665,6 +666,7 @@
                 if (!originalUploadedResult) return;
                 activeTelemetryPayload = originalUploadedResult;
                 renderInspectionResults(originalUploadedResult);
+                evalButtons.forEach(item => item.setAttribute("aria-pressed", "false"));
             });
         }
 

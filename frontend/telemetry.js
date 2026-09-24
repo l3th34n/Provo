@@ -19,13 +19,13 @@ document.getElementById("openTelemetryPage").addEventListener("click", function 
     stylesheet.rel = "stylesheet";
     stylesheet.href = new URL("/style.css", window.location.href).href;
     report.head.appendChild(stylesheet);
-    report.body.className = "provo-app";
+    report.body.className = "provo-app comparison-report";
 
     const main = report.createElement("main");
     main.className = "report-page";
     const back = report.createElement("a");
-    back.href = new URL("/#workbench", window.location.href).href;
-    back.textContent = "← Back to PROVO console";
+    back.href = new URL("/", window.location.href).href;
+    back.textContent = "← Back to Homepage";
     main.appendChild(back);
 
     const panel = document.getElementById("auditSidebar").cloneNode(true);

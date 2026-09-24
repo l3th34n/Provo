@@ -4,16 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PROVO | Evidence Comparison</title>
+    <meta name="theme-color" content="#06090e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script src="/frontend/app.js" defer></script>
     <script src="/frontend/telemetry.js" defer></script>
 </head>
 <body class="provo-app" data-page="comparison">
-    <header class="comparison-page-header">
-        <a href="/#workbench" class="btn btn-secondary">← Back to inspection</a>
-        <h1>C2PA Evidence Alone vs. PROVO</h1>
-        <p>The uploaded result is shown first. Presets are illustrative data, not additional inspections of your file.</p>
+    <div class="parallax-bg-layer" aria-hidden="true"></div>
+    <div class="cyber-grid-overlay" aria-hidden="true"></div>
+    <header class="sticky-header" id="global-header">
+        <div class="nav-container">
+            <div class="brand-group">
+                <a href="/" class="brand-logo" aria-label="PROVO Security Middleware">
+                    <svg class="logo-shield" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span class="logo-text">PRO<span>VO</span></span>
+                    <span class="logo-division">// HARDENED C2PA MIDDLEWARE</span>
+                </a>
+
+                <!-- Backend Health Status Pill -->
+                <div class="system-status-pill" id="backendStatusPill" title="FastAPI Microservice Status">
+                    <span class="status-dot pulsing"></span>
+                    <span class="status-label">ENGINE: <strong id="backendStatusText">INITIALIZING...</strong></span>
+                </div>
+            </div>
+
+            <!-- Primary Navigation Hyperlinks -->
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="/#workbench" class="nav-item">Inspection Console</a>
+                <a href="/#why-provo" class="nav-item">Why PROVO?</a>
+                <a href="/#about" class="nav-item">About</a>
+                <a href="/#resources" class="nav-item">Resources</a>
+                <a href="/#faq" class="nav-item">FAQs</a>
+            </nav>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions comparison-nav-actions">
+                <a href="/" class="btn btn-primary btn-sm comparison-home-link" aria-label="Back to Homepage">← Back to Homepage</a>
+            </div>
+        </div>
+
+        <!-- Scroll Progress Bar -->
+        <div class="scroll-progress-track" aria-hidden="true">
+            <div class="scroll-progress-indicator" id="scrollProgress"></div>
+        </div>
     </header>
+    <section class="comparison-page-header" aria-labelledby="comparisonPageTitle">
+        <span class="eyebrow text-cyan">PROVO / EVIDENCE ANALYSIS</span>
+        <h1 id="comparisonPageTitle">Evidence comparison &amp; inspection telemetry</h1>
+        <p>Compare your completed inspection against C2PA evidence alone, then explore clearly labelled simulated attack scenarios. Demonstration presets never alter your uploaded result.</p>
+    </section>
     <section class="comparison-gate" id="comparisonGate">
         <h2>No completed inspection in this tab</h2>
         <p>Upload media and execute a security inspection on the homepage, then use the comparison button. Browser session storage must be available.</p>
@@ -32,29 +77,35 @@
                 </div>
 
                     <!-- Evaluation Presets -->
-                    <div class="quick-eval-card">
-                        <span class="eval-label">SIMULATED HACKATHON PRESETS — DEMONSTRATION DATA:</span>
+                    <div class="quick-eval-card" aria-label="Simulated hackathon evaluation presets">
+                        <div class="preset-heading-row">
+                            <div><span class="eval-label">SIMULATED HACKATHON PRESETS</span>
+                            <p class="preset-hint">Select a demonstration scenario to see how the reported evidence and policy verdict change. These are not live inspections.</p></div>
+                            <span class="demo-data-badge">DEMO DATA ONLY</span>
+                        </div>
                         <div class="eval-btn-group">
-                            <button type="button" class="btn btn-chip" data-eval="revoked">
+                            <button type="button" class="btn btn-chip" aria-pressed="false" data-eval="revoked">
                                 <span class="chip-status-dot dot-red"></span> Revoked Key Attack
                             </button>
-                            <button type="button" class="btn btn-chip" data-eval="modified">
+                            <button type="button" class="btn btn-chip" aria-pressed="false" data-eval="modified">
                                 <span class="chip-status-dot dot-yellow"></span> Injected / Modified
                             </button>
-                            <button type="button" class="btn btn-chip" data-eval="signed">
+                            <button type="button" class="btn btn-chip" aria-pressed="false" data-eval="signed">
                                 <span class="chip-status-dot dot-green"></span> Policy Pass
                             </button>
-                            <button type="button" class="btn btn-chip" data-eval="ordinary">
+                            <button type="button" class="btn btn-chip" aria-pressed="false" data-eval="ordinary">
                                 <span class="chip-status-dot dot-gray"></span> Ordinary (Unsigned)
                             </button>
-                            <button type="button" class="btn btn-chip" data-eval="exclusion">
+                            <button type="button" class="btn btn-chip" aria-pressed="false" data-eval="exclusion">
                                 <span class="chip-status-dot dot-yellow"></span> Extra Exclusion
                             </button>
                         </div>
                     </div>
 
-                <p class="comparison-source" id="comparisonSource" role="status"></p>
-                <button type="button" class="btn btn-secondary" id="restoreUploadedResult">Return to uploaded file result</button>
+                <div class="comparison-state-bar" aria-live="polite">
+                    <p class="comparison-source" id="comparisonSource" role="status"></p>
+                    <button type="button" class="btn btn-secondary" id="restoreUploadedResult">↶ Restore uploaded inspection</button>
+                </div>
                 <div class="intercept-grid">
                     <!-- C2PA evidence without the additional PROVO policy -->
                     <div class="validator-card legacy-validator">
@@ -155,7 +206,7 @@
                 <div class="sidebar-header">
                     <div class="sidebar-title-group">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        <span class="sidebar-title">FORENSIC TELEMETRY DRAWER</span>
+                        <span class="sidebar-title">FORENSIC TELEMETRY</span>
                     </div>
                     <div class="telemetry-actions">
                         <a class="btn-copy-telemetry hidden" id="openTelemetryPage" href="#" target="_blank" rel="noopener noreferrer">Open full report ↗</a>
@@ -163,7 +214,10 @@
                     </div>
                 </div>
 
-                <p class="telemetry-source-note" id="telemetrySourceNote">No inspection yet. Choose a preset or upload a file.</p>
+                <div class="telemetry-introduction">
+                    <p class="telemetry-description">Inspection evidence, grouped by asset, certificate, timestamp, structure and final policy verdict. Open the raw JSON when you need the complete diagnostic payload.</p>
+                    <p class="telemetry-source-note" id="telemetrySourceNote">No inspection yet. Choose a preset or upload a file.</p>
+                </div>
                 <div class="sidebar-content" id="sidebarContent">
                     <!-- Awaiting State -->
                     <div class="audit-awaiting" id="auditAwaitingState">
@@ -179,7 +233,7 @@
 
                         <!-- 1. Media File Identity -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">01 // ASSET FILE IDENTITY</span>
+                            <span class="telemetry-section-lbl">01 / Asset identity</span>
 
                             <div class="data-item">
                                 <span class="data-key">IMAGE / MEDIA NAME:</span>
@@ -192,14 +246,14 @@
                             </div>
 
                             <div class="data-item">
-                                <span class="data-key">SHA-256 HASH (KEY):</span>
+                                <span class="data-key">SHA-256 FILE DIGEST</span>
                                 <code class="hash-box font-mono" id="resSha256">-</code>
                             </div>
                         </div>
 
                         <!-- 2. Revocation Certificate Status -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">02 // REVOCATION CERTIFICATE STATUS</span>
+                            <span class="telemetry-section-lbl">02 / Signing certificate & revocation</span>
 
                             <div class="revocation-status-banner" id="resRevocationBanner">
                                 <span class="status-indicator-badge" id="resRevocationBadge">UNKNOWN</span>
@@ -207,19 +261,19 @@
                             </div>
 
                             <div class="data-item">
-                                <span class="data-key">VALIDATION METHOD:</span>
+                                <span class="data-key">VALIDATION METHOD</span>
                                 <span class="data-val font-mono" id="resRevocationMethod">c2pa_ocsp_validation</span>
                             </div>
 
                             <div class="data-item">
-                                <span class="data-key">REVOCATION EVIDENCE CODES:</span>
+                                <span class="data-key">REVOCATION EVIDENCE</span>
                                 <span class="data-val font-mono" id="resRevocationEvidence">None returned</span>
                             </div>
                         </div>
 
                         <!-- 3. Timestamp Security -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">03 // TIMESTAMP SECURITY</span>
+                            <span class="telemetry-section-lbl">03 / Timestamp evidence</span>
 
                             <div class="revocation-status-banner" id="resTimestampBanner">
                                 <span class="status-indicator-badge" id="resTimestampBadge">UNKNOWN</span>
@@ -227,7 +281,7 @@
                             </div>
 
                             <div class="data-item">
-                                <span class="data-key">CLAIMED SIGNING TIME:</span>
+                                <span class="data-key">CLAIMED SIGNING TIME</span>
                                 <span class="data-val font-mono" id="resTimestampClaimedTime">Not supplied</span>
                             </div>
 
@@ -238,7 +292,7 @@
                         </div>
 
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">04 // PIPELINE STRUCTURE AUDIT</span>
+                            <span class="telemetry-section-lbl">04 / Structure audit</span>
                             <span class="status-indicator-badge badge-warn" id="resPipelineBadge">UNKNOWN</span>
                             <p class="revocation-msg" id="resPipelineMsg">Awaiting pipeline audit.</p>
                             <ul class="verdict-reasons" id="resPipelineFindings"></ul>
@@ -248,7 +302,7 @@
 
                         <!-- 5. C2PA Manifest Breakdown -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">05 // C2PA MANIFEST SPECIFICATION</span>
+                            <span class="telemetry-section-lbl">05 / C2PA manifest</span>
 
                             <div class="data-item">
                                 <span class="data-key">MANIFEST FOUND:</span>
@@ -278,7 +332,7 @@
 
                         <!-- 5. Hardened Verdict Summary -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">06 // HARDENED SECURITY VERDICT</span>
+                            <span class="telemetry-section-lbl">06 / PROVO policy verdict</span>
                             <div class="exploit-determination-box" id="resExploitBox">
                                 <div class="exploit-header">
                                     <span class="exploit-title" id="resExploitTitle">PIPELINE INTEGRITY COMPROMISED</span>
@@ -305,5 +359,74 @@
             </div>
         </aside>
     </main>
+    <footer class="global-footer">
+        <div class="container footer-container">
+            <div class="footer-top-grid">
+                <!-- Col 1: Brand & Mission -->
+                <div class="footer-brand-col">
+                    <a href="/#hero" class="brand-logo footer-logo">
+                        <svg class="logo-shield" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+                        </svg>
+                        <span class="logo-text">PRO<span>VO</span></span>
+                    </a>
+                    <p class="footer-mission">
+                        Independent validation engine and security middleware engineered to expose and neutralize structural provenance exploits in C2PA pipelines.
+                    </p>
+                    <div class="footer-contact-btn-wrap">
+                        <a href="/#contact" class="btn btn-secondary btn-sm">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Contact Security Team
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Platform Links -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">NAVIGATION</h5>
+                    <ul class="footer-nav">
+                        <li><a href="/#hero">Overview</a></li>
+                        <li><a href="/#workbench">Inspection Console</a></li>
+                        <li><a href="/#workbench">Inspect &amp; Compare Evidence</a></li>
+                        <li><a href="/#why-provo">Why PROVO?</a></li>
+                        <li><a href="/#about">About Project</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Research & Resources -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">RESOURCES</h5>
+                    <ul class="footer-nav">
+                        <li><a href="/#resources">Documentation</a></li>
+                        <li><a href="/#faq">Technical FAQs</a></li>
+                        <li><a href="https://c2pa.org/" target="_blank" rel="noopener">C2PA Specification</a></li>
+                        <li><a href="https://github.com/l3th34n/Provo/tree/pt1" target="_blank" rel="noopener">GitHub (pt1)</a></li>
+                        <li><a href="/#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: API & Engine Telemetry -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">ENGINE TELEMETRY</h5>
+                    <div class="footer-endpoint-card">
+                        <span class="endpoint-name font-mono">POST /api/upload</span>
+                        <span class="endpoint-desc">C2PA extraction, SHA-256 calculation, evidence interpretation, and hardened verdict generation.</span>
+                        <span class="endpoint-badge font-mono text-cyan">STATUS: OPERATIONAL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-copy font-mono">
+                    &copy; 2026 PROVO Security Middleware Initiative. Built for High-Stakes Media Authenticity.
+                </div>
+                <div class="footer-badges font-mono">
+                    <span>Provenance &ne; Truth</span>
+                    <span class="sep">&bull;</span>
+                    <span>Zero-Trust Validation Engine</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
