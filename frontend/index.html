@@ -424,6 +424,17 @@
                             </div>
                         </div>
 
+                        <!-- 07 // Supplementary EXIF consistency; never overrides C2PA verdict -->
+                        <section class="telemetry-block exif-panel" aria-label="EXIF and C2PA metadata consistency">
+                            <span class="telemetry-section-lbl">07 // EXIF &amp; C2PA METADATA CONSISTENCY</span>
+                            <div class="revocation-status-banner">
+                                <span class="status-indicator-badge badge-warn" id="resExifBadge">NOT EVALUATED</span>
+                                <p class="revocation-msg" id="resExifMsg">Run a real inspection to compare metadata.</p>
+                            </div>
+                            <div class="exif-comparison-list" id="resExifRows" aria-live="polite"></div>
+                            <p class="exif-scope" id="resExifScope">EXIF is editable. Agreement does not prove authenticity.</p>
+                        </section>
+
                         <!-- 5. Collapsible Full Manifest JSON -->
                         <details class="telemetry-details">
                             <summary class="details-summary font-mono">View Raw C2PA Diagnostic JSON</summary>

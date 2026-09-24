@@ -2323,3 +2323,19 @@ body.comparison-report .sidebar-footer {
     body[data-page="comparison"] .quick-eval-card .btn-chip { transition:none; }
     body[data-page="comparison"] .quick-eval-card .btn-chip:hover { transform:none; }
 }
+
+/* Supplementary EXIF/C2PA comparison, separate from the hardened verdict. */
+.exif-panel { grid-column: 1 / -1; }
+.exif-comparison-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+.exif-comparison-row { min-width: 0; padding: 1rem; border: 1px solid var(--border-subtle); border-radius: 10px; background: rgba(6, 13, 24, 0.86); }
+.exif-row-heading { display: flex; gap: 0.8rem; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.8rem; }
+.exif-row-heading strong { font-size: 0.91rem; line-height: 1.4; }
+.exif-field-status { font: 700 0.7rem var(--font-mono); color: var(--gold-warn); letter-spacing: 0.03em; }
+.exif-field-status.exif-discrepancy { color: #ff9494; }
+.exif-values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.exif-values > div { min-width: 0; padding: 0.7rem; border-radius: 7px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.025); }
+.exif-value-label { display: block; margin-bottom: 0.45rem; font: 700 0.64rem var(--font-mono); color: var(--text-dim); letter-spacing: 0.04em; }
+.exif-value { display: block; color: var(--text-main); line-height: 1.5; font-size: 0.87rem; overflow-wrap: anywhere; }
+.exif-row-detail, .exif-scope { margin-top: 0.75rem; font-size: 0.81rem; line-height: 1.55; color: var(--text-muted); }
+.exif-scope { padding: 0.8rem 1rem; border-left: 3px solid var(--gold-warn); background: rgba(255,255,255,0.025); }
+@media (max-width: 750px) { .exif-comparison-list, .exif-values { grid-template-columns: 1fr; } }

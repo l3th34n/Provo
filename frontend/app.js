@@ -62,6 +62,11 @@
         const resVerdictReasons = document.getElementById("resVerdictReasons");
         const resRawJson = document.getElementById("resRawJson");
 
+        const resExifBadge = document.getElementById("resExifBadge");
+        const resExifMsg = document.getElementById("resExifMsg");
+        const resExifRows = document.getElementById("resExifRows");
+        const resExifScope = document.getElementById("resExifScope");
+
         const btnCopyJson = document.getElementById("btnCopyJson");
         let activeTelemetryPayload = null;
 
@@ -378,6 +383,58 @@
                 resAssertionsList.innerHTML = "<li class='text-dim font-mono'>No assertions declared</li>";
             }
 
+            // 7. Supplementary EXIF consistency; never turn metadata into a cryptographic verdict.
+            const metadata = c2pa.metadata_consistency || {};
+            const exifStatus = data.simulated === true ? "not_evaluated" : (metadata.status || "not_evaluated");
+            const exifTitles = {
+                match: "FIELDS MATCH", mismatch: "REVIEW DISCREPANCY", inconclusive: "INCONCLUSIVE",
+                no_exif: "NO SUPPORTED EXIF", no_c2pa_metadata: "NO C2PA METADATA",
+                not_applicable: "NOT APPLICABLE", error: "EXTRACTION ERROR",
+                not_evaluated: "NOT EVALUATED"
+            };
+            resExifBadge.textContent = exifTitles[exifStatus] || "INCONCLUSIVE";
+            // A metadata match is informational, not a green authenticity verdict.
+            resExifBadge.className = "status-indicator-badge " +
+                (exifStatus === "mismatch" ? "badge-threat" : "badge-warn");
+            resExifMsg.textContent = data.simulated === true
+                ? "Demonstration preset: no real EXIF bytes or C2PA metadata were inspected."
+                : (metadata.message || "This inspection did not return EXIF consistency results.");
+            resExifScope.textContent = metadata.scope_note ||
+                "EXIF can be changed or removed; C2PA assertions are signer claims. Metadata consistency does not establish scene authenticity.";
+            resExifRows.replaceChildren();
+            const exifRows = Array.isArray(metadata.comparisons) && data.simulated !== true
+                ? metadata.comparisons : [];
+            for (const item of exifRows) {
+                const row = document.createElement("div");
+                row.className = "exif-comparison-row";
+                const head = document.createElement("div");
+                head.className = "exif-row-heading";
+                const label = document.createElement("strong");
+                label.textContent = item.label || item.field || "Metadata field";
+                const fieldStatus = document.createElement("span");
+                fieldStatus.className = "exif-field-status " + (item.status === "mismatch" ? "exif-discrepancy" : "");
+                fieldStatus.textContent = String(item.status || "unavailable").replaceAll("_", " ").toUpperCase();
+                head.append(label, fieldStatus);
+                const values = document.createElement("div");
+                values.className = "exif-values";
+                for (const [name, value] of [["EMBEDDED EXIF", item.exif], ["C2PA ASSERTION", item.c2pa]]) {
+                    const cell = document.createElement("div");
+                    const key = document.createElement("span");
+                    key.className = "exif-value-label";
+                    key.textContent = name;
+                    const valueElement = document.createElement("span");
+                    valueElement.className = "exif-value";
+                    valueElement.textContent = value == null ? "Not available" : String(value);
+                    cell.append(key, valueElement);
+                    values.appendChild(cell);
+                }
+                const explanation = document.createElement("p");
+                explanation.className = "exif-row-detail";
+                explanation.textContent = item.explanation || "";
+                row.append(head, values, explanation);
+                resExifRows.appendChild(row);
+            }
+
             // 5. Hardened Verdict: backend output is the authoritative policy decision.
             resExploitTitle.textContent = display.title;
             resExploitTitle.className = "exploit-title " + display.titleClass;
@@ -622,6 +679,11 @@
             }
 
             mockResult.simulated = true;
+            mockResult.c2pa.metadata_consistency = {
+                status: "not_evaluated", checked: false,
+                message: "Simulated preset; real metadata was not inspected.",
+                exif: {}, c2pa: {}, comparisons: [], assertion_labels: []
+            };
             mockResult.c2pa.pipeline_audit = {
                 status: mockResult.c2pa.manifest_found ? "no_flags" : "not_assessed",
                 checked: mockResult.c2pa.manifest_found,
