@@ -601,35 +601,42 @@
                     </div>
 
                     <form
-                        action="/verify"
-                        method="POST"
-                        enctype="multipart/form-data"
-                    >
 
-                        <div class="upload-zone">
+<form id="uploadForm" enctype="multipart/form-data">
+    <div class="upload-zone">
+        <div class="upload-icon">↑</div>
 
-                            <div class="upload-icon">
-                                ↑
-                            </div>
+        <h3>Upload a media file</h3>
 
-                            <h3>
-                                Upload a media file
-                            </h3>
+        <p>
+            Select an image or video to inspect
+            available provenance information.
+        </p>
 
-                            <p>
-                                Select an image or video to inspect
-                                available provenance information.
-                            </p>
+        <input
+            type="file"
+            id="mediaFile"
+            name="file"
+            accept=".jpg,.jpeg,.png,.webp,.mp4,.mov"
+            required
+        >
 
-                            <input
-                                type="file"
-                                name="media"
-                                accept="image/*,video/*"
-                                required
-                            >
+        <button
+            type="submit"
+            id="uploadButton"
+            class="primary-btn"
+            style="border: none; cursor: pointer;
+                   margin-top: 20px;"
+        >
+            Verify Media
+        </button>
+    </div>
+</form>
 
-                        </div>
-
+<div id="verificationResult"
+     style="margin-top: 24px;"
+     aria-live="polite">
+</div>
                     </form>
 
                 </div>
@@ -1019,5 +1026,117 @@
 
     </footer>
 
+<script>
+const form = document.getElementById("uploadForm");
+const fileInput = document.getElementById("mediaFile");
+const button = document.getElementById("uploadButton");
+const resultBox = document.getElementById("verificationResult");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    if (file.size > 25 * 1024 * 1024) {
+        resultBox.textContent = "File exceeds 25 MB.";
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    button.disabled = true;
+    button.textContent = "Analyzing...";
+    resultBox.textContent = "Uploading and inspecting media...";
+
+    try {
+        const response = await fetch("/api/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Upload failed");
+        }
+
+        resultBox.replaceChildren();
+
+        function addResult(label, value) {
+            const row = document.createElement("p");
+            const heading = document.createElement("strong");
+
+            heading.textContent = label + ": ";
+            row.append(heading, document.createTextNode(
+                String(value ?? "Unavailable")
+            ));
+
+            row.style.marginBottom = "12px";
+            row.style.overflowWrap = "anywhere";
+            resultBox.appendChild(row);
+        }
+
+        const title = document.createElement("h3");
+        title.textContent = "Verification Report";
+        title.style.color = "#51f0c9";
+        title.style.marginBottom = "16px";
+        resultBox.appendChild(title);
+
+        addResult("Filename", data.filename);
+        addResult(
+            "File size",
+            (data.file_size / 1048576).toFixed(2) + " MB"
+        );
+        addResult("SHA-256", data.sha256);
+
+        const c2pa = data.c2pa || {};
+
+        if (c2pa.status === "no_manifest") {
+            addResult("C2PA", "No manifest found");
+            addResult(
+                "Conclusion",
+                "Provenance unavailable. This does not mean the media is fake."
+            );
+        } else if (c2pa.status === "manifest_found") {
+            addResult("C2PA", "Manifest detected");
+            addResult(
+                "Claim generator",
+                c2pa.claim_generator
+            );
+            addResult(
+                "Active manifest",
+                c2pa.active_manifest
+            );
+            addResult(
+                "Validation state",
+                c2pa.validation_state
+            );
+
+            const details = document.createElement("pre");
+            details.textContent = JSON.stringify(
+                c2pa.validation_results ?? [],
+                null,
+                2
+            );
+            details.style.whiteSpace = "pre-wrap";
+            details.style.overflowWrap = "anywhere";
+            resultBox.appendChild(details);
+        } else {
+            addResult(
+                "C2PA inspection",
+                c2pa.error || "Inspection could not be completed"
+            );
+        }
+
+    } catch (error) {
+        resultBox.textContent = "Error: " + error.message;
+    } finally {
+        button.disabled = false;
+        button.textContent = "Verify Media";
+    }
+});
+</script>
 </body>
 </html>
