@@ -9,9 +9,23 @@ from revocation_checker import check_certificate_revocation
 from timestamp_checker import check_timestamp_security
 from pipeline_audit import audit_pipeline
 from verdict_engine import evaluate_hardened_verdict
+from exif_checker import SCOPE_NOTE, compare_exif
 
 
 logger = logging.getLogger("provo")
+
+
+def _safe_exif_comparison(file_path, manifest_store=None, detailed_store=None):
+    """Supplementary metadata extraction cannot interrupt cryptographic inspection."""
+    try:
+        return compare_exif(file_path, manifest_store, detailed_store)
+    except Exception:
+        logger.exception("Supplementary EXIF consistency inspection failed")
+        return {
+            "status": "error", "checked": False, "message": "EXIF comparison could not complete.",
+            "exif": {}, "c2pa": {}, "assertion_labels": [], "comparisons": [],
+            "scope_note": SCOPE_NOTE,
+        }
 
 
 def check_c2pa(file_path):
@@ -32,6 +46,10 @@ def check_c2pa(file_path):
                     "status": "no_manifest",
                     "manifest_found": False
                 }
+                if result.get("status") == "manifest_found":
+                    result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
+                else:
+                    result["metadata_consistency"] = _safe_exif_comparison(file_path)
                 result["hardened_verdict"] = evaluate_hardened_verdict(result)
                 return result
 
@@ -89,6 +107,10 @@ def check_c2pa(file_path):
                 ),
             }
 
+            if result.get("status") == "manifest_found":
+                result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
+            else:
+                result["metadata_consistency"] = _safe_exif_comparison(file_path)
             result["hardened_verdict"] = evaluate_hardened_verdict(result)
             return result
 
@@ -97,6 +119,10 @@ def check_c2pa(file_path):
             "status": "no_manifest",
             "manifest_found": False
         }
+        if result.get("status") == "manifest_found":
+            result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
+        else:
+            result["metadata_consistency"] = _safe_exif_comparison(file_path)
         result["hardened_verdict"] = evaluate_hardened_verdict(result)
         return result
 
@@ -107,6 +133,10 @@ def check_c2pa(file_path):
             "manifest_found": None,
             "error": "The C2PA data could not be safely interpreted."
         }
+        if result.get("status") == "manifest_found":
+            result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
+        else:
+            result["metadata_consistency"] = _safe_exif_comparison(file_path)
         result["hardened_verdict"] = evaluate_hardened_verdict(result)
         return result
 
@@ -117,5 +147,9 @@ def check_c2pa(file_path):
             "manifest_found": None,
             "error": "An unexpected C2PA inspection error occurred."
         }
+        if result.get("status") == "manifest_found":
+            result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
+        else:
+            result["metadata_consistency"] = _safe_exif_comparison(file_path)
         result["hardened_verdict"] = evaluate_hardened_verdict(result)
         return result
