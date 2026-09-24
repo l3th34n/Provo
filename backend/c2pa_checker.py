@@ -1,8 +1,14 @@
 
 import json
+import logging
 from pathlib import Path
 
 from c2pa import Reader, C2paError
+
+from revocation_checker import check_certificate_revocation
+
+
+logger = logging.getLogger("provo")
 
 
 def check_c2pa(file_path):
@@ -21,6 +27,9 @@ def check_c2pa(file_path):
 
             active = manifests[active_id]
 
+            validation_results = reader.get_validation_results()
+            validation_status = data.get("validation_status", [])
+
             return {
                 "status": "manifest_found",
                 "manifest_found": True,
@@ -37,8 +46,12 @@ def check_c2pa(file_path):
                 ],
                 "validation_state":
                     reader.get_validation_state(),
-                "validation_results":
-                    reader.get_validation_results()
+                "validation_results": validation_results,
+                "validation_status": validation_status,
+                "certificate_revocation": check_certificate_revocation(
+                    validation_results,
+                    validation_status,
+                ),
             }
 
     except C2paError.ManifestNotFound:
@@ -48,6 +61,7 @@ def check_c2pa(file_path):
         }
 
     except (C2paError, ValueError, OSError) as error:
+        logger.warning("C2PA inspection failed: %s", error)
         return {
             "status": "inspection_error",
             "manifest_found": None,
