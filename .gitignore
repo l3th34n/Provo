@@ -18,3 +18,8 @@ uploads/
 # Editor files
 .vscode/
 .idea/
+
+#Duplicated and generated files
+__pycache__/
+*.py[cod]
+backend - Copy/
