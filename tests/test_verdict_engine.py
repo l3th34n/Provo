@@ -38,6 +38,10 @@ def c2pa_result(
             "message": "timestamp result",
             "evidence": [],
         },
+        "pipeline_audit": {
+            "status": "no_flags", "checked": True, "findings": [],
+            "coverage": {"sdk_signals": "checked", "ingredient_graph": "checked", "jpeg_exclusion_coverage": "checked"},
+        },
     }
 
 
@@ -117,9 +121,19 @@ class VerdictEngineTests(unittest.TestCase):
         self.assertEqual(result["verdict"], "HARDENED_VALID")
         self.assertTrue(result["hardened_valid"])
 
+    def test_valid_state_without_positive_signature_evidence_has_gaps(self):
+        result = evaluate_hardened_verdict(
+            c2pa_result(success=[{"code": "signingCredential.trusted"}])
+        )
+        self.assertEqual(result["verdict"], "VALID_WITH_GAPS")
+        self.assertFalse(result["hardened_valid"])
+
     def test_ingredient_failure_does_not_override_active_manifest(self):
         result_data = c2pa_result(
-            success=[{"code": "signingCredential.trusted"}]
+            success=[
+                {"code": "claimSignature.validated"},
+                {"code": "signingCredential.trusted"},
+            ]
         )
         result_data["validation_results"]["ingredientDeltas"] = [
             {

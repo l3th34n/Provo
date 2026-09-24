@@ -9,8 +9,12 @@ MAIN = (ROOT / "backend" / "main.py").read_text(encoding="utf-8")
 
 
 class FrontendBackendContractTests(unittest.TestCase):
+
     def test_frontend_assets_are_served_by_fastapi(self):
-        self.assertIn('href="/frontend/style.css"', HTML)
+        self.assertRegex(
+            HTML,
+            r'href=["\'](?:/frontend/)?style\.css["\']',
+        )
         self.assertIn('app.mount("/frontend"', MAIN)
 
     def test_every_backend_verdict_has_a_frontend_presentation(self):
@@ -26,15 +30,24 @@ class FrontendBackendContractTests(unittest.TestCase):
             "NO_PROVENANCE",
             "INSPECTION_ERROR",
         }
+
         presentation = re.search(
-            r"const verdictPresentation = \{(.*?)\n            \};",
+            r"const verdictPresentation = \{(.*?)\n\s*\};",
             HTML,
             re.DOTALL,
         )
-        self.assertIsNotNone(presentation)
-        for verdict in verdicts:
-            self.assertRegex(presentation.group(1), rf"\b{verdict}:\s*\{{")
 
+        self.assertIsNotNone(
+            presentation,
+            "Could not find the verdictPresentation object in index.html",
+        )
+
+        for verdict in verdicts:
+            with self.subTest(verdict=verdict):
+                self.assertRegex(
+                    presentation.group(1),
+                    rf"\b{re.escape(verdict)}:\s*\{{",
+                )
     def test_only_hardened_valid_uses_the_safe_badge(self):
         presentation = re.search(
             r"const verdictPresentation = \{(.*?)\n            \};",
