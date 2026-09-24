@@ -1,1 +1,73 @@
-# Provo
+python -m venv .venv
+
+Activate the environment on Windows PowerShell:
+
+.venv\Scripts\Activate.ps1
+
+Install dependencies and start the server:
+
+python -m pip install -r requirements.txt
+cd backend
+python -m uvicorn main:app --reload
+
+Open http://127.0.0.1:8000. Interactive API documentation is available at
+http://127.0.0.1:8000/docs.
+
+Run tests
+
+Run this command from the repository root:
+
+python -m unittest discover -s tests -v
+
+Backend verdicts
+
+Verdict
+
+Meaning
+
+HARDENED_VALID
+
+All required positive evidence is present.
+
+VALID_WITH_GAPS
+
+No decisive attack was found, but required evidence is missing.
+
+TAMPERED
+
+A signed hash, assertion, or claim integrity check failed.
+
+REVOKED_SIGNER
+
+The signing credential has revoked evidence.
+
+UNTRUSTED_SIGNER
+
+The validator could not establish a trusted signer chain.
+
+TIMESTAMP_INVALID
+
+Timestamp evidence is invalid or inconsistent.
+
+CREDENTIAL_INVALID
+
+The signing credential failed validity requirements.
+
+POLICY_VIOLATION
+
+Another active-manifest validation failure occurred.
+
+NO_PROVENANCE
+
+No C2PA manifest was found.
+
+INSPECTION_ERROR
+
+The asset could not be safely inspected.
+
+Current scope
+
+The prototype interprets revocation and timestamp evidence returned by the
+C2PA SDK. Independent live OCSP/CRL fetching, timestamp replay analysis,
+exclusion-range auditing, and perceptual provenance recovery remain future
+development work.

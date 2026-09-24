@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROVO // Hardened C2PA Security Middleware & Media Authenticity</title>
+
+    <meta name="description" content="Independent validation engine and security middleware exposing, intercepting, and neutralizing structural vulnerabilities in the C2PA digital media provenance pipeline.">
+    <meta name="theme-color" content="#06090e">
+
+    <link rel="stylesheet" href="style.css"
+          onerror="if (!this.dataset.fallback) { this.dataset.fallback = 'true'; this.href = 'script.css'; }">
+
+    <!-- Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="provo-app">
+
+    <!-- AMBIENT PARALLAX & GRID LAYERS -->
+    <div class="parallax-bg-layer" data-parallax-speed="0.06" aria-hidden="true"></div>
+    <div class="cyber-grid-overlay" aria-hidden="true"></div>
+    <div class="ambient-glow glow-cyan" data-parallax-speed="0.12" aria-hidden="true"></div>
+    <div class="ambient-glow glow-crimson" data-parallax-speed="0.2" aria-hidden="true"></div>
+
+    <!-- ==============================================================
+         1. STICKY GLOBAL ENTERPRISE HEADER
+         ============================================================== -->
+    <header class="sticky-header" id="global-header">
+        <div class="nav-container">
+            <div class="brand-group">
+                <a href="#hero" class="brand-logo" aria-label="PROVO Security Middleware">
+                    <svg class="logo-shield" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span class="logo-text">PRO<span>VO</span></span>
+                    <span class="logo-division">// HARDENED C2PA MIDDLEWARE</span>
+                </a>
+
+                <!-- Backend Health Status Pill -->
+                <div class="system-status-pill" id="backendStatusPill" title="FastAPI Microservice Status">
+                    <span class="status-dot pulsing"></span>
+                    <span class="status-label">ENGINE: <strong id="backendStatusText">INITIALIZING...</strong></span>
+                </div>
+            </div>
+
+            <!-- Primary Navigation Hyperlinks -->
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="#workbench" class="nav-item">Inspection Console</a>
+                <a href="#why-provo" class="nav-item">Why PROVO?</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#resources" class="nav-item">Resources</a>
+                <a href="#faq" class="nav-item">FAQs</a>
+            </nav>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnHeaderDemo">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Simulated Attack Demo
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnOpenContactHeader">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Contact Us
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Progress Bar -->
+        <div class="scroll-progress-track" aria-hidden="true">
+            <div class="scroll-progress-indicator" id="scrollProgress"></div>
+        </div>
+    </header>
+
+    <!-- ==============================================================
+         2. SLIDING KINETIC ENGINE TELEMETRY RIBBON
+         ============================================================== -->
+    <div class="ticker-ribbon ticker-dark" aria-label="System Protocol Notice">
+        <div class="ticker-track">
+            <div class="ticker-item"><span class="ticker-tag">SECURITY PROTOCOL</span> PROVO HARDENING MIDDLEWARE ACTIVE</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> THREE-STATE OCSP EVIDENCE ENFORCEMENT</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> RFC-3161 TIMESTAMP TRUST INTERPRETATION</div>
+            <div class="ticker-item"><span class="ticker-code">ROADMAP</span> EXCLUSION RANGE & HARDWARE PIPELINE RESEARCH</div>
+            <div class="ticker-item"><span class="ticker-code">FAIL-CLOSED POLICY</span> UNKNOWN REVOCATION EVIDENCE NEVER EQUALS SAFE</div>
+            <!-- Seamless Loop Duplicate -->
+            <div class="ticker-item"><span class="ticker-tag">SECURITY PROTOCOL</span> PROVO HARDENING MIDDLEWARE ACTIVE</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> THREE-STATE OCSP EVIDENCE ENFORCEMENT</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> RFC-3161 TIMESTAMP TRUST INTERPRETATION</div>
+            <div class="ticker-item"><span class="ticker-code">ROADMAP</span> EXCLUSION RANGE & HARDWARE PIPELINE RESEARCH</div>
+            <div class="ticker-item"><span class="ticker-code">FAIL-CLOSED POLICY</span> UNKNOWN REVOCATION EVIDENCE NEVER EQUALS SAFE</div>
+        </div>
+    </div>
+
+    <!-- ==============================================================
+         3. HERO SECTION (PARALLAX & ENTERPRISE VALUE PROPOSITION)
+         ============================================================== -->
+    <section class="section hero-section" id="hero">
+        <div class="container hero-container">
+            <div class="hero-split">
+                <div class="hero-copy" data-parallax-speed="0.05">
+                    <div class="hero-badge">
+                        <span class="badge-icon">🛡️</span>
+                        <span class="badge-text">ADVERSARIAL C2PA VALIDATION ENGINE v1.2</span>
+                    </div>
+                    <h1 class="hero-headline">
+                        Exposing & Neutralizing <br>
+                        <span class="text-gradient-cyan">C2PA Provenance Vulnerabilities.</span>
+                    </h1>
+                    <p class="hero-subtext">
+                        A valid C2PA signature proves integrity and provenance—not objective truth. Trust can still remain unresolved when certificate revocation, signer trust, or timestamp evidence is missing or inconclusive.
+                        <strong>PROVO adds a fail-closed policy layer that exposes these evidence gaps instead of silently treating them as safe.</strong>
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <a href="#workbench" class="btn btn-primary btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Launch Verification Console
+                        </a>
+                        <button type="button" class="btn btn-outline btn-lg" id="btnHeroContact">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Contact Security Team
+                        </button>
+                    </div>
+
+                    <!-- Telemetry Metric Strip -->
+                    <div class="hero-metric-strip">
+                        <div class="metric-card">
+                            <span class="metric-figure text-cyan">3-State</span>
+                            <span class="metric-caption">Revoked / Not Revoked / Unknown</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-figure text-crimson">Fail-Closed</span>
+                            <span class="metric-caption">Hardened Verdict Policy</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-figure text-gold">RFC-3161</span>
+                            <span class="metric-caption">Trusted Timestamp Validation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Display -->
+                <div class="hero-visual" data-parallax-speed="-0.08">
+                    <div class="forensic-display-card">
+                        <div class="card-glass-header">
+                            <span class="window-dot red"></span>
+                            <span class="window-dot yellow"></span>
+                            <span class="window-dot green"></span>
+                            <span class="window-title font-mono">PROVO_ZERO_TRUST_MIDDLEWARE.SYS</span>
+                        </div>
+                        <figure class="card-visual-media">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80"
+                                 alt="Cybersecurity digital forensic matrix analysis screen"
+                                 class="hero-media-img" loading="eager">
+                            <div class="visual-scanline"></div>
+                            <div class="interactive-tag tag-top-right">
+                                <span class="tag-status badge-pass">LEGACY C2PA: VALID [PASSED]</span>
+                            </div>
+                            <div class="interactive-tag tag-bottom-left">
+                                <span class="tag-status badge-threat">PROVO: EVIDENCE GAP EXPOSED</span>
+                            </div>
+                        </figure>
+                        <div class="card-telemetry-panel">
+                            <div class="telemetry-row">
+                                <span class="lbl">ATTACK VECTOR:</span>
+                                <span class="val font-mono text-crimson">SIMULATED REVOKED CREDENTIAL</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="lbl">STANDARD VALIDATOR:</span>
+                                <span class="val font-mono text-cyan">VALID SIGNATURE / TRUST UNRESOLVED</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="lbl">PROVO INTERCEPT:</span>
+                                <span class="val font-mono text-crimson">FAIL-CLOSED VERDICT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         4. PRIMARY WORKING CONSOLE (INGESTION & DUAL-ENGINE INTERCEPT)
+         ============================================================== -->
+    <main class="workbench-layout" id="workbench">
+        <div class="workbench-main">
+
+            <!-- INGESTION PANEL -->
+            <section class="workbench-panel">
+                <div class="panel-header-deck">
+                    <div class="panel-titles">
+                        <span class="eyebrow text-cyan">OPERATIONAL VERIFICATION DECK</span>
+                        <h2 class="workbench-title">Asset Ingestion & Forensic Intercept</h2>
+                        <p class="workbench-desc">
+                            Ingest digital assets (.jpg, .png, .webp, .mp4, .mov) to inspect manifest claims, compute SHA-256 hashes, interpret OCSP evidence, validate timestamp trust, and generate a hardened security verdict.
+                        </p>
+                    </div>
+
+                    <!-- Evaluation Presets -->
+                    <div class="quick-eval-card">
+                        <span class="eval-label">SIMULATED HACKATHON PRESETS — DEMONSTRATION DATA:</span>
+                        <div class="eval-btn-group">
+                            <button type="button" class="btn btn-chip" data-eval="revoked">
+                                <span class="chip-status-dot dot-red"></span> Revoked Key Attack
+                            </button>
+                            <button type="button" class="btn btn-chip" data-eval="modified">
+                                <span class="chip-status-dot dot-yellow"></span> Injected / Modified
+                            </button>
+                            <button type="button" class="btn btn-chip" data-eval="signed">
+                                <span class="chip-status-dot dot-green"></span> Policy Pass
+                            </button>
+                            <button type="button" class="btn btn-chip" data-eval="ordinary">
+                                <span class="chip-status-dot dot-gray"></span> Ordinary (Unsigned)
+                            </button>
+                            <button type="button" class="btn btn-chip" data-eval="exclusion">
+                                <span class="chip-status-dot dot-yellow"></span> Extra Exclusion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Drag-and-Drop Form -->
+                <form id="uploadForm" class="ingestion-form" enctype="multipart/form-data">
+                    <div class="drop-zone" id="dropZone" tabindex="0" role="region" aria-label="Media File Upload Area">
+                        <input type="file" id="mediaFile" name="file" accept=".jpg,.jpeg,.png,.webp,.mp4,.mov" class="visually-hidden">
+
+                        <div class="drop-zone-prompt" id="dropPrompt">
+                            <div class="drop-icon-wrap">
+                                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                            </div>
+                            <h3 class="drop-title">Drop Media to Inspect or <span class="text-cyan underline">Browse Local Files</span></h3>
+                            <p class="drop-specs">C2PA 2.x Compliant • Supports JPG, PNG, WEBP, MP4, MOV up to 25 MB</p>
+                        </div>
+
+                        <!-- Staging File Bar -->
+                        <div class="file-staging-strip hidden" id="fileStagingStrip">
+                            <div class="staging-thumb-wrap">
+                                <img id="stagingThumb" src="" alt="Asset thumbnail" class="staging-thumb">
+                                <div class="staging-type-badge font-mono" id="stagingMime">IMG</div>
+                            </div>
+                            <div class="staging-meta">
+                                <span class="staging-filename font-mono" id="stagingFilename">filename.jpg</span>
+                                <span class="staging-filesize font-mono" id="stagingFilesize">0.00 MB</span>
+                            </div>
+                            <button type="button" class="btn-clear-staging" id="clearFileBtn" title="Remove staged asset">&times;</button>
+                        </div>
+                    </div>
+
+                    <!-- Implemented Controls and Research Roadmap -->
+                    <div class="middleware-controls-deck">
+                        <span class="controls-deck-title">IMPLEMENTED COVERAGE & DEVELOPMENT ROADMAP:</span>
+                        <div class="controls-grid">
+                            <label class="control-toggle-label">
+                                <input type="checkbox" id="toggleRevocation" checked disabled>
+                                <span class="control-box"></span>
+                                <span class="control-text">
+                                    <strong>OCSP Evidence Enforcement — Implemented</strong>
+                                    <small>Distinguishes revoked, not revoked, and unknown; live OCSP fetching is planned</small>
+                                </span>
+                            </label>
+
+                            <label class="control-toggle-label">
+                                <input type="checkbox" id="toggleTimestamp" checked disabled>
+                                <span class="control-box"></span>
+                                <span class="control-text">
+                                    <strong>RFC-3161 Timestamp Trust — Implemented</strong>
+                                    <small>Requires both trusted and validated SDK evidence; replay research remains planned</small>
+                                </span>
+                            </label>
+
+                            <label class="control-toggle-label">
+                                <input type="checkbox" id="toggleInjection" disabled>
+                                <span class="control-box"></span>
+                                <span class="control-text">
+                                    <strong>Full Capture-Stream Defense — Roadmap</strong>
+                                    <small>JPEG coverage and ingredient checks are available; full capture-stream defense remains planned</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="action-submit-bar">
+                        <button type="submit" id="uploadButton" class="btn btn-primary btn-block-hero">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span class="btn-text">Execute PROVO Security Inspection</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- DUAL-ENGINE LIVE INTERCEPT DEMO MATRIX -->
+            <section class="workbench-panel" id="intercept-matrix">
+                <div class="panel-section-header">
+                    <span class="eyebrow text-gold">EVIDENCE COMPARISON & SIMULATED ATTACK PRESETS</span>
+                    <h2 class="panel-heading">Standard C2PA vs. PROVO Hardened Middleware</h2>
+                    <p class="panel-sub">
+                        Compare the SDK validation state with PROVO’s stricter verdict. Preset buttons use clearly labeled simulated data; uploaded files use live backend results.
+                    </p>
+                </div>
+
+                <div class="intercept-grid">
+                    <!-- Standard / Legacy C2PA Validator (Vulnerable) -->
+                    <div class="validator-card legacy-validator">
+                        <div class="validator-header">
+                            <div class="validator-identity">
+                                <span class="validator-tag">LEGACY C2PA VALIDATOR</span>
+                                <h3 class="validator-name">Standard Industry Reader</h3>
+                            </div>
+                            <span class="verdict-badge badge-warn" id="legacyVerdictBadge">AWAITING RESULT</span>
+                        </div>
+
+                        <div class="validator-body">
+                            <div class="verdict-icon-container">
+                                <div class="verdict-icon-circle icon-green" id="legacyVerdictIcon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                </div>
+                                <div class="verdict-text-group">
+                                    <h4 class="verdict-headline" id="legacyHeadline">No SDK Result Yet</h4>
+                                    <p class="verdict-sub" id="legacySub">Upload an asset or select a simulated preset.</p>
+                                </div>
+                            </div>
+
+                            <div class="telemetry-readout">
+                                <div class="readout-row">
+                                    <span class="readout-lbl">Signature Integrity:</span>
+                                    <span class="readout-val text-dim font-mono" id="legacySig">NOT ESTABLISHED</span>
+                                </div>
+                                <div class="readout-row">
+                                    <span class="readout-lbl">SDK Validation State:</span>
+                                    <span class="readout-val text-dim font-mono" id="legacyRevocationCheck">NOT ESTABLISHED</span>
+                                </div>
+                                <div class="readout-row">
+                                    <span class="readout-lbl">Signer Trust:</span>
+                                    <span class="readout-val text-dim font-mono" id="legacyExclusionCheck">NOT ESTABLISHED</span>
+                                </div>
+                            </div>
+
+                            <div class="vulnerability-warning-box">
+                                <span class="warn-badge">EXPOSED VULNERABILITY:</span>
+                                <p id="legacyVulnerabilityMsg">
+                                    Standard validation and PROVO policy results will be displayed separately.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROVO Hardened Security Middleware (Intercepts) -->
+                    <div class="validator-card provo-validator">
+                        <div class="validator-header">
+                            <div class="validator-identity">
+                                <span class="validator-tag text-cyan">PROVO HARDENED ENGINE</span>
+                                <h3 class="validator-name">Zero-Trust Intercept Middleware</h3>
+                            </div>
+                            <span class="verdict-badge badge-warn" id="provoVerdictBadge">AWAITING RESULT</span>
+                        </div>
+
+                        <div class="validator-body">
+                            <div class="verdict-icon-container">
+                                <div class="verdict-icon-circle icon-red" id="provoVerdictIcon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                </div>
+                                <div class="verdict-text-group">
+                                    <h4 class="verdict-headline text-gold" id="provoHeadline">No Hardened Verdict Yet</h4>
+                                    <p class="verdict-sub" id="provoSub">Only an explicit HARDENED_VALID result can render as safe.</p>
+                                </div>
+                            </div>
+
+                            <div class="telemetry-readout">
+                                <div class="readout-row">
+                                    <span class="readout-lbl">Revocation Evidence:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoRevocationVal">UNKNOWN</span>
+                                </div>
+                                <div class="readout-row">
+                                    <span class="readout-lbl">Timestamp Security:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoTimestampVal">UNKNOWN</span>
+                                </div>
+                                <div class="readout-row">
+                                    <span class="readout-lbl">Hardened Policy:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoInjectionVal">NOT EVALUATED</span>
+                                </div>
+                            </div>
+
+                            <div class="mitigation-success-box">
+                                <span class="safe-badge">PROVO NEUTRALIZATION:</span>
+                                <p id="provoMitigationMsg">
+                                    Awaiting the backend's combined revocation, timestamp, credential, integrity, and policy verdict.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- STICKY FORENSIC TELEMETRY DRAWER (SIDEBAR) -->
+        <aside class="sticky-audit-sidebar" id="auditSidebar">
+            <div class="sidebar-inner">
+                <div class="sidebar-header">
+                    <div class="sidebar-title-group">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <span class="sidebar-title">FORENSIC TELEMETRY DRAWER</span>
+                    </div>
+                    <button type="button" class="btn-copy-telemetry" id="btnCopyJson" title="Copy Raw Diagnostic JSON">Copy JSON</button>
+                </div>
+
+                <div class="sidebar-content" id="sidebarContent">
+                    <!-- Awaiting State -->
+                    <div class="audit-awaiting" id="auditAwaitingState">
+                        <div class="pulsing-radar"></div>
+                        <h4 class="awaiting-title">No Asset Ingested</h4>
+                        <p class="awaiting-desc">
+                            Select an evaluation preset above or drop an image/video to inspect SHA-256 integrity, C2PA manifest claims, and OCSP certificate status.
+                        </p>
+                    </div>
+
+                    <!-- Telemetry Data Container -->
+                    <div class="audit-data-container hidden" id="auditDataContainer">
+
+                        <!-- 1. Media File Identity -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">01 // ASSET FILE IDENTITY</span>
+
+                            <div class="data-item">
+                                <span class="data-key">IMAGE / MEDIA NAME:</span>
+                                <span class="data-val font-mono text-cyan" id="resFilename">-</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">FILE SIZE:</span>
+                                <span class="data-val font-mono" id="resFilesize">-</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">SHA-256 HASH (KEY):</span>
+                                <code class="hash-box font-mono" id="resSha256">-</code>
+                            </div>
+                        </div>
+
+                        <!-- 2. Revocation Certificate Status -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">02 // REVOCATION CERTIFICATE STATUS</span>
+
+                            <div class="revocation-status-banner" id="resRevocationBanner">
+                                <span class="status-indicator-badge" id="resRevocationBadge">UNKNOWN</span>
+                                <p class="revocation-msg" id="resRevocationMsg">Checking OCSP validation...</p>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">VALIDATION METHOD:</span>
+                                <span class="data-val font-mono" id="resRevocationMethod">c2pa_ocsp_validation</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">REVOCATION EVIDENCE CODES:</span>
+                                <span class="data-val font-mono" id="resRevocationEvidence">None returned</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Timestamp Security -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">03 // TIMESTAMP SECURITY</span>
+
+                            <div class="revocation-status-banner" id="resTimestampBanner">
+                                <span class="status-indicator-badge" id="resTimestampBadge">UNKNOWN</span>
+                                <p class="revocation-msg" id="resTimestampMsg">No timestamp result available</p>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">CLAIMED SIGNING TIME:</span>
+                                <span class="data-val font-mono" id="resTimestampClaimedTime">Not supplied</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">TIMESTAMP EVIDENCE:</span>
+                                <span class="data-val font-mono" id="resTimestampEvidence">None returned</span>
+                            </div>
+                        </div>
+
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">04 // PIPELINE STRUCTURE AUDIT</span>
+                            <span class="status-indicator-badge badge-warn" id="resPipelineBadge">UNKNOWN</span>
+                            <p class="revocation-msg" id="resPipelineMsg">Awaiting pipeline audit.</p>
+                            <ul class="verdict-reasons" id="resPipelineFindings"></ul>
+                            <p class="revocation-msg" id="resPipelineCoverage"></p>
+                            <p class="revocation-msg">Coverage currently includes JPEG data-hash exclusions and available ingredient links. This does not establish whether pixels were generated by AI.</p>
+                        </div>
+
+                        <!-- 5. C2PA Manifest Breakdown -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">05 // C2PA MANIFEST SPECIFICATION</span>
+
+                            <div class="data-item">
+                                <span class="data-key">MANIFEST FOUND:</span>
+                                <span class="data-val font-mono" id="resManifestFound">true</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">ACTIVE MANIFEST URN:</span>
+                                <span class="data-val font-mono text-cyan" id="resActiveManifest">-</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">CLAIM GENERATOR:</span>
+                                <span class="data-val font-mono" id="resClaimGenerator">-</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">VALIDATION STATE:</span>
+                                <span class="data-val font-mono" id="resValidationState">-</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">ASSERTIONS DECLARED:</span>
+                                <ul class="assertions-tag-list" id="resAssertionsList"></ul>
+                            </div>
+                        </div>
+
+                        <!-- 5. Hardened Verdict Summary -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">06 // HARDENED SECURITY VERDICT</span>
+                            <div class="exploit-determination-box" id="resExploitBox">
+                                <div class="exploit-header">
+                                    <span class="exploit-title" id="resExploitTitle">PIPELINE INTEGRITY COMPROMISED</span>
+                                </div>
+                                <p class="exploit-detail" id="resExploitDetail">
+                                    Asset exhibits structural failure in revocation verification.
+                                </p>
+                                <ul class="verdict-reasons" id="resVerdictReasons"></ul>
+                            </div>
+                        </div>
+
+                        <!-- 5. Collapsible Full Manifest JSON -->
+                        <details class="telemetry-details">
+                            <summary class="details-summary font-mono">View Raw C2PA Diagnostic JSON</summary>
+                            <pre class="json-dump font-mono" id="resRawJson"></pre>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <span class="footer-backend-target font-mono">TARGET: POST /api/upload</span>
+                    <span class="footer-c2pa-engine font-mono">ENGINE: c2pa-python 0.37.x</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- ==============================================================
+         5. "ABOUT" SECTION (#about)
+         ============================================================== -->
+    <section class="section enterprise-content-section" id="about">
+        <div class="container">
+            <header class="section-heading text-center">
+                <span class="eyebrow text-cyan">PROJECT OVERVIEW & ORIGIN</span>
+                <h2 class="section-title">About PROVO</h2>
+                <p class="section-subtitle">
+                    Architected as an independent validation engine and security middleware to protect high-stakes industries against weaponized generative media and broken trust chains.
+                </p>
+            </header>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="about-card-title">Independent Validation Layer</h3>
+                    <p class="about-card-text">
+                        PROVO is a prototype independent validation layer that interprets C2PA SDK evidence using a stricter, fail-closed policy. Its API architecture is intended for future integration experiments with publishing and verification workflows.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3 class="about-card-title">Fail-Closed Evidence Policy</h3>
+                    <p class="about-card-text">
+                        PROVO treats missing security evidence as a gap, never as proof of safety. The current engine distinguishes revoked, not-revoked, and unknown certificate status and separately evaluates trusted timestamp evidence.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 class="about-card-title">Prototype Architecture</h3>
+                    <p class="about-card-text">
+                        The FastAPI prototype exposes structured cryptographic telemetry for integration experiments. Production deployment would additionally require independent security review, load testing, operational monitoring, and policy governance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         6. "WHY PROVO?" SECTION (#why-provo)
+         ============================================================== -->
+    <section class="section enterprise-content-section" id="why-provo">
+        <div class="container">
+            <header class="section-heading text-center">
+                <span class="eyebrow text-gold">SYSTEMIC SECURITY ANALYSIS</span>
+                <h2 class="section-title">Why C2PA Is Not Enough Alone</h2>
+                <p class="section-subtitle">
+                    Cryptographic manifests provide integrity and provenance evidence, but an application must still interpret trust failures and missing evidence safely.
+                </p>
+            </header>
+
+            <div class="comparison-table-wrapper">
+                <table class="enterprise-audit-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Security Vulnerability Vector</th>
+                            <th scope="col">Legacy / Standard C2PA Readers</th>
+                            <th scope="col" class="highlight-col">PROVO Hardened Security Middleware</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Compromised Private Keys</strong>
+                                <small>Adversaries using leaked or revoked camera keys</small>
+                            </td>
+                            <td class="text-crimson">
+                                <strong>IMPLEMENTATION-DEPENDENT</strong><br>
+                                Revocation evidence may be absent or inconclusive and must not be interpreted as safe.
+                            </td>
+                            <td class="highlight-col text-cyan">
+                                <strong>IMPLEMENTED: THREE STATES</strong><br>
+                                Surfaces revoked, not-revoked, or unknown SDK evidence; independent live fetching is planned.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Timestamp Forgery & Replay</strong>
+                                <small>Backdating AI assets or replaying old news signatures</small>
+                            </td>
+                            <td class="text-crimson">
+                                <strong>EVIDENCE REQUIRES INTERPRETATION</strong><br>
+                                A timestamp claim alone is not equivalent to a trusted, validated timestamp.
+                            </td>
+                            <td class="highlight-col text-cyan">
+                                <strong>IMPLEMENTED: TRUST GATE</strong><br>
+                                Requires both validated and trusted timestamp results; replay analysis is a future improvement.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Pipeline Injection & Exclusion Ranges</strong>
+                                <small>Smuggling synthetic AI layers into unhashed byte chunks</small>
+                            </td>
+                            <td class="text-crimson">
+                                <strong>REQUIRES FORMAT-AWARE ANALYSIS</strong><br>
+                                Hash and signature failures expose many modifications, but exclusion semantics need deeper inspection.
+                            </td>
+                            <td class="highlight-col text-cyan">
+                                <strong>PARTIAL: JPEG & PROVENANCE AUDIT</strong><br>
+                                Checks JPEG data-hash exclusion boundaries and ingredient relationships. Other binding formats and capture-stream verification remain planned.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Downstream Social Media Stripping</strong>
+                                <small>WhatsApp, X, and Instagram stripping JUMBF metadata</small>
+                            </td>
+                            <td class="text-dim">
+                                <strong>TOTAL LOSS OF TRACE</strong><br>
+                                Manifest destroyed, turning authentic files into orphans.
+                            </td>
+                            <td class="highlight-col text-cyan">
+                                <strong>FUTURE DEVELOPMENT PLAN</strong><br>
+                                Evaluate opt-in registries and perceptual matching without presenting recovery as cryptographic proof.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         7. "RESOURCES" SECTION (#resources)
+         ============================================================== -->
+    <section class="section enterprise-content-section" id="resources">
+        <div class="container">
+            <header class="section-heading text-center">
+                <span class="eyebrow text-cyan">DOCUMENTATION & INTEGRATION</span>
+                <h2 class="section-title">Resources & Standards</h2>
+                <p class="section-subtitle">
+                    Technical documentation, open standards, and API endpoints for deploying PROVO into production pipelines.
+                </p>
+            </header>
+
+            <div class="resources-grid">
+                <article class="resource-card">
+                    <span class="resource-type font-mono">SPECIFICATION</span>
+                    <h3 class="resource-title">C2PA Technical Standard 2.4</h3>
+                    <p class="resource-copy">
+                        The official Coalition for Content Provenance and Authenticity specification for digital media manifests and JUMBF storage architecture.
+                    </p>
+                    <a href="https://c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html" target="_blank" rel="noopener noreferrer" class="resource-link">
+                        Read C2PA Spec &rarr;
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-type font-mono">FRAMEWORK</span>
+                    <h3 class="resource-title">NIST AI 100-2E Risk Management</h3>
+                    <p class="resource-copy">
+                        National Institute of Standards and Technology guidelines on synthetic content detection, watermarking, and adversarial media verification.
+                    </p>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="resource-link">
+                        View NIST Standards &rarr;
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-type font-mono">API REFERENCE</span>
+                    <h3 class="resource-title">FastAPI Microservice Engine</h3>
+                    <p class="resource-copy">
+                        Full REST documentation for <code>POST /api/upload</code> and <code>GET /api/health</code> including request payloads, headers, and response schemas.
+                    </p>
+                    <a href="/docs" class="resource-link">
+                        Explore Local Endpoints &rarr;
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-type font-mono">CODEBASE</span>
+                    <h3 class="resource-title">GitHub Repository (pt1)</h3>
+                    <p class="resource-copy">
+                        Source code for PROVO, including <code>c2pa_checker.py</code>, <code>revocation_checker.py</code>, and test sample verification suites.
+                    </p>
+                    <a href="https://github.com/l3th34n/Provo/tree/pt1" target="_blank" rel="noopener noreferrer" class="resource-link">
+                        View GitHub Repo &rarr;
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         8. "FAQS" SECTION (#faq)
+         ============================================================== -->
+    <section class="section enterprise-content-section" id="faq">
+        <div class="container container-sm">
+            <header class="section-heading text-center">
+                <span class="eyebrow text-cyan">TECHNICAL RESEARCH INQUIRIES</span>
+                <h2 class="section-title">Frequently Answered Questions</h2>
+                <p class="section-subtitle">
+                    Key questions regarding provenance limitations, key revocation, and how PROVO hardens the media verification pipeline.
+                </p>
+            </header>
+
+            <div class="accordion-group">
+                <details class="accordion-item" open>
+                    <summary class="accordion-header">
+                        <span class="accordion-title">Why isn't C2PA alone sufficient to guarantee that an asset is genuine?</span>
+                        <span class="accordion-arrow"></span>
+                    </summary>
+                    <div class="accordion-body">
+                        <p>
+                            C2PA validates <em>provenance</em> (that a specific cryptographic key signed a specific hash), not <em>objective truth</em>. If an adversary steals a private signing key, uses a compromised Certificate Authority, or captures an AI-generated image off a high-resolution display using a C2PA camera (the Analog Hole), the C2PA specification returns a valid signature. PROVO provides the adversarial verification needed to expose these exploits.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <span class="accordion-title">How does PROVO enforce signing key revocation?</span>
+                        <span class="accordion-arrow"></span>
+                    </summary>
+                    <div class="accordion-body">
+                        <p>
+                            <code>revocation_checker.py</code> interprets the C2PA validator's revocation status codes. It prioritizes revoked evidence, preserves not-revoked evidence, and reports missing or inconclusive evidence as unknown. Independent live OCSP/CRL retrieval is a planned improvement, not a current claim.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <span class="accordion-title">What is PROVO's plan for exclusion-range analysis?</span>
+                        <span class="accordion-arrow"></span>
+                    </summary>
+                    <div class="accordion-body">
+                        <p>
+                            The pipeline audit checks JPEG data-hash exclusions for invalid offsets and overlap with scan data or rendering markers. It also checks available ingredient links for cycles and missing provenance. APP11 manifest identity is verified by the C2PA SDK. BMFF, box-hash, and capture-stream auditing remain planned; the module does not classify AI-generated pixels.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <span class="accordion-title">Can enterprises deploy PROVO alongside existing publishing systems?</span>
+                        <span class="accordion-arrow"></span>
+                    </summary>
+                    <div class="accordion-body">
+                        <p>
+                            The prototype can be integrated through <code>POST /api/upload</code> for evaluation. A production deployment would need authentication, rate limits, isolated processing, persistent audit storage, observability, independent review, and organization-specific enforcement policy.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         9. "CONTACT US" SECTION (#contact)
+         ============================================================== -->
+    <section class="section enterprise-content-section" id="contact">
+        <div class="container container-sm">
+            <header class="section-heading text-center">
+                <span class="eyebrow text-cyan">ENTERPRISE INQUIRIES & EVALUATION</span>
+                <h2 class="section-title">Contact the PROVO Security Team</h2>
+                <p class="section-subtitle">
+                    Request an enterprise deployment briefing, schedule an adversarial media evaluation, or connect with the research team.
+                </p>
+            </header>
+
+            <form class="contact-form-card" id="contactForm">
+                <div class="form-row-dual">
+                    <div class="form-group">
+                        <label for="contactName" class="form-label font-mono">YOUR NAME *</label>
+                        <input type="text" id="contactName" class="form-input" placeholder="e.g. Dr. Alex Mercer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label font-mono">OFFICIAL / WORK EMAIL *</label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="e.g. alex@reuters-enterprise.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row-dual">
+                    <div class="form-group">
+                        <label for="contactOrg" class="form-label font-mono">ORGANIZATION / AGENCY *</label>
+                        <input type="text" id="contactOrg" class="form-input" placeholder="e.g. Media Defense Lab / Cyber Agency" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject" class="form-label font-mono">INQUIRY TYPE *</label>
+                        <select id="contactSubject" class="form-select font-mono" required>
+                            <option value="hackathon">Hackathon Jury & Evaluation Inquiry</option>
+                            <option value="pilot">Enterprise Security Pilot / Deployment</option>
+                            <option value="audit">Adversarial C2PA Vulnerability Assessment</option>
+                            <option value="research">Academic & Provenance Research Collaboration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMsg" class="form-label font-mono">MESSAGE / INQUIRY DETAILS *</label>
+                    <textarea id="contactMsg" class="form-textarea" rows="4" placeholder="Detail your organization's use case, testing requirements, or feedback..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block-hero" id="btnSubmitContact">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span>Transmit Enterprise Inquiry</span>
+                </button>
+                <p class="form-disclaimer font-mono" id="contactStatusMsg">
+                    Demo form only: no message is transmitted by this prototype. Use the GitHub repository to contact the project team.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==============================================================
+         10. NATIVE "CONTACT US" DIALOG MODAL
+         ============================================================== -->
+    <dialog class="enterprise-modal" id="contactModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="eyebrow text-cyan">COMMUNICATION CHANNEL</span>
+                    <h3 class="modal-title">Contact Security Specialists</h3>
+                </div>
+                <button type="button" class="btn-close-modal" id="btnCloseContactModal" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-sub">
+                    Direct your inquiry to the PROVO development and adversarial research team:
+                </p>
+                <div class="modal-contact-details">
+                    <div class="contact-pill">
+                        <span class="pill-label font-mono">REPO:</span>
+                        <a href="https://github.com/l3th34n/Provo/tree/pt1" target="_blank" rel="noopener noreferrer" class="pill-val font-mono">github.com/l3th34n/Provo</a>
+                    </div>
+                    <div class="contact-pill">
+                        <span class="pill-label font-mono">RESEARCH:</span>
+                        <span class="pill-val font-mono">Contact via GitHub repository</span>
+                    </div>
+                    <div class="contact-pill">
+                        <span class="pill-label font-mono">STATUS:</span>
+                        <span class="pill-val text-cyan font-mono">Accepting Hackathon Evaluation</span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <a href="#contact" class="btn btn-primary btn-sm" id="btnJumpToForm">Open Full Contact Form</a>
+                    <button type="button" class="btn btn-secondary btn-sm" id="btnDismissModal">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- ==============================================================
+         11. ENTERPRISE FOOTER
+         ============================================================== -->
+    <footer class="global-footer">
+        <div class="container footer-container">
+            <div class="footer-top-grid">
+                <!-- Col 1: Brand & Mission -->
+                <div class="footer-brand-col">
+                    <a href="#hero" class="brand-logo footer-logo">
+                        <svg class="logo-shield" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+                        </svg>
+                        <span class="logo-text">PRO<span>VO</span></span>
+                    </a>
+                    <p class="footer-mission">
+                        Independent validation engine and security middleware engineered to expose and neutralize structural provenance exploits in C2PA pipelines.
+                    </p>
+                    <div class="footer-contact-btn-wrap">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnFooterContact">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Contact Security Team
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Col 2: Platform Links -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">NAVIGATION</h5>
+                    <ul class="footer-nav">
+                        <li><a href="#hero">Overview</a></li>
+                        <li><a href="#workbench">Inspection Console</a></li>
+                        <li><a href="#intercept-matrix">Dual-Engine Demo</a></li>
+                        <li><a href="#why-provo">Why PROVO?</a></li>
+                        <li><a href="#about">About Project</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Research & Resources -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">RESOURCES</h5>
+                    <ul class="footer-nav">
+                        <li><a href="#resources">Documentation</a></li>
+                        <li><a href="#faq">Technical FAQs</a></li>
+                        <li><a href="https://c2pa.org/" target="_blank" rel="noopener">C2PA Specification</a></li>
+                        <li><a href="https://github.com/l3th34n/Provo/tree/pt1" target="_blank" rel="noopener">GitHub (pt1)</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: API & Engine Telemetry -->
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title font-mono">ENGINE TELEMETRY</h5>
+                    <div class="footer-endpoint-card">
+                        <span class="endpoint-name font-mono">POST /api/upload</span>
+                        <span class="endpoint-desc">C2PA extraction, SHA-256 calculation, evidence interpretation, and hardened verdict generation.</span>
+                        <span class="endpoint-badge font-mono text-cyan">STATUS: OPERATIONAL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-copy font-mono">
+                    &copy; 2026 PROVO Security Middleware Initiative. Built for High-Stakes Media Authenticity.
+                </div>
+                <div class="footer-badges font-mono">
+                    <span>Provenance &ne; Truth</span>
+                    <span class="sep">&bull;</span>
+                    <span>Zero-Trust Validation Engine</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==============================================================
+         12. CLIENT INTERACTION JAVASCRIPT
+         ============================================================== -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Form & Upload Elements
+        const form = document.getElementById("uploadForm");
+        const fileInput = document.getElementById("mediaFile");
+        const dropZone = document.getElementById("dropZone");
+        const dropPrompt = document.getElementById("dropPrompt");
+        const uploadButton = document.getElementById("uploadButton");
+        const clearFileBtn = document.getElementById("clearFileBtn");
+
+        const stagingStrip = document.getElementById("fileStagingStrip");
+        const stagingThumb = document.getElementById("stagingThumb");
+        const stagingFilename = document.getElementById("stagingFilename");
+        const stagingFilesize = document.getElementById("stagingFilesize");
+        const stagingMime = document.getElementById("stagingMime");
+
+        // Dual Engine Elements
+        const legacyVerdictBadge = document.getElementById("legacyVerdictBadge");
+        const legacyHeadline = document.getElementById("legacyHeadline");
+        const legacySub = document.getElementById("legacySub");
+        const legacySig = document.getElementById("legacySig");
+        const legacyRevocationCheck = document.getElementById("legacyRevocationCheck");
+        const legacyExclusionCheck = document.getElementById("legacyExclusionCheck");
+        const legacyVulnerabilityMsg = document.getElementById("legacyVulnerabilityMsg");
+
+        const provoVerdictBadge = document.getElementById("provoVerdictBadge");
+        const provoHeadline = document.getElementById("provoHeadline");
+        const provoSub = document.getElementById("provoSub");
+        const provoRevocationVal = document.getElementById("provoRevocationVal");
+        const provoTimestampVal = document.getElementById("provoTimestampVal");
+        const provoInjectionVal = document.getElementById("provoInjectionVal");
+        const provoMitigationMsg = document.getElementById("provoMitigationMsg");
+
+        // Sidebar Telemetry Elements
+        const auditAwaitingState = document.getElementById("auditAwaitingState");
+        const auditDataContainer = document.getElementById("auditDataContainer");
+        const resFilename = document.getElementById("resFilename");
+        const resFilesize = document.getElementById("resFilesize");
+        const resSha256 = document.getElementById("resSha256");
+
+        const resRevocationBadge = document.getElementById("resRevocationBadge");
+        const resRevocationMsg = document.getElementById("resRevocationMsg");
+        const resRevocationMethod = document.getElementById("resRevocationMethod");
+        const resRevocationEvidence = document.getElementById("resRevocationEvidence");
+
+        const resTimestampBadge = document.getElementById("resTimestampBadge");
+        const resTimestampMsg = document.getElementById("resTimestampMsg");
+        const resTimestampClaimedTime = document.getElementById("resTimestampClaimedTime");
+        const resTimestampEvidence = document.getElementById("resTimestampEvidence");
+        const resPipelineBadge = document.getElementById("resPipelineBadge");
+        const resPipelineMsg = document.getElementById("resPipelineMsg");
+        const resPipelineFindings = document.getElementById("resPipelineFindings");
+        const resPipelineCoverage = document.getElementById("resPipelineCoverage");
+
+        const resManifestFound = document.getElementById("resManifestFound");
+        const resActiveManifest = document.getElementById("resActiveManifest");
+        const resClaimGenerator = document.getElementById("resClaimGenerator");
+        const resValidationState = document.getElementById("resValidationState");
+        const resAssertionsList = document.getElementById("resAssertionsList");
+
+        const resExploitTitle = document.getElementById("resExploitTitle");
+        const resExploitDetail = document.getElementById("resExploitDetail");
+        const resVerdictReasons = document.getElementById("resVerdictReasons");
+        const resRawJson = document.getElementById("resRawJson");
+
+        const btnCopyJson = document.getElementById("btnCopyJson");
+        let activeTelemetryPayload = null;
+
+        // Backend Health Ping
+        const backendStatusText = document.getElementById("backendStatusText");
+        const backendStatusPill = document.getElementById("backendStatusPill");
+
+        async function pingBackend() {
+            try {
+                const res = await fetch("/api/health");
+                if (res.ok) {
+                    backendStatusText.textContent = "ONLINE (FASTAPI)";
+                    backendStatusPill.classList.add("status-online");
+                } else {
+                    throw new Error("Bad status");
+                }
+            } catch (err) {
+                backendStatusText.textContent = "STANDALONE / DISCONNECTED";
+                backendStatusPill.classList.add("status-warn");
+            }
+        }
+        pingBackend();
+
+        // Drag & Drop Handling
+        dropZone.addEventListener("click", (e) => {
+            if (e.target !== clearFileBtn && !clearFileBtn.contains(e.target)) {
+                fileInput.click();
+            }
+        });
+
+        dropZone.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                fileInput.click();
+            }
+        });
+
+        ["dragenter", "dragover"].forEach(evt => {
+            dropZone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                dropZone.classList.add("dragover");
+            });
+        });
+
+        ["dragleave", "drop"].forEach(evt => {
+            dropZone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("dragover");
+            });
+        });
+
+        dropZone.addEventListener("drop", (e) => {
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                fileInput.files = e.dataTransfer.files;
+                stageFile(fileInput.files[0]);
+            }
+        });
+
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files && fileInput.files[0]) {
+                stageFile(fileInput.files[0]);
+            }
+        });
+
+        function stageFile(file) {
+            stagingFilename.textContent = file.name;
+            stagingFilesize.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+
+            const ext = file.name.split('.').pop().toUpperCase();
+            stagingMime.textContent = ext || "FILE";
+
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    stagingThumb.src = e.target.result;
+                    stagingThumb.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                stagingThumb.style.display = "none";
+            }
+
+            dropPrompt.classList.add("hidden");
+            stagingStrip.classList.remove("hidden");
+        }
+
+        clearFileBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            fileInput.value = "";
+            stagingStrip.classList.add("hidden");
+            dropPrompt.classList.remove("hidden");
+        });
+
+        // Form Submit -> POST /api/upload
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select or drop a media file first, or choose one of the sample test presets.");
+                return;
+            }
+
+            if (file.size > 25 * 1024 * 1024) {
+                alert("File exceeds maximum allowed limit of 25 MB.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            uploadButton.disabled = true;
+            uploadButton.querySelector(".btn-text").textContent = "Executing Hardened Inspection...";
+
+            try {
+                const response = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.detail || "Inspection request failed");
+                }
+
+                activeTelemetryPayload = data;
+                renderInspectionResults(data);
+
+            } catch (err) {
+                alert("Upload failed: " + err.message + "\n(If running standalone without backend, click an Evaluation Preset above to simulate).");
+            } finally {
+                uploadButton.disabled = false;
+                uploadButton.querySelector(".btn-text").textContent = "Execute PROVO Security Inspection";
+            }
+        });
+
+        // Render Telemetry & Dual-Engine Matrix
+        function renderInspectionResults(data) {
+            const c2pa = data.c2pa || {};
+            const isManifest = c2pa.manifest_found === true;
+            const certRev = c2pa.certificate_revocation || {};
+            const timestamp = c2pa.timestamp_security || {};
+            const hardened = c2pa.hardened_verdict || {};
+            const validationState = String(c2pa.validation_state || "Unchecked");
+            const activeResults = c2pa.validation_results?.activeManifest || {};
+            const successes = Array.isArray(activeResults.success) ? activeResults.success : [];
+            const failures = Array.isArray(activeResults.failure) ? activeResults.failure : [];
+            const successCodes = new Set(successes.map(item => item?.code).filter(Boolean));
+            const failureCodes = new Set(failures.map(item => item?.code).filter(Boolean));
+
+            // Missing backend verdicts deliberately fail closed. Only an explicit
+            // HARDENED_VALID response may receive the green treatment.
+            let verdict = hardened.verdict;
+            if (!verdict) {
+                verdict = !isManifest
+                    ? "NO_PROVENANCE"
+                    : (data.status === "error" || c2pa.status === "error" ? "INSPECTION_ERROR" : "VALID_WITH_GAPS");
+            }
+
+            const verdictPresentation = {
+                HARDENED_VALID: {
+                    badge: "HARDENED VALID", badgeClass: "badge-pass", titleClass: "text-cyan",
+                    title: "HARDENED VALIDATION PASSED", headline: "All Required Evidence Passed",
+                    action: "No policy failure was reported by the hardened backend."
+                },
+                VALID_WITH_GAPS: {
+                    badge: "VALID WITH GAPS", badgeClass: "badge-warn", titleClass: "text-gold",
+                    title: "VALIDATION EVIDENCE IS INCOMPLETE", headline: "Do Not Treat as Fully Trusted",
+                    action: "Hold or review the asset until the missing evidence is resolved."
+                },
+                UNTRUSTED_SIGNER: {
+                    badge: "UNTRUSTED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "SIGNER TRUST NOT ESTABLISHED", headline: "Untrusted Signing Credential",
+                    action: "Reject or quarantine under a trust-required policy."
+                },
+                TAMPERED: {
+                    badge: "TAMPERED", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "CONTENT INTEGRITY FAILURE", headline: "Tampering Evidence Detected",
+                    action: "Quarantine the asset; signed bytes or assertions failed validation."
+                },
+                REVOKED_SIGNER: {
+                    badge: "REVOKED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "REVOKED SIGNING CREDENTIAL", headline: "Revocation Evidence Detected",
+                    action: "Quarantine the asset and investigate the compromised credential."
+                },
+                TIMESTAMP_INVALID: {
+                    badge: "TIMESTAMP INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "TIMESTAMP SECURITY FAILURE", headline: "Timestamp Cannot Be Trusted",
+                    action: "Do not rely on the claimed signing time."
+                },
+                CREDENTIAL_INVALID: {
+                    badge: "CREDENTIAL INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "SIGNING CREDENTIAL INVALID", headline: "Certificate Validation Failed",
+                    action: "Reject or quarantine because credential validity was not established."
+                },
+                POLICY_VIOLATION: {
+                    badge: "POLICY VIOLATION", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "HARDENED POLICY VIOLATION", headline: "Required Security Policy Failed",
+                    action: "Apply the configured enforcement policy before distribution."
+                },
+                NO_PROVENANCE: {
+                    badge: "NO PROVENANCE", badgeClass: "badge-warn", titleClass: "text-gold",
+                    title: "NO C2PA PROVENANCE FOUND", headline: "Authenticity Not Established",
+                    action: "Treat the asset as provenance-unknown; absence is not evidence of manipulation or safety."
+                },
+                INSPECTION_ERROR: {
+                    badge: "INSPECTION ERROR", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "INSPECTION COULD NOT COMPLETE", headline: "No Security Decision Available",
+                    action: "Fail closed and retry or escalate the inspection error."
+                }
+            };
+            const display = verdictPresentation[verdict] || verdictPresentation.VALID_WITH_GAPS;
+
+            auditAwaitingState.classList.add("hidden");
+            auditDataContainer.classList.remove("hidden");
+
+            // 1. File Identity
+            resFilename.textContent = data.filename || "Uploaded File";
+            const fileSize = Number(data.file_size);
+            resFilesize.textContent = Number.isFinite(fileSize)
+                ? (fileSize / (1024 * 1024)).toFixed(2) + " MB (" + fileSize + " bytes)"
+                : "Not supplied";
+            resSha256.textContent = data.sha256 || "N/A";
+
+            // 2. Revocation Status
+            resRevocationBadge.textContent = (certRev.status || "UNKNOWN").toUpperCase();
+            resRevocationBadge.className = "status-indicator-badge " +
+                (certRev.status === "revoked" ? "badge-threat" : (certRev.status === "not_revoked" ? "badge-pass" : "badge-warn"));
+            resRevocationMsg.textContent = certRev.message || "No revocation message provided";
+            resRevocationMethod.textContent = certRev.method || "c2pa_ocsp_validation";
+
+            const revocationEvidence = Array.isArray(certRev.evidence) ? certRev.evidence : [];
+            resRevocationEvidence.textContent = revocationEvidence.length
+                ? revocationEvidence.map(item => item?.code || "unnamed evidence").join(", ")
+                : "No conclusive evidence returned";
+
+            // 3. Timestamp Security
+            const timestampStatus = String(timestamp.status || "unknown").toLowerCase();
+            resTimestampBadge.textContent = timestampStatus.toUpperCase();
+            resTimestampBadge.className = "status-indicator-badge " +
+                (timestampStatus === "valid" ? "badge-pass" : (timestampStatus === "invalid" ? "badge-threat" : "badge-warn"));
+            resTimestampMsg.textContent = timestamp.message || "No conclusive timestamp security result was returned.";
+            resTimestampClaimedTime.textContent = timestamp.claimed_time || c2pa.signature_info?.time || "Not supplied";
+            const timestampEvidence = Array.isArray(timestamp.evidence) ? timestamp.evidence : [];
+            resTimestampEvidence.textContent = timestampEvidence.length
+                ? timestampEvidence.map(item => item?.code || "unnamed evidence").join(", ")
+                : "No conclusive evidence returned";
+
+            const pipeline = c2pa.pipeline_audit || {};
+            resPipelineBadge.textContent = String(pipeline.status || "not_assessed").toUpperCase();
+            resPipelineBadge.className = "status-indicator-badge " +
+                (pipeline.status === "invalid" ? "badge-threat" : "badge-warn");
+            resPipelineMsg.textContent = pipeline.message || "No pipeline audit was returned by this backend.";
+            resPipelineFindings.replaceChildren();
+            for (const finding of (Array.isArray(pipeline.findings) ? pipeline.findings : [])) {
+                const li = document.createElement("li");
+                li.textContent = `${finding.code || "Finding"}: ${finding.message || "Review required"}`;
+                resPipelineFindings.appendChild(li);
+            }
+            const coverage = pipeline.coverage && typeof pipeline.coverage === "object" ? pipeline.coverage : {};
+            resPipelineCoverage.textContent = Object.entries(coverage)
+                .map(([check, status]) => `${check}: ${status}`).join(" · ");
+
+            // 4. Manifest Details
+            resManifestFound.textContent = isManifest ? "TRUE (DETECTED)" : "FALSE (NO MANIFEST)";
+            resManifestFound.className = "data-val font-mono " + (isManifest ? "text-cyan" : "text-crimson");
+            resActiveManifest.textContent = c2pa.active_manifest || "None";
+            resClaimGenerator.textContent = c2pa.claim_generator || "Unknown Claim Generator";
+            resValidationState.textContent = validationState;
+            resValidationState.className = "data-val font-mono " +
+                (validationState.toLowerCase() === "valid" ? "text-cyan" : "text-crimson");
+
+            resAssertionsList.innerHTML = "";
+            const assertions = c2pa.assertions || [];
+            if (assertions.length > 0) {
+                assertions.forEach(label => {
+                    const li = document.createElement("li");
+                    li.className = "assertion-tag font-mono";
+                    li.textContent = label;
+                    resAssertionsList.appendChild(li);
+                });
+            } else {
+                resAssertionsList.innerHTML = "<li class='text-dim font-mono'>No assertions declared</li>";
+            }
+
+            // 5. Hardened Verdict: backend output is the authoritative policy decision.
+            resExploitTitle.textContent = display.title;
+            resExploitTitle.className = "exploit-title " + display.titleClass;
+            resExploitDetail.textContent = hardened.summary || display.action;
+            resVerdictReasons.innerHTML = "";
+            const reasons = Array.isArray(hardened.reasons) && hardened.reasons.length
+                ? hardened.reasons
+                : [display.action];
+            reasons.forEach(reason => {
+                const li = document.createElement("li");
+                li.textContent = reason;
+                resVerdictReasons.appendChild(li);
+            });
+
+            // Standard SDK card reports only what the SDK actually established.
+            const stateLower = validationState.toLowerCase();
+            const sdkValid = stateLower === "valid";
+            const sdkInvalid = stateLower === "invalid";
+            legacyVerdictBadge.textContent = sdkValid ? "SDK: VALID" : (sdkInvalid ? "SDK: INVALID" : "SDK: INCONCLUSIVE");
+            legacyVerdictBadge.className = "verdict-badge " + (sdkValid ? "badge-pass" : (sdkInvalid ? "badge-threat" : "badge-warn"));
+            legacyHeadline.textContent = sdkValid ? "Standard Validation Passed" : (sdkInvalid ? "Standard Validation Failed" : "Standard State Unresolved");
+            legacySub.textContent = "This card reflects the validator state only; it is not a claim that the media is objectively true.";
+            legacySig.textContent = successCodes.has("claimSignature.validated")
+                ? "VALIDATED"
+                : (failureCodes.has("claimSignature.mismatch") ? "INVALID" : "NOT ESTABLISHED");
+            legacyRevocationCheck.textContent = validationState.toUpperCase();
+            legacyExclusionCheck.textContent = failureCodes.has("signingCredential.untrusted")
+                ? "UNTRUSTED"
+                : (successCodes.has("signingCredential.trusted") ? "TRUSTED" : "NOT ESTABLISHED");
+            legacyVulnerabilityMsg.textContent = sdkValid && verdict !== "HARDENED_VALID"
+                ? `The SDK state is valid, but PROVO reports ${verdict}. Standard validity must not override the hardened policy verdict.`
+                : "The SDK result and hardened policy are shown separately so missing evidence cannot silently become a safe result.";
+
+            provoVerdictBadge.textContent = display.badge;
+            provoVerdictBadge.className = "verdict-badge " + display.badgeClass;
+            provoHeadline.textContent = display.headline;
+            provoHeadline.className = "verdict-headline " + display.titleClass;
+            provoSub.textContent = hardened.summary || display.action;
+            provoRevocationVal.textContent = String(certRev.status || "unknown").toUpperCase();
+            provoRevocationVal.className = "readout-val font-mono " +
+                (certRev.status === "not_revoked" ? "text-cyan" : (certRev.status === "revoked" ? "text-crimson" : "text-gold"));
+            provoTimestampVal.textContent = timestampStatus.toUpperCase();
+            provoTimestampVal.className = "readout-val font-mono " +
+                (timestampStatus === "valid" ? "text-cyan" : (timestampStatus === "invalid" ? "text-crimson" : "text-gold"));
+            provoInjectionVal.textContent = verdict;
+            provoInjectionVal.className = "readout-val font-mono " + display.titleClass;
+            provoMitigationMsg.textContent = display.action;
+
+            resRawJson.textContent = JSON.stringify(data, null, 2);
+        }
+
+        // Evaluation Presets
+        const evalButtons = document.querySelectorAll("[data-eval]");
+        evalButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const sampleType = btn.getAttribute("data-eval");
+                triggerEvaluationSample(sampleType);
+            });
+        });
+
+        function triggerEvaluationSample(type) {
+            let mockResult = {};
+
+            if (type === "revoked") {
+                mockResult = {
+                    status: "uploaded",
+                    file_id: "provo-revoked-sample-01",
+                    filename: "compromised_signer_deepfake.jpg",
+                    file_size: 3410291,
+                    sha256: "9f83c2718228392a83f9821d7b1a0391d848209341209e8471b0231d8f742110",
+                    verification_status: "manifest_found",
+                    c2pa: {
+                        status: "manifest_found",
+                        manifest_found: true,
+                        active_manifest: "urn:c2pa:provo:exploit:revoked:01",
+                        claim_generator: "Adobe Firefly Authenticity Suite v2.0",
+                        signature_info: { issuer: "Rogue CA Sub-Authority", alg: "es256" },
+                        assertions: ["c2pa.actions", "c2pa.hash.data", "stds.schema-org.CreativeWork"],
+                        validation_state: "Valid",
+                        validation_results: {
+                            activeManifest: {
+                                success: [{ code: "claimSignature.validated" }],
+                                failure: [{ code: "signingCredential.revoked" }]
+                            }
+                        },
+                        certificate_revocation: {
+                            status: "revoked",
+                            checked: true,
+                            method: "c2pa_ocsp_validation",
+                            message: "The signing certificate was revoked at signing time.",
+                            evidence: [{ code: "signingCredential.revoked" }]
+                        },
+                        timestamp_security: {
+                            status: "valid", checked: true, trusted: true,
+                            claimed_time: "2026-01-17T09:14:00Z",
+                            message: "The simulated timestamp is valid and trusted.",
+                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
+                        },
+                        hardened_verdict: {
+                            verdict: "REVOKED_SIGNER", severity: "critical", hardened_valid: false,
+                            summary: "Revocation evidence identifies the active signing credential as revoked.",
+                            reasons: ["The active manifest contains signingCredential.revoked evidence."],
+                            standard_validation_state: "Valid",
+                            evidence_codes: ["signingCredential.revoked"]
+                        }
+                    }
+                };
+            } else if (type === "modified") {
+                mockResult = {
+                    status: "uploaded",
+                    file_id: "provo-modified-sample-02",
+                    filename: "tests_samples_modified.jpg",
+                    file_size: 1001720,
+                    sha256: "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+                    verification_status: "manifest_found",
+                    c2pa: {
+                        status: "manifest_found",
+                        manifest_found: true,
+                        active_manifest: "urn:c2pa:provo:test:sample:modified",
+                        claim_generator: "C2PA Test Harness / Hardware Ingestion",
+                        signature_info: { issuer: "Hardware Root CA", alg: "rs256" },
+                        assertions: ["c2pa.actions", "c2pa.exclusion.ranges"],
+                        validation_state: "Invalid",
+                        validation_results: {
+                            activeManifest: {
+                                success: [{ code: "signingCredential.notRevoked" }],
+                                failure: [{ code: "assertion.dataHash.mismatch" }]
+                            }
+                        },
+                        certificate_revocation: {
+                            status: "not_revoked",
+                            checked: true,
+                            method: "c2pa_ocsp_validation",
+                            message: "OCSP evidence shows certificate was not revoked.",
+                            evidence: [{ code: "signingCredential.notRevoked" }]
+                        },
+                        timestamp_security: {
+                            status: "unknown", checked: false, trusted: false,
+                            claimed_time: null,
+                            message: "No conclusive timestamp evidence was returned.", evidence: []
+                        },
+                        hardened_verdict: {
+                            verdict: "TAMPERED", severity: "critical", hardened_valid: false,
+                            summary: "The signed content or assertion hashes failed validation.",
+                            reasons: ["The active manifest contains assertion.dataHash.mismatch evidence."],
+                            standard_validation_state: "Invalid",
+                            evidence_codes: ["assertion.dataHash.mismatch"]
+                        }
+                    }
+                };
+            } else if (type === "signed" || type === "exclusion") {
+                mockResult = {
+                    status: "uploaded",
+                    file_id: "provo-original-sample-03",
+                    filename: "tests_samples_original_signed.jpg",
+                    file_size: 1047024,
+                    sha256: "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+                    verification_status: "manifest_found",
+                    c2pa: {
+                        status: "manifest_found",
+                        manifest_found: true,
+                        active_manifest: "urn:c2pa:provo:test:sample:original_signed",
+                        claim_generator: "Leica Camera Authenticity Engine v1.0",
+                        signature_info: { issuer: "Leica Camera AG CA", alg: "es256" },
+                        assertions: ["c2pa.actions", "c2pa.hash.data", "c2pa.thumbnail.claim.jpeg"],
+                        validation_state: "Valid",
+                        validation_results: {
+                            activeManifest: {
+                                success: [
+                                    { code: "claimSignature.validated" },
+                                    { code: "signingCredential.trusted" },
+                                    { code: "signingCredential.notRevoked" },
+                                    { code: "timeStamp.validated" },
+                                    { code: "timeStamp.trusted" }
+                                ],
+                                failure: []
+                            }
+                        },
+                        certificate_revocation: {
+                            status: "not_revoked",
+                            checked: true,
+                            method: "c2pa_ocsp_validation",
+                            message: "OCSP evidence shows the certificate was not revoked at signing time.",
+                            evidence: [{ code: "signingCredential.notRevoked" }]
+                        },
+                        timestamp_security: {
+                            status: "valid", checked: true, trusted: true,
+                            claimed_time: "2026-01-17T09:14:00Z",
+                            message: "The simulated timestamp is valid and trusted.",
+                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
+                        },
+                        hardened_verdict: {
+                            verdict: "HARDENED_VALID", severity: "none", hardened_valid: true,
+                            summary: "All security evidence required by the prototype policy is present.",
+                            reasons: ["Signature, signer trust, revocation, and timestamp evidence passed."],
+                            standard_validation_state: "Valid",
+                            evidence_codes: ["claimSignature.validated", "signingCredential.trusted", "signingCredential.notRevoked", "timeStamp.validated", "timeStamp.trusted"]
+                        }
+                    }
+                };
+            } else {
+                mockResult = {
+                    status: "uploaded",
+                    file_id: "provo-ordinary-sample-04",
+                    filename: "tests_samples_ordinary.jpg",
+                    file_size: 4820316,
+                    sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    verification_status: "no_manifest",
+                    c2pa: {
+                        status: "no_manifest",
+                        manifest_found: false,
+                        validation_state: "NoManifestFound",
+                        certificate_revocation: {
+                            status: "unknown",
+                            checked: false,
+                            method: "c2pa_ocsp_validation",
+                            message: "No conclusive OCSP revocation evidence was returned.", evidence: []
+                        },
+                        timestamp_security: {
+                            status: "unknown", checked: false, trusted: false,
+                            claimed_time: null,
+                            message: "No C2PA timestamp is available without a manifest.", evidence: []
+                        },
+                        hardened_verdict: {
+                            verdict: "NO_PROVENANCE", severity: "medium", hardened_valid: false,
+                            summary: "No C2PA manifest was found, so provenance cannot be established.",
+                            reasons: ["The asset contains no discoverable C2PA manifest."],
+                            standard_validation_state: "NoManifestFound",
+                            evidence_codes: []
+                        }
+                    }
+                };
+            }
+
+            mockResult.simulated = true;
+            mockResult.c2pa.pipeline_audit = {
+                status: mockResult.c2pa.manifest_found ? "no_flags" : "not_assessed",
+                checked: mockResult.c2pa.manifest_found,
+                coverage: { demonstration: "simulated" },
+                findings: [],
+                message: "Simulated preset: no file bytes were inspected. Upload a file for a real audit."
+            };
+            if (type === "exclusion") {
+                const code = "assertion.dataHash.additionalExclusionsPresent";
+                mockResult.filename = "SIMULATED_extra_exclusion.jpg";
+                mockResult.c2pa.validation_results.activeManifest.informational = [{ code }];
+                mockResult.c2pa.pipeline_audit.status = "review_required";
+                mockResult.c2pa.pipeline_audit.findings = [{
+                    code, level: "review", category: "additional_exclusion",
+                    message: "Simulated additional exclusion: inspect bytes outside the hard binding."
+                }];
+                mockResult.c2pa.hardened_verdict = {
+                    verdict: "VALID_WITH_GAPS", severity: "warning", hardened_valid: false,
+                    summary: "The SDK state is Valid, but an additional exclusion requires review.",
+                    reasons: ["Pipeline structure requires review."],
+                    standard_validation_state: "Valid", evidence_codes: [code]
+                };
+            }
+            activeTelemetryPayload = mockResult;
+            renderInspectionResults(mockResult);
+            document.getElementById("intercept-matrix").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Header Demo Trigger
+        const btnHeaderDemo = document.getElementById("btnHeaderDemo");
+        if (btnHeaderDemo) {
+            btnHeaderDemo.addEventListener("click", () => triggerEvaluationSample("revoked"));
+        }
+
+        // Copy JSON Button
+        btnCopyJson.addEventListener("click", () => {
+            if (!activeTelemetryPayload) {
+                alert("No telemetry to copy. Please ingest an asset first.");
+                return;
+            }
+            navigator.clipboard.writeText(JSON.stringify(activeTelemetryPayload, null, 2)).then(() => {
+                const original = btnCopyJson.textContent;
+                btnCopyJson.textContent = "COPIED!";
+                setTimeout(() => btnCopyJson.textContent = original, 1800);
+            });
+        });
+
+        // Contact Modal Controls
+        const contactModal = document.getElementById("contactModal");
+        const btnOpenContactHeader = document.getElementById("btnOpenContactHeader");
+        const btnHeroContact = document.getElementById("btnHeroContact");
+        const btnFooterContact = document.getElementById("btnFooterContact");
+        const btnCloseContactModal = document.getElementById("btnCloseContactModal");
+        const btnDismissModal = document.getElementById("btnDismissModal");
+        const btnJumpToForm = document.getElementById("btnJumpToForm");
+
+        function openModal() {
+            if (contactModal) contactModal.showModal();
+        }
+
+        function closeModal() {
+            if (contactModal) contactModal.close();
+        }
+
+        if (btnOpenContactHeader) btnOpenContactHeader.addEventListener("click", openModal);
+        if (btnHeroContact) btnHeroContact.addEventListener("click", openModal);
+        if (btnFooterContact) btnFooterContact.addEventListener("click", openModal);
+        if (btnCloseContactModal) btnCloseContactModal.addEventListener("click", closeModal);
+        if (btnDismissModal) btnDismissModal.addEventListener("click", closeModal);
+        if (btnJumpToForm) {
+            btnJumpToForm.addEventListener("click", () => {
+                closeModal();
+            });
+        }
+
+        // Contact Form Submission (Simulated / Local)
+        const contactForm = document.getElementById("contactForm");
+        const contactStatusMsg = document.getElementById("contactStatusMsg");
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                contactStatusMsg.textContent = "Demo only: this form does not transmit data. Please use the GitHub repository to contact the project team.";
+                contactStatusMsg.style.color = "var(--gold-primary)";
+            });
+        }
+
+        // Scroll Progress & Parallax
+        const scrollIndicator = document.getElementById("scrollProgress");
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / (docHeight || 1)) * 100;
+            if (scrollIndicator) scrollIndicator.style.width = scrollPercent + "%";
+
+            // Parallax element calculation
+            const parallaxEls = document.querySelectorAll("[data-parallax-speed]");
+            parallaxEls.forEach(el => {
+                const speed = parseFloat(el.getAttribute("data-parallax-speed") || 0);
+                el.style.transform = `translate3d(0, ${scrollTop * speed}px, 0)`;
+            });
+        }, { passive: true });
+    });
+    </script>
+</body>
+</html>

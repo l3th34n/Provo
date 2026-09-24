@@ -1,0 +1,25 @@
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Uploaded media
+uploads/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Editor files
+.vscode/
+.idea/
+
+#Duplicated and generated files
+__pycache__/
+*.py[cod]
+backend - Copy/
