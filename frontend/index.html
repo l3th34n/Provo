@@ -2,144 +2,1022 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Provo — Media Verification</title>
+    <title>PROVO | Digital Media Provenance</title>
 
     <style>
+        /* =========================
+           BASE
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: #10151f;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 60px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(0, 216, 180, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 40%, rgba(0, 140, 255, 0.06), transparent 35%),
+                #070b0f;
+            color: #eef5f7;
+            line-height: 1.6;
         }
 
-        .upload-box {
-            max-width: 500px;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1120px, 90%);
             margin: auto;
-            padding: 35px;
-            border: 1px solid #53657e;
-            border-radius: 12px;
         }
 
-        button {
-            background: #b5ff61;
-            color: #10151f;
-            padding: 12px 25px;
-            border: none;
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(7, 11, 15, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-wrapper {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+        }
+
+        .logo span {
+            color: #51f0c9;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #aab8be;
+            font-size: 0.95rem;
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .nav-button {
+            padding: 10px 18px;
+            border: 1px solid #51f0c9;
             border-radius: 6px;
-            cursor: pointer;
-            margin-top: 20px;
+            color: #51f0c9;
         }
 
-        #result {
+        .nav-button:hover {
+            background: #51f0c9;
+            color: #07100e;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            right: -240px;
+            top: 80px;
+            border-radius: 50%;
+            border: 1px solid rgba(81, 240, 201, 0.12);
+            box-shadow:
+                0 0 100px rgba(81, 240, 201, 0.05),
+                inset 0 0 100px rgba(81, 240, 201, 0.03);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .eyebrow {
+            color: #51f0c9;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.6rem);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            max-width: 720px;
+        }
+
+        .hero h1 span {
+            color: #51f0c9;
+        }
+
+        .hero-text {
+            color: #9eacb2;
             margin-top: 25px;
-            overflow-wrap: anywhere;
-            text-align: left;
-            line-height: 1.7;
+            font-size: 1.08rem;
+            max-width: 620px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 14px 22px;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .primary-btn {
+            background: #51f0c9;
+            color: #04100d;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(81, 240, 201, 0.2);
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            border-color: #51f0c9;
+        }
+
+        /* =========================
+           VERIFY PANEL
+        ========================== */
+
+        .verify-panel {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17, 25, 31, 0.9),
+                    rgba(10, 15, 19, 0.95)
+                );
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+        }
+
+        .panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .panel-title {
+            font-weight: 700;
+        }
+
+        .status {
+            color: #51f0c9;
+            font-size: 0.8rem;
+        }
+
+        .upload-zone {
+            border: 1px dashed rgba(81, 240, 201, 0.35);
+            border-radius: 12px;
+            padding: 45px 20px;
+            text-align: center;
+            background: rgba(81, 240, 201, 0.02);
+            transition: 0.25s;
+        }
+
+        .upload-zone:hover {
+            background: rgba(81, 240, 201, 0.05);
+            border-color: #51f0c9;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: #51f0c9;
+            margin-bottom: 15px;
+        }
+
+        .upload-zone p {
+            color: #9aa8ad;
+            margin-bottom: 18px;
+        }
+
+        input[type="file"] {
+            color: #9aa8ad;
+        }
+
+        /* =========================
+           GENERIC SECTION
+        ========================== */
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-header {
+            max-width: 720px;
+            margin-bottom: 55px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            letter-spacing: -0.04em;
+            margin-bottom: 18px;
+        }
+
+        .section-header p {
+            color: #98a7ad;
+            font-size: 1.05rem;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-copy p {
+            color: #9eacb2;
+            margin-bottom: 18px;
+        }
+
+        .about-card {
+            background: #0d1318;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 32px;
+        }
+
+        .about-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: #98a7ad;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .how {
+            background: #090e12;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.018);
+        }
+
+        .step-number {
+            color: #51f0c9;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .step p {
+            color: #94a1a7;
+            font-size: 0.93rem;
+        }
+
+        /* =========================
+           WHY USEFUL
+        ========================== */
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .benefit {
+            padding: 32px;
+            border-radius: 14px;
+            background: linear-gradient(
+                145deg,
+                rgba(17, 25, 31, 0.95),
+                rgba(10, 15, 19, 0.95)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.25s;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+            border-color: rgba(81, 240, 201, 0.35);
+        }
+
+        .benefit-symbol {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: rgba(81, 240, 201, 0.08);
+            color: #51f0c9;
+            margin-bottom: 22px;
+            font-weight: bold;
+        }
+
+        .benefit h3 {
+            margin-bottom: 12px;
+        }
+
+        .benefit p {
+            color: #98a7ad;
+        }
+
+        /* =========================
+           INFO BAND
+        ========================== */
+
+        .info-band {
+            padding: 65px 0;
+        }
+
+        .info-box {
+            border: 1px solid rgba(81, 240, 201, 0.18);
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(81, 240, 201, 0.045),
+                    rgba(0, 140, 255, 0.025)
+                );
+            border-radius: 15px;
+            padding: 34px;
+        }
+
+        .info-box strong {
+            color: #51f0c9;
+        }
+
+        .info-box p {
+            color: #a5b2b7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #05080b;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 65px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand p {
+            color: #7f8c91;
+            max-width: 390px;
+            margin-top: 16px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 17px;
+            font-size: 0.9rem;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #7f8c91;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+        }
+
+        .footer-column a:hover {
+            color: #51f0c9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 25px;
+            color: #68767c;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>PROVO</h1>
-    <p>Digital Media Provenance Verification</p>
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-wrapper">
 
-    <div class="upload-box">
+            <a href="#" class="logo">
+                PRO<span>VO</span>
+            </a>
 
-        <h2>Upload Media</h2>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#how">How It Works</a>
+                <a href="#useful">Why PROVO</a>
+                <a href="https://c2pa.org/" target="_blank">C2PA</a>
+                <a href="#verify" class="nav-button">Verify Media</a>
+            </nav>
 
-        <form id="uploadForm">
+        </div>
+    </header>
 
-            <input
-                type="file"
-                id="mediaFile"
-                accept=".jpg,.jpeg,.png,.webp,.mp4,.mov"
-                required
-            >
 
-            <br>
+    <main>
 
-            <button type="submit" id="uploadButton">
-                Analyze Media
-            </button>
+        <!-- HERO -->
+        <section class="hero" id="verify">
 
-        </form>
+            <div class="container hero-grid">
 
-        <div id="result" aria-live="polite"></div>
+                <div>
 
-    </div>
+                    <p class="eyebrow">
+                        Content provenance infrastructure
+                    </p>
 
-    <script>
-        const form = document.getElementById("uploadForm");
-        const fileInput = document.getElementById("mediaFile");
-        const result = document.getElementById("result");
-        const button = document.getElementById("uploadButton");
+                    <h1>
+                        Know where digital media
+                        <span>comes from.</span>
+                    </h1>
 
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
+                    <p class="hero-text">
+                        PROVO analyzes digital media provenance using
+                        C2PA content credentials, cryptographic signatures
+                        and metadata checks to help users understand the
+                        history and integrity of a file.
+                    </p>
 
-            const file = fileInput.files[0];
-            if (!file) return;
+                    <div class="hero-buttons">
+                        <a href="#verify-panel" class="primary-btn">
+                            Verify Media
+                        </a>
 
-            const formData = new FormData();
-            formData.append("file", file);
+                        <a href="#how" class="secondary-btn">
+                            Learn How It Works
+                        </a>
+                    </div>
 
-            button.disabled = true;
-            result.textContent = "Uploading your media...";
+                </div>
 
-            try {
-                const response = await fetch("/api/upload", {
-                    method: "POST",
-                    body: formData
-                });
 
-                const data = await response.json();
+                <div class="verify-panel" id="verify-panel">
 
-                if (!response.ok) {
-                    throw new Error(
-                        data.detail || "Upload failed"
-                    );
-                }
+                    <div class="panel-top">
+                        <span class="panel-title">
+                            Media Verification
+                        </span>
 
-                result.replaceChildren();
+                        <span class="status">
+                            ● SYSTEM READY
+                        </span>
+                    </div>
 
-                const heading = document.createElement("h3");
-                heading.textContent = "Upload successful";
+                    <form
+                        action="/verify"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
 
-                const filename = document.createElement("p");
-                filename.textContent =
-                    "Filename: " + data.filename;
+                        <div class="upload-zone">
 
-                const size = document.createElement("p");
-                size.textContent =
-                    "Size: " +
-                    (data.file_size / 1024 / 1024).toFixed(2) +
-                    " MB";
+                            <div class="upload-icon">
+                                ↑
+                            </div>
 
-                const hash = document.createElement("p");
-                hash.textContent =
-                    "SHA-256: " + data.sha256;
+                            <h3>
+                                Upload a media file
+                            </h3>
 
-                const status = document.createElement("p");
-                status.textContent =
-                    "Verification: Not checked yet";
+                            <p>
+                                Select an image or video to inspect
+                                available provenance information.
+                            </p>
 
-                result.append(
-                    heading, filename, size, hash, status
-                );
+                            <input
+                                type="file"
+                                name="media"
+                                accept="image/*,video/*"
+                                required
+                            >
 
-            } catch (error) {
-                result.textContent = error.message;
+                        </div>
 
-            } finally {
-                button.disabled = false;
-            }
-        });
-    </script>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="about" id="about">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <p class="eyebrow">
+                        About PROVO
+                    </p>
+
+                    <h2>
+                        A clearer view of digital authenticity.
+                    </h2>
+
+                    <p>
+                        Digital media can now be generated and modified
+                        at unprecedented scale. PROVO is designed to help
+                        users inspect the provenance information attached
+                        to a digital asset instead of relying only on what
+                        appears on screen.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-copy">
+
+                        <p>
+                            PROVO focuses on digital provenance:
+                            information about where a file originated,
+                            how it was modified and which systems or
+                            organizations signed it.
+                        </p>
+
+                        <p>
+                            The platform examines C2PA manifests and
+                            related cryptographic information so that
+                            users can understand whether provenance data
+                            remains intact.
+                        </p>
+
+                        <p>
+                            The goal is not to label every piece of media
+                            as simply "real" or "fake", but to provide
+                            transparent evidence that users can evaluate.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-card">
+
+                        <h3>
+                            Built around provenance
+                        </h3>
+
+                        <p>
+                            Content credentials can preserve information
+                            about the origin and editing history of a
+                            digital asset. PROVO makes that technical
+                            information easier to inspect and understand.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+        <section class="how" id="how">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <p class="eyebrow">
+                        How It Works
+                    </p>
+
+                    <h2>
+                        From upload to provenance report.
+                    </h2>
+
+                    <p>
+                        PROVO follows a structured verification process
+                        to inspect content credentials and identify
+                        potential integrity issues.
+                    </p>
+
+                </div>
+
+
+                <div class="steps">
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            01 / UPLOAD
+                        </div>
+
+                        <h3>
+                            Submit media
+                        </h3>
+
+                        <p>
+                            Upload an image or supported media file
+                            through the verification interface.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            02 / EXTRACT
+                        </div>
+
+                        <h3>
+                            Read provenance data
+                        </h3>
+
+                        <p>
+                            PROVO searches the asset for available
+                            C2PA manifests and associated metadata.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            03 / VERIFY
+                        </div>
+
+                        <h3>
+                            Inspect signatures
+                        </h3>
+
+                        <p>
+                            Cryptographic signatures, certificate
+                            information and available trust data
+                            are examined.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            04 / REPORT
+                        </div>
+
+                        <h3>
+                            Review the result
+                        </h3>
+
+                        <p>
+                            The system presents a readable report
+                            describing the available provenance
+                            and detected issues.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHY IT IS USEFUL -->
+        <section id="useful">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <p class="eyebrow">
+                        Why It Is Useful
+                    </p>
+
+                    <h2>
+                        Provenance helps restore context.
+                    </h2>
+
+                    <p>
+                        As generative AI and digital manipulation become
+                        easier, understanding the history of a media file
+                        becomes increasingly important.
+                    </p>
+
+                </div>
+
+
+                <div class="benefits-grid">
+
+                    <article class="benefit">
+
+                        <div class="benefit-symbol">
+                            01
+                        </div>
+
+                        <h3>
+                            Trace media origin
+                        </h3>
+
+                        <p>
+                            Provenance information can help reveal
+                            where a file originated and which systems
+                            participated in its creation or editing.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit">
+
+                        <div class="benefit-symbol">
+                            02
+                        </div>
+
+                        <h3>
+                            Detect integrity problems
+                        </h3>
+
+                        <p>
+                            Invalid signatures, altered manifests or
+                            certificate problems can indicate that
+                            provenance information should not be trusted.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit">
+
+                        <div class="benefit-symbol">
+                            03
+                        </div>
+
+                        <h3>
+                            Support informed decisions
+                        </h3>
+
+                        <p>
+                            Instead of presenting a simplistic verdict,
+                            PROVO provides technical evidence that
+                            journalists, researchers and everyday users
+                            can interpret.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION BOX -->
+        <section class="info-band">
+
+            <div class="container">
+
+                <div class="info-box">
+
+                    <p>
+                        <strong>Important:</strong>
+                        A valid C2PA signature can confirm that signed
+                        provenance information has remained cryptographically
+                        intact. It does not automatically prove that the
+                        depicted event is true or that the media was not
+                        generated using AI.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        PRO<span>VO</span>
+                    </a>
+
+                    <p>
+                        A digital provenance verification platform
+                        designed to make content credentials and
+                        authenticity information easier to understand.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Platform
+                    </h4>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#how">
+                        How It Works
+                    </a>
+
+                    <a href="#useful">
+                        Why PROVO
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Resources
+                    </h4>
+
+                    <a
+                        href="https://c2pa.org/"
+                        target="_blank"
+                    >
+                        C2PA
+                    </a>
+
+                    <a
+                        href="https://contentcredentials.org/"
+                        target="_blank"
+                    >
+                        Content Credentials
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 PROVO. All rights reserved.
+                </span>
+
+                <span>
+                    Digital provenance • Transparency • Verification
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
