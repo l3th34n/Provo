@@ -61,6 +61,7 @@
         const resExploitDetail = document.getElementById("resExploitDetail");
         const resVerdictReasons = document.getElementById("resVerdictReasons");
         const resRawJson = document.getElementById("resRawJson");
+
         const resExifBadge = document.getElementById("resExifBadge");
         const resExifMsg = document.getElementById("resExifMsg");
         const resExifRows = document.getElementById("resExifRows");
@@ -499,6 +500,7 @@
             btn.addEventListener("click", () => {
                 const sampleType = btn.getAttribute("data-eval");
                 triggerEvaluationSample(sampleType);
+                evalButtons.forEach(item => item.setAttribute("aria-pressed", String(item === btn)));
             });
         });
 
@@ -726,6 +728,7 @@
                 if (!originalUploadedResult) return;
                 activeTelemetryPayload = originalUploadedResult;
                 renderInspectionResults(originalUploadedResult);
+                evalButtons.forEach(item => item.setAttribute("aria-pressed", "false"));
             });
         }
 
