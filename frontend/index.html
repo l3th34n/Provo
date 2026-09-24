@@ -8,7 +8,8 @@
     <meta name="description" content="Independent validation engine and security middleware exposing, intercepting, and neutralizing structural vulnerabilities in the C2PA digital media provenance pipeline.">
     <meta name="theme-color" content="#06090e">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"
+          onerror="if (!this.dataset.fallback) { this.dataset.fallback = 'true'; this.href = 'script.css'; }">
 
     <!-- Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -533,7 +534,7 @@
 
                 <div class="sidebar-footer">
                     <span class="footer-backend-target font-mono">TARGET: POST /api/upload</span>
-                    <span class="footer-c2pa-engine font-mono">ENGINE: c2pa-python 0.8+</span>
+                    <span class="footer-c2pa-engine font-mono">ENGINE: c2pa-python 0.37.x</span>
                 </div>
             </div>
         </aside>

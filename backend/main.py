@@ -54,7 +54,7 @@ def homepage():
 # 4. HEALTH CHECK
 # --------------------------------
 @app.get("/style.css", include_in_schema=False)
-def frontend_stylesheet():
+def stylesheet():
     return FileResponse(
         FRONTEND_DIR / "style.css",
         media_type="text/css",

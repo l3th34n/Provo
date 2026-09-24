@@ -6,8 +6,6 @@ from pathlib import Path
 from c2pa import Reader, C2paError
 
 from revocation_checker import check_certificate_revocation
-from timestamp_checker import check_timestamp_security
-from verdict_engine import evaluate_hardened_verdict
 
 
 logger = logging.getLogger("provo")
@@ -32,16 +30,16 @@ def check_c2pa(file_path):
             validation_results = reader.get_validation_results()
             validation_status = data.get("validation_status", [])
 
-            signature_info = active.get("signature_info", {})
-
-            result = {
+            return {
                 "status": "manifest_found",
                 "manifest_found": True,
                 "active_manifest": active_id,
                 "claim_generator": active.get(
                     "claim_generator"
                 ),
-                "signature_info": signature_info,
+                "signature_info": active.get(
+                    "signature_info", {}
+                ),
                 "assertions": [
                     item.get("label")
                     for item in active.get("assertions", [])
@@ -54,29 +52,18 @@ def check_c2pa(file_path):
                     validation_results,
                     validation_status,
                 ),
-                "timestamp_security": check_timestamp_security(
-                    signature_info,
-                    validation_results,
-                ),
             }
 
-            result["hardened_verdict"] = evaluate_hardened_verdict(result)
-            return result
-
     except C2paError.ManifestNotFound:
-        result = {
+        return {
             "status": "no_manifest",
             "manifest_found": False
         }
-        result["hardened_verdict"] = evaluate_hardened_verdict(result)
-        return result
 
     except (C2paError, ValueError, OSError) as error:
         logger.warning("C2PA inspection failed: %s", error)
-        result = {
+        return {
             "status": "inspection_error",
             "manifest_found": None,
             "error": str(error)
         }
-        result["hardened_verdict"] = evaluate_hardened_verdict(result)
-        return result
