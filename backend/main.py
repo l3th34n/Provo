@@ -2,53 +2,156 @@
 from pathlib import Path
 from uuid import uuid4
 import hashlib
+import json
+import logging
 
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import FileResponse
+from c2pa import Reader, C2paError
 
-app = FastAPI(title="Provo API")
 
-# Project directories
+# --------------------------------
+# 1. INITIALIZE PROVO
+# --------------------------------
+
+app = FastAPI(title="Provo API", version="1.0")
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("provo")
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
 UPLOAD_DIR = BASE_DIR / "uploads"
 
-UPLOAD_DIR.mkdir(exist_ok=True)
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-# Allowed formats and maximum file size
 ALLOWED_EXTENSIONS = {
     ".jpg", ".jpeg", ".png", ".webp",
     ".mp4", ".mov"
 }
-MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB
 
+MAX_FILE_SIZE = 25 * 1024 * 1024
+
+
+# --------------------------------
+# 2. C2PA MANIFEST INSPECTION
+# --------------------------------
+
+def check_c2pa(file_path):
+    try:
+        with Reader(str(file_path)) as reader:
+            data = json.loads(reader.json())
+
+            active_id = data.get("active_manifest")
+            manifests = data.get("manifests") or {}
+
+            if not active_id or active_id not in manifests:
+                return {
+                    "status": "no_manifest",
+                    "manifest_found": False,
+                    "validation_state": None
+                }
+
+            active = manifests[active_id]
+
+            return {
+                "status": "manifest_found",
+                "manifest_found": True,
+                "active_manifest": active_id,
+                "claim_generator": active.get(
+                    "claim_generator"
+                ),
+                "signature_info": active.get(
+                    "signature_info", {}
+                ),
+                "assertions": [
+                    item.get("label")
+                    for item in active.get(
+                        "assertions", []
+                    )
+                ],
+                "ingredients": active.get(
+                    "ingredients", []
+                ),
+                "validation_state":
+                    reader.get_validation_state(),
+                "validation_results":
+                    reader.get_validation_results(),
+                "validation_status":
+                    data.get("validation_status", [])
+            }
+
+    except C2paError.ManifestNotFound:
+        return {
+            "status": "no_manifest",
+            "manifest_found": False,
+            "validation_state": None
+        }
+
+    except (C2paError, ValueError, OSError) as error:
+        logger.warning(
+            "C2PA inspection failed: %s", error
+        )
+
+        return {
+            "status": "inspection_error",
+            "manifest_found": None,
+            "error": str(error)
+        }
+
+
+# --------------------------------
+# 3. WEBSITE HOMEPAGE
+# --------------------------------
 
 @app.get("/")
 def homepage():
-    return FileResponse(FRONTEND_DIR / "index.html")
+    html_file = FRONTEND_DIR / "index.html"
 
+    if not html_file.is_file():
+        raise HTTPException(
+            status_code=404,
+            detail="frontend/index.html not found"
+        )
+
+    return FileResponse(html_file)
+
+
+# --------------------------------
+# 4. HEALTH CHECK
+# --------------------------------
 
 @app.get("/api/health")
 def health():
-    return {"status": "online", "project": "Provo"}
+    return {
+        "status": "online",
+        "project": "Provo",
+        "c2pa": "installed"
+    }
 
+
+# --------------------------------
+# 5. FILE UPLOAD AND VERIFICATION
+# --------------------------------
 
 @app.post("/api/upload")
 async def upload_media(file: UploadFile = File(...)):
 
+    # Extract a safe filename
     original_name = Path(
         (file.filename or "").replace("\\", "/")
     ).name
 
     extension = Path(original_name).suffix.lower()
 
+    # Check file extension
     if extension not in ALLOWED_EXTENSIONS:
         raise HTTPException(
             status_code=400,
             detail="Unsupported file format"
         )
 
-    # Use a unique name to avoid overwriting other files
+    # Generate a unique storage name
     file_id = uuid4().hex
     stored_name = file_id + extension
     destination = UPLOAD_DIR / stored_name
@@ -56,17 +159,22 @@ async def upload_media(file: UploadFile = File(...)):
     size = 0
     sha256 = hashlib.sha256()
 
+    # Save the uploaded file
     try:
         with destination.open("wb") as output:
 
-            # Read the upload in chunks
-            while chunk := await file.read(1024 * 1024):
+            while True:
+                chunk = await file.read(1024 * 1024)
+
+                if not chunk:
+                    break
+
                 size += len(chunk)
 
                 if size > MAX_FILE_SIZE:
                     raise HTTPException(
                         status_code=413,
-                        detail="File exceeds the 25 MB limit"
+                        detail="File exceeds 25 MB"
                     )
 
                 output.write(chunk)
@@ -85,12 +193,16 @@ async def upload_media(file: UploadFile = File(...)):
     finally:
         await file.close()
 
-    # Send upload results back to the website
+    # Inspect the saved media
+    c2pa_result = check_c2pa(destination)
+
+    # Return results to the frontend
     return {
         "status": "uploaded",
         "file_id": file_id,
         "filename": original_name,
         "file_size": size,
         "sha256": sha256.hexdigest(),
-        "verification_status": "not_checked"
+        "verification_status": c2pa_result["status"],
+        "c2pa": c2pa_result
     }
