@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROVO | Digital Content Verification</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>PROVO</h1>
+        <p>Verify the Source. Trust the Truth.</p>
+
+        <nav>
+            <a href="#home">Home</a> |
+            <a href="#about">About</a> |
+            <a href="#how-it-works">How It Works</a> |
+            <a href="#contact">Contact</a>
+        </nav>
+        <hr>
+    </header>
+
+    <!-- HOME -->
+    <main>
+        <section id="home">
+            <h2>Welcome to PROVO</h2>
+
+            <p>
+                A digital content provenance verification platform
+                designed to help users investigate the authenticity
+                and origin of digital media.
+            </p>
+
+            <h3>Can You Trust What You See?</h3>
+
+            <p>
+                Upload an image or video to examine its provenance,
+                inspect available C2PA metadata, and identify
+                potential authenticity concerns.
+            </p>
+
+            <form action="/verify" method="POST"
+                  enctype="multipart/form-data">
+
+                <label for="media">Upload Your Media:</label>
+                <br><br>
+
+                <input type="file" id="media" name="media"
+                       accept="image/*,video/*" required>
+
+                <br><br>
+
+                <button type="submit">Verify Media</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <h2>About PROVO</h2>
+
+            <p>
+                PROVO is a digital media verification project
+                built to address the growing challenges of
+                generative AI, manipulated media, and
+                misinformation.
+            </p>
+
+            <p>
+                Our platform focuses on Content Credentials
+                and the Coalition for Content Provenance
+                and Authenticity (C2PA) standard.
+            </p>
+
+            <h3>Our Mission</h3>
+
+            <p>
+                To make digital content provenance more
+                transparent, accessible, and understandable
+                for everyone.
+            </p>
+
+            <h3>Our Core Features</h3>
+
+            <ul>
+                <li>C2PA manifest inspection</li>
+                <li>Digital signature verification</li>
+                <li>Signing certificate revocation checks</li>
+                <li>Metadata and timestamp analysis</li>
+                <li>Detailed provenance verification reports</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works">
+            <h2>How PROVO Works</h2>
+
+            <h3>Step 1: Upload Media</h3>
+            <p>
+                Select an image or video that you want
+                to investigate.
+            </p>
+
+            <h3>Step 2: Extract Metadata</h3>
+            <p>
+                PROVO examines the file for available
+                C2PA manifests and provenance information.
+            </p>
+
+            <h3>Step 3: Verify Digital Signatures</h3>
+            <p>
+                The system checks the cryptographic
+                signatures and available certificate
+                information.
+            </p>
+
+            <h3>Step 4: Check Revocation and Timestamps</h3>
+            <p>
+                PROVO examines available certificate
+                revocation information and analyzes
+                relevant timestamps for inconsistencies.
+            </p>
+
+            <h3>Step 5: Generate a Report</h3>
+            <p>
+                Receive a report explaining the verification
+                results, available provenance information,
+                and any detected concerns.
+            </p>
+
+            <p>
+                <strong>Important:</strong>
+                A valid C2PA signature establishes the
+                integrity and attributed provenance of
+                signed information. It does not independently
+                prove that the depicted content is true
+                or that it was not AI-generated.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+
+            <p>
+                Have questions, suggestions, or feedback?
+                Get in touch with the PROVO team.
+            </p>
+
+            <form action="/contact" method="POST">
+
+                <label for="name">Name:</label>
+                <br>
+                <input type="text" id="name" name="name"
+                       placeholder="Your name" required>
+
+                <br><br>
+
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" id="email" name="email"
+                       placeholder="Your email" required>
+
+                <br><br>
+
+                <label for="message">Message:</label>
+                <br>
+                <textarea id="message" name="message"
+                          rows="5" cols="40"
+                          placeholder="Write your message..."
+                          required></textarea>
+
+                <br><br>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <hr>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>PROVO</h3>
+
+        <p>Digital Provenance. Greater Transparency.</p>
+
+        <nav>
+            <a href="#home">Home</a> |
+            <a href="#about">About</a> |
+            <a href="#how-it-works">How It Works</a> |
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <p>
+            Learn more about
+            <a href="https://c2pa.org/"
+               target="_blank" rel="noopener noreferrer">
+                C2PA
+            </a>
+        </p>
+
+        <p>&copy; 2026 PROVO. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
