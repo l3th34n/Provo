@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROVO // Hardened C2PA Security Middleware & Media Authenticity</title>
-    
+
     <meta name="description" content="Independent validation engine and security middleware exposing, intercepting, and neutralizing structural vulnerabilities in the C2PA digital media provenance pipeline.">
     <meta name="theme-color" content="#06090e">
 
-    <link rel="stylesheet" href="/frontend/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,7 @@
             <div class="nav-actions">
                 <button type="button" class="btn btn-secondary btn-sm" id="btnHeaderDemo">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    Live Intercept Demo
+                    Simulated Attack Demo
                 </button>
                 <button type="button" class="btn btn-primary btn-sm" id="btnOpenContactHeader">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -79,16 +79,16 @@
     <div class="ticker-ribbon ticker-dark" aria-label="System Protocol Notice">
         <div class="ticker-track">
             <div class="ticker-item"><span class="ticker-tag">SECURITY PROTOCOL</span> PROVO HARDENING MIDDLEWARE ACTIVE</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-01</span> REAL-TIME OCSP/CRL SIGNING KEY REVOCATION INTERCEPT</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-02</span> RFC-3161 TIMESTAMP NONCE & TEMPORAL REPLAY DEFENSE</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-03</span> EXCLUSION RANGE & HARDWARE PIPELINE INJECTION FILTER</div>
-            <div class="ticker-item"><span class="ticker-code">VULNERABILITY EXPOSED</span> STANDARD VALIDATORS SILENTLY ACCEPT REVOKED CERTS</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> THREE-STATE OCSP EVIDENCE ENFORCEMENT</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> RFC-3161 TIMESTAMP TRUST INTERPRETATION</div>
+            <div class="ticker-item"><span class="ticker-code">ROADMAP</span> EXCLUSION RANGE & HARDWARE PIPELINE RESEARCH</div>
+            <div class="ticker-item"><span class="ticker-code">FAIL-CLOSED POLICY</span> UNKNOWN REVOCATION EVIDENCE NEVER EQUALS SAFE</div>
             <!-- Seamless Loop Duplicate -->
             <div class="ticker-item"><span class="ticker-tag">SECURITY PROTOCOL</span> PROVO HARDENING MIDDLEWARE ACTIVE</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-01</span> REAL-TIME OCSP/CRL SIGNING KEY REVOCATION INTERCEPT</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-02</span> RFC-3161 TIMESTAMP NONCE & TEMPORAL REPLAY DEFENSE</div>
-            <div class="ticker-item"><span class="ticker-code">PILLAR-03</span> EXCLUSION RANGE & HARDWARE PIPELINE INJECTION FILTER</div>
-            <div class="ticker-item"><span class="ticker-code">VULNERABILITY EXPOSED</span> STANDARD VALIDATORS SILENTLY ACCEPT REVOKED CERTS</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> THREE-STATE OCSP EVIDENCE ENFORCEMENT</div>
+            <div class="ticker-item"><span class="ticker-code">IMPLEMENTED</span> RFC-3161 TIMESTAMP TRUST INTERPRETATION</div>
+            <div class="ticker-item"><span class="ticker-code">ROADMAP</span> EXCLUSION RANGE & HARDWARE PIPELINE RESEARCH</div>
+            <div class="ticker-item"><span class="ticker-code">FAIL-CLOSED POLICY</span> UNKNOWN REVOCATION EVIDENCE NEVER EQUALS SAFE</div>
         </div>
     </div>
 
@@ -108,10 +108,10 @@
                         <span class="text-gradient-cyan">C2PA Provenance Vulnerabilities.</span>
                     </h1>
                     <p class="hero-subtext">
-                        Current C2PA implementations carry dangerous blind spots: validators frequently ignore revoked signing keys, media timestamps can be silently forged, and certified pipelines are tricked into cryptographically endorsing synthetic media. 
-                        <strong>PROVO is the independent security middleware that intercepts these exploits before they compromise your organization.</strong>
+                        A valid C2PA signature proves integrity and provenance—not objective truth. Trust can still remain unresolved when certificate revocation, signer trust, or timestamp evidence is missing or inconclusive.
+                        <strong>PROVO adds a fail-closed policy layer that exposes these evidence gaps instead of silently treating them as safe.</strong>
                     </p>
-                    
+
                     <div class="hero-cta-group">
                         <a href="#workbench" class="btn btn-primary btn-lg">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -126,16 +126,16 @@
                     <!-- Telemetry Metric Strip -->
                     <div class="hero-metric-strip">
                         <div class="metric-card">
-                            <span class="metric-figure text-cyan">100%</span>
-                            <span class="metric-caption">Live OCSP/CRL Revocation Enforcement</span>
+                            <span class="metric-figure text-cyan">3-State</span>
+                            <span class="metric-caption">Revoked / Not Revoked / Unknown</span>
                         </div>
                         <div class="metric-card">
-                            <span class="metric-figure text-crimson">0-Day</span>
-                            <span class="metric-caption">Exclusion Range Smuggling Intercept</span>
+                            <span class="metric-figure text-crimson">Fail-Closed</span>
+                            <span class="metric-caption">Hardened Verdict Policy</span>
                         </div>
                         <div class="metric-card">
                             <span class="metric-figure text-gold">RFC-3161</span>
-                            <span class="metric-caption">Cryptographic Timestamp Nonce Proofing</span>
+                            <span class="metric-caption">Trusted Timestamp Validation</span>
                         </div>
                     </div>
                 </div>
@@ -150,29 +150,29 @@
                             <span class="window-title font-mono">PROVO_ZERO_TRUST_MIDDLEWARE.SYS</span>
                         </div>
                         <figure class="card-visual-media">
-                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Cybersecurity digital forensic matrix analysis screen" 
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80"
+                                 alt="Cybersecurity digital forensic matrix analysis screen"
                                  class="hero-media-img" loading="eager">
                             <div class="visual-scanline"></div>
                             <div class="interactive-tag tag-top-right">
                                 <span class="tag-status badge-pass">LEGACY C2PA: VALID [PASSED]</span>
                             </div>
                             <div class="interactive-tag tag-bottom-left">
-                                <span class="tag-status badge-threat">PROVO: EXPLOIT QUARANTINED</span>
+                                <span class="tag-status badge-threat">PROVO: EVIDENCE GAP EXPOSED</span>
                             </div>
                         </figure>
                         <div class="card-telemetry-panel">
                             <div class="telemetry-row">
                                 <span class="lbl">ATTACK VECTOR:</span>
-                                <span class="val font-mono text-crimson">REVOKED PRIVATE KEY ENDORSEMENT</span>
+                                <span class="val font-mono text-crimson">SIMULATED REVOKED CREDENTIAL</span>
                             </div>
                             <div class="telemetry-row">
                                 <span class="lbl">STANDARD VALIDATOR:</span>
-                                <span class="val font-mono text-cyan">ACCEPTED (SKIPPED CRL CHECK)</span>
+                                <span class="val font-mono text-cyan">VALID SIGNATURE / TRUST UNRESOLVED</span>
                             </div>
                             <div class="telemetry-row">
                                 <span class="lbl">PROVO INTERCEPT:</span>
-                                <span class="val font-mono text-crimson">BLOCKED AT INGESTION GATE</span>
+                                <span class="val font-mono text-crimson">FAIL-CLOSED VERDICT</span>
                             </div>
                         </div>
                     </div>
@@ -194,13 +194,13 @@
                         <span class="eyebrow text-cyan">OPERATIONAL VERIFICATION DECK</span>
                         <h2 class="workbench-title">Asset Ingestion & Forensic Intercept</h2>
                         <p class="workbench-desc">
-                            Ingest digital assets (.jpg, .png, .webp, .mp4, .mov) to inspect cryptographic manifest claims, compute SHA-256 byte hashes, query real-time OCSP certificate revocation status, and detect synthetic pipeline smuggling.
+                            Ingest digital assets (.jpg, .png, .webp, .mp4, .mov) to inspect manifest claims, compute SHA-256 hashes, interpret OCSP evidence, validate timestamp trust, and generate a hardened security verdict.
                         </p>
                     </div>
 
                     <!-- Evaluation Presets -->
                     <div class="quick-eval-card">
-                        <span class="eval-label">HACKATHON EVALUATION PRESETS:</span>
+                        <span class="eval-label">SIMULATED HACKATHON PRESETS — DEMONSTRATION DATA:</span>
                         <div class="eval-btn-group">
                             <button type="button" class="btn btn-chip" data-eval="revoked">
                                 <span class="chip-status-dot dot-red"></span> Revoked Key Attack
@@ -222,7 +222,7 @@
                 <form id="uploadForm" class="ingestion-form" enctype="multipart/form-data">
                     <div class="drop-zone" id="dropZone" tabindex="0" role="region" aria-label="Media File Upload Area">
                         <input type="file" id="mediaFile" name="file" accept=".jpg,.jpeg,.png,.webp,.mp4,.mov" class="visually-hidden">
-                        
+
                         <div class="drop-zone-prompt" id="dropPrompt">
                             <div class="drop-icon-wrap">
                                 <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -249,34 +249,34 @@
                         </div>
                     </div>
 
-                    <!-- Active Middleware Policies -->
+                    <!-- Implemented Controls and Research Roadmap -->
                     <div class="middleware-controls-deck">
-                        <span class="controls-deck-title">ACTIVE MIDDLEWARE SECURITY POLICIES:</span>
+                        <span class="controls-deck-title">IMPLEMENTED COVERAGE & DEVELOPMENT ROADMAP:</span>
                         <div class="controls-grid">
                             <label class="control-toggle-label">
-                                <input type="checkbox" id="toggleRevocation" checked>
+                                <input type="checkbox" id="toggleRevocation" checked disabled>
                                 <span class="control-box"></span>
                                 <span class="control-text">
-                                    <strong>Enforce Real-Time OCSP/CRL Revocation</strong>
-                                    <small>Block assets signed by compromised or revoked private keys</small>
+                                    <strong>OCSP Evidence Enforcement — Implemented</strong>
+                                    <small>Distinguishes revoked, not revoked, and unknown; live OCSP fetching is planned</small>
                                 </span>
                             </label>
 
                             <label class="control-toggle-label">
-                                <input type="checkbox" id="toggleTimestamp" checked>
+                                <input type="checkbox" id="toggleTimestamp" checked disabled>
                                 <span class="control-box"></span>
                                 <span class="control-text">
-                                    <strong>RFC-3161 Timestamp Proofing</strong>
-                                    <small>Detect timestamp replay, stripping, and temporal drift</small>
+                                    <strong>RFC-3161 Timestamp Trust — Implemented</strong>
+                                    <small>Requires both trusted and validated SDK evidence; replay research remains planned</small>
                                 </span>
                             </label>
 
                             <label class="control-toggle-label">
-                                <input type="checkbox" id="toggleInjection" checked>
+                                <input type="checkbox" id="toggleInjection" disabled>
                                 <span class="control-box"></span>
                                 <span class="control-text">
-                                    <strong>Exclusion Range & Injection Filter</strong>
-                                    <small>Detect synthetic elements smuggled into unhashed byte ranges</small>
+                                    <strong>Exclusion Range & Injection Analysis — Roadmap</strong>
+                                    <small>Future research module; not included in the current verdict</small>
                                 </span>
                             </label>
                         </div>
@@ -294,10 +294,10 @@
             <!-- DUAL-ENGINE LIVE INTERCEPT DEMO MATRIX -->
             <section class="workbench-panel" id="intercept-matrix">
                 <div class="panel-section-header">
-                    <span class="eyebrow text-gold">LIVE INTERCEPT COMPARISON PROOF-OF-CONCEPT</span>
+                    <span class="eyebrow text-gold">EVIDENCE COMPARISON & SIMULATED ATTACK PRESETS</span>
                     <h2 class="panel-heading">Standard C2PA vs. PROVO Hardened Middleware</h2>
                     <p class="panel-sub">
-                        Watch how a legacy C2PA validator blindly approves compromised assets versus how PROVO’s independent middleware intercepts, exposes, and blocks the exploit.
+                        Compare the SDK validation state with PROVO’s stricter verdict. Preset buttons use clearly labeled simulated data; uploaded files use live backend results.
                     </p>
                 </div>
 
@@ -309,7 +309,7 @@
                                 <span class="validator-tag">LEGACY C2PA VALIDATOR</span>
                                 <h3 class="validator-name">Standard Industry Reader</h3>
                             </div>
-                            <span class="verdict-badge badge-pass" id="legacyVerdictBadge">PASSED / AUTHENTIC</span>
+                            <span class="verdict-badge badge-warn" id="legacyVerdictBadge">AWAITING RESULT</span>
                         </div>
 
                         <div class="validator-body">
@@ -318,30 +318,30 @@
                                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                                 </div>
                                 <div class="verdict-text-group">
-                                    <h4 class="verdict-headline" id="legacyHeadline">Content Credentials Valid</h4>
-                                    <p class="verdict-sub" id="legacySub">Cryptographic manifest signature matches payload hash.</p>
+                                    <h4 class="verdict-headline" id="legacyHeadline">No SDK Result Yet</h4>
+                                    <p class="verdict-sub" id="legacySub">Upload an asset or select a simulated preset.</p>
                                 </div>
                             </div>
 
                             <div class="telemetry-readout">
                                 <div class="readout-row">
                                     <span class="readout-lbl">Signature Integrity:</span>
-                                    <span class="readout-val text-cyan font-mono" id="legacySig">VALID (RSA-PSS)</span>
+                                    <span class="readout-val text-dim font-mono" id="legacySig">NOT ESTABLISHED</span>
                                 </div>
                                 <div class="readout-row">
-                                    <span class="readout-lbl">Revocation Checked:</span>
-                                    <span class="readout-val text-dim font-mono" id="legacyRevocationCheck">SKIPPED / IGNORED</span>
+                                    <span class="readout-lbl">SDK Validation State:</span>
+                                    <span class="readout-val text-dim font-mono" id="legacyRevocationCheck">NOT ESTABLISHED</span>
                                 </div>
                                 <div class="readout-row">
-                                    <span class="readout-lbl">Exclusion Range Scan:</span>
-                                    <span class="readout-val text-dim font-mono" id="legacyExclusionCheck">UNSUPPORTED</span>
+                                    <span class="readout-lbl">Signer Trust:</span>
+                                    <span class="readout-val text-dim font-mono" id="legacyExclusionCheck">NOT ESTABLISHED</span>
                                 </div>
                             </div>
 
                             <div class="vulnerability-warning-box">
                                 <span class="warn-badge">EXPOSED VULNERABILITY:</span>
                                 <p id="legacyVulnerabilityMsg">
-                                    The validator does not enforce live CRL/OCSP status. The asset's signing key was revoked, but the validator still gives it a green checkmark!
+                                    Standard validation and PROVO policy results will be displayed separately.
                                 </p>
                             </div>
                         </div>
@@ -354,7 +354,7 @@
                                 <span class="validator-tag text-cyan">PROVO HARDENED ENGINE</span>
                                 <h3 class="validator-name">Zero-Trust Intercept Middleware</h3>
                             </div>
-                            <span class="verdict-badge badge-threat" id="provoVerdictBadge">EXPLOIT INTERCEPTED</span>
+                            <span class="verdict-badge badge-warn" id="provoVerdictBadge">AWAITING RESULT</span>
                         </div>
 
                         <div class="validator-body">
@@ -363,30 +363,30 @@
                                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                                 </div>
                                 <div class="verdict-text-group">
-                                    <h4 class="verdict-headline text-crimson" id="provoHeadline">Critical Security Quarantine</h4>
-                                    <p class="verdict-sub" id="provoSub">Asset blocked by real-time OCSP key revocation validation.</p>
+                                    <h4 class="verdict-headline text-gold" id="provoHeadline">No Hardened Verdict Yet</h4>
+                                    <p class="verdict-sub" id="provoSub">Only an explicit HARDENED_VALID result can render as safe.</p>
                                 </div>
                             </div>
 
                             <div class="telemetry-readout">
                                 <div class="readout-row">
-                                    <span class="readout-lbl">OCSP Enforcement:</span>
-                                    <span class="readout-val text-crimson font-mono" id="provoRevocationVal">CERTIFICATE REVOKED</span>
+                                    <span class="readout-lbl">Revocation Evidence:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoRevocationVal">UNKNOWN</span>
                                 </div>
                                 <div class="readout-row">
-                                    <span class="readout-lbl">Replay / Timestamp:</span>
-                                    <span class="readout-val font-mono" id="provoTimestampVal">TEMPORAL DRIFT DETECTED</span>
+                                    <span class="readout-lbl">Timestamp Security:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoTimestampVal">UNKNOWN</span>
                                 </div>
                                 <div class="readout-row">
-                                    <span class="readout-lbl">Pipeline Injection:</span>
-                                    <span class="readout-val font-mono" id="provoInjectionVal">ANOMALOUS EXCLUSION BYTES</span>
+                                    <span class="readout-lbl">Hardened Policy:</span>
+                                    <span class="readout-val text-dim font-mono" id="provoInjectionVal">NOT EVALUATED</span>
                                 </div>
                             </div>
 
                             <div class="mitigation-success-box">
                                 <span class="safe-badge">PROVO NEUTRALIZATION:</span>
                                 <p id="provoMitigationMsg">
-                                    Independent revocation audit queried the CA OCSP responder. The compromised key was identified, preventing malicious AI media from deceiving downstream consumers.
+                                    Awaiting the backend's combined revocation, timestamp, credential, integrity, and policy verdict.
                                 </p>
                             </div>
                         </div>
@@ -418,11 +418,11 @@
 
                     <!-- Telemetry Data Container -->
                     <div class="audit-data-container hidden" id="auditDataContainer">
-                        
+
                         <!-- 1. Media File Identity -->
                         <div class="telemetry-block">
                             <span class="telemetry-section-lbl">01 // ASSET FILE IDENTITY</span>
-                            
+
                             <div class="data-item">
                                 <span class="data-key">IMAGE / MEDIA NAME:</span>
                                 <span class="data-val font-mono text-cyan" id="resFilename">-</span>
@@ -442,7 +442,7 @@
                         <!-- 2. Revocation Certificate Status -->
                         <div class="telemetry-block">
                             <span class="telemetry-section-lbl">02 // REVOCATION CERTIFICATE STATUS</span>
-                            
+
                             <div class="revocation-status-banner" id="resRevocationBanner">
                                 <span class="status-indicator-badge" id="resRevocationBadge">UNKNOWN</span>
                                 <p class="revocation-msg" id="resRevocationMsg">Checking OCSP validation...</p>
@@ -459,10 +459,30 @@
                             </div>
                         </div>
 
-                        <!-- 3. C2PA Manifest Breakdown -->
+                        <!-- 3. Timestamp Security -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">03 // C2PA MANIFEST SPECIFICATION</span>
-                            
+                            <span class="telemetry-section-lbl">03 // TIMESTAMP SECURITY</span>
+
+                            <div class="revocation-status-banner" id="resTimestampBanner">
+                                <span class="status-indicator-badge" id="resTimestampBadge">UNKNOWN</span>
+                                <p class="revocation-msg" id="resTimestampMsg">No timestamp result available</p>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">CLAIMED SIGNING TIME:</span>
+                                <span class="data-val font-mono" id="resTimestampClaimedTime">Not supplied</span>
+                            </div>
+
+                            <div class="data-item">
+                                <span class="data-key">TIMESTAMP EVIDENCE:</span>
+                                <span class="data-val font-mono" id="resTimestampEvidence">None returned</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. C2PA Manifest Breakdown -->
+                        <div class="telemetry-block">
+                            <span class="telemetry-section-lbl">04 // C2PA MANIFEST SPECIFICATION</span>
+
                             <div class="data-item">
                                 <span class="data-key">MANIFEST FOUND:</span>
                                 <span class="data-val font-mono" id="resManifestFound">true</span>
@@ -489,9 +509,9 @@
                             </div>
                         </div>
 
-                        <!-- 4. Exploit Determination Summary -->
+                        <!-- 5. Hardened Verdict Summary -->
                         <div class="telemetry-block">
-                            <span class="telemetry-section-lbl">04 // EXPLOIT DETERMINATION VERDICT</span>
+                            <span class="telemetry-section-lbl">05 // HARDENED SECURITY VERDICT</span>
                             <div class="exploit-determination-box" id="resExploitBox">
                                 <div class="exploit-header">
                                     <span class="exploit-title" id="resExploitTitle">PIPELINE INTEGRITY COMPROMISED</span>
@@ -499,6 +519,7 @@
                                 <p class="exploit-detail" id="resExploitDetail">
                                     Asset exhibits structural failure in revocation verification.
                                 </p>
+                                <ul class="verdict-reasons" id="resVerdictReasons"></ul>
                             </div>
                         </div>
 
@@ -538,7 +559,7 @@
                     </div>
                     <h3 class="about-card-title">Independent Validation Layer</h3>
                     <p class="about-card-text">
-                        Standard C2PA readers are frequently embedded directly in browser extensions or photo viewers that lack defensive checks. PROVO functions as an independent, enterprise-grade middleware proxy that intercepts media before distribution across newsrooms, courts, or financial trading desks.
+                        PROVO is a prototype independent validation layer that interprets C2PA SDK evidence using a stricter, fail-closed policy. Its API architecture is intended for future integration experiments with publishing and verification workflows.
                     </p>
                 </div>
 
@@ -546,9 +567,9 @@
                     <div class="about-icon">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     </div>
-                    <h3 class="about-card-title">Zero-Trust Provenance</h3>
+                    <h3 class="about-card-title">Fail-Closed Evidence Policy</h3>
                     <p class="about-card-text">
-                        We believe cryptographic signatures are only as reliable as their enforcement. PROVO enforces a zero-trust model: every private key is actively checked for revocation, every timestamp is anchored to monotonic proofing, and exclusion ranges are audited for injected synthetic artifacts.
+                        PROVO treats missing security evidence as a gap, never as proof of safety. The current engine distinguishes revoked, not-revoked, and unknown certificate status and separately evaluates trusted timestamp evidence.
                     </p>
                 </div>
 
@@ -556,9 +577,9 @@
                     <div class="about-icon">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     </div>
-                    <h3 class="about-card-title">Industrial Readiness</h3>
+                    <h3 class="about-card-title">Prototype Architecture</h3>
                     <p class="about-card-text">
-                        Engineered for news agencies, defense intelligence, legal compliance, and social platforms, PROVO delivers high-throughput asynchronous Python FastAPI processing with standardized cryptographic telemetry exports.
+                        The FastAPI prototype exposes structured cryptographic telemetry for integration experiments. Production deployment would additionally require independent security review, load testing, operational monitoring, and policy governance.
                     </p>
                 </div>
             </div>
@@ -574,7 +595,7 @@
                 <span class="eyebrow text-gold">SYSTEMIC SECURITY ANALYSIS</span>
                 <h2 class="section-title">Why C2PA Is Not Enough Alone</h2>
                 <p class="section-subtitle">
-                    Cryptographic manifests certify asset origin, but current implementations have structural security holes that adversaries easily exploit.
+                    Cryptographic manifests provide integrity and provenance evidence, but an application must still interpret trust failures and missing evidence safely.
                 </p>
             </header>
 
@@ -594,12 +615,12 @@
                                 <small>Adversaries using leaked or revoked camera keys</small>
                             </td>
                             <td class="text-crimson">
-                                <strong>SILENT PASS (CRITICAL)</strong><br>
-                                Readers skip live OCSP/CRL queries to minimize latency.
+                                <strong>IMPLEMENTATION-DEPENDENT</strong><br>
+                                Revocation evidence may be absent or inconclusive and must not be interpreted as safe.
                             </td>
                             <td class="highlight-col text-cyan">
-                                <strong>ENFORCED INTERCEPT</strong><br>
-                                Live OCSP responder queries with fail-closed quarantine policy.
+                                <strong>IMPLEMENTED: THREE STATES</strong><br>
+                                Surfaces revoked, not-revoked, or unknown SDK evidence; independent live fetching is planned.
                             </td>
                         </tr>
                         <tr>
@@ -608,12 +629,12 @@
                                 <small>Backdating AI assets or replaying old news signatures</small>
                             </td>
                             <td class="text-crimson">
-                                <strong>UNVERIFIED ASSERTION</strong><br>
-                                Relies on self-asserted or non-cryptographic timestamps.
+                                <strong>EVIDENCE REQUIRES INTERPRETATION</strong><br>
+                                A timestamp claim alone is not equivalent to a trusted, validated timestamp.
                             </td>
                             <td class="highlight-col text-cyan">
-                                <strong>RFC-3161 TSA PROOFING</strong><br>
-                                Validates cryptographic nonces against immutable time authorities.
+                                <strong>IMPLEMENTED: TRUST GATE</strong><br>
+                                Requires both validated and trusted timestamp results; replay analysis is a future improvement.
                             </td>
                         </tr>
                         <tr>
@@ -622,12 +643,12 @@
                                 <small>Smuggling synthetic AI layers into unhashed byte chunks</small>
                             </td>
                             <td class="text-crimson">
-                                <strong>UNAUDITED BYTES</strong><br>
-                                Ignores excluded ranges, validating tampered files as untampered.
+                                <strong>REQUIRES FORMAT-AWARE ANALYSIS</strong><br>
+                                Hash and signature failures expose many modifications, but exclusion semantics need deeper inspection.
                             </td>
                             <td class="highlight-col text-cyan">
-                                <strong>DEEP BYTE SCAN</strong><br>
-                                Audits boundary consistency and detects synthetic artifacts in unhashed zones.
+                                <strong>FUTURE DEVELOPMENT PLAN</strong><br>
+                                Research exclusion-range boundary auditing and format-aware structural checks.
                             </td>
                         </tr>
                         <tr>
@@ -640,8 +661,8 @@
                                 Manifest destroyed, turning authentic files into orphans.
                             </td>
                             <td class="highlight-col text-cyan">
-                                <strong>OUT-OF-BAND INDEXING</strong><br>
-                                Perceptual hashing recovers provenance metadata from secure cloud registry.
+                                <strong>FUTURE DEVELOPMENT PLAN</strong><br>
+                                Evaluate opt-in registries and perceptual matching without presenting recovery as cryptographic proof.
                             </td>
                         </tr>
                     </tbody>
@@ -666,11 +687,11 @@
             <div class="resources-grid">
                 <article class="resource-card">
                     <span class="resource-type font-mono">SPECIFICATION</span>
-                    <h3 class="resource-title">C2PA Technical Standard 2.1</h3>
+                    <h3 class="resource-title">C2PA Technical Standard 2.4</h3>
                     <p class="resource-copy">
                         The official Coalition for Content Provenance and Authenticity specification for digital media manifests and JUMBF storage architecture.
                     </p>
-                    <a href="https://c2pa.org/specifications/specifications/2.1/specs/C2PA_Specification.html" target="_blank" rel="noopener noreferrer" class="resource-link">
+                    <a href="https://c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html" target="_blank" rel="noopener noreferrer" class="resource-link">
                         Read C2PA Spec &rarr;
                     </a>
                 </article>
@@ -692,7 +713,7 @@
                     <p class="resource-copy">
                         Full REST documentation for <code>POST /api/upload</code> and <code>GET /api/health</code> including request payloads, headers, and response schemas.
                     </p>
-                    <a href="#workbench" class="resource-link">
+                    <a href="/docs" class="resource-link">
                         Explore Local Endpoints &rarr;
                     </a>
                 </article>
@@ -744,19 +765,19 @@
                     </summary>
                     <div class="accordion-body">
                         <p>
-                            Our <code>revocation_checker.py</code> inspects OCSP (Online Certificate Status Protocol) responses embedded in the manifest's <code>rVals</code> header or queries live OCSP responders. It prioritizes <code>signingCredential.revoked</code> evidence over any claim of validity and refuses to accept certificates where revocation status is uncertain.
+                            <code>revocation_checker.py</code> interprets the C2PA validator's revocation status codes. It prioritizes revoked evidence, preserves not-revoked evidence, and reports missing or inconclusive evidence as unknown. Independent live OCSP/CRL retrieval is a planned improvement, not a current claim.
                         </p>
                     </div>
                 </details>
 
                 <details class="accordion-item">
                     <summary class="accordion-header">
-                        <span class="accordion-title">What are exclusion range exploits and how does PROVO neutralize them?</span>
+                        <span class="accordion-title">What is PROVO's plan for exclusion-range analysis?</span>
                         <span class="accordion-arrow"></span>
                     </summary>
                     <div class="accordion-body">
                         <p>
-                            Exclusion ranges allow certain bytes to remain unhashed so file tags can be modified without breaking the signature. Adversaries can smuggle synthetic AI elements into these unhashed segments. PROVO audits file segment linearity and checks for anomalous payloads within exclusion byte ranges.
+                            Some media formats permit deliberately excluded byte ranges. The current engine reports validator hash and signature mismatches; it does not yet claim to classify content inside excluded regions. Format-aware boundary auditing is explicitly tracked as future development.
                         </p>
                     </div>
                 </details>
@@ -768,7 +789,7 @@
                     </summary>
                     <div class="accordion-body">
                         <p>
-                            Yes. PROVO is architected as an asynchronous security middleware service via FastAPI. Media ingested through CMS or DAM pipelines can be routed through <code>POST /api/upload</code> for instantaneous automated threat quarantine before publishing.
+                            The prototype can be integrated through <code>POST /api/upload</code> for evaluation. A production deployment would need authentication, rate limits, isolated processing, persistent audit storage, observability, independent review, and organization-specific enforcement policy.
                         </p>
                     </div>
                 </details>
@@ -827,7 +848,7 @@
                     <span>Transmit Enterprise Inquiry</span>
                 </button>
                 <p class="form-disclaimer font-mono" id="contactStatusMsg">
-                    Responses typically provided within 24 business hours by our security research team.
+                    Demo form only: no message is transmitted by this prototype. Use the GitHub repository to contact the project team.
                 </p>
             </form>
         </div>
@@ -856,7 +877,7 @@
                     </div>
                     <div class="contact-pill">
                         <span class="pill-label font-mono">RESEARCH:</span>
-                        <span class="pill-val font-mono">provo-security@research.org</span>
+                        <span class="pill-val font-mono">Contact via GitHub repository</span>
                     </div>
                     <div class="contact-pill">
                         <span class="pill-label font-mono">STATUS:</span>
@@ -925,7 +946,7 @@
                     <h5 class="footer-col-title font-mono">ENGINE TELEMETRY</h5>
                     <div class="footer-endpoint-card">
                         <span class="endpoint-name font-mono">POST /api/upload</span>
-                        <span class="endpoint-desc">Live C2PA manifest extraction, hash calculation, and OCSP revocation verification.</span>
+                        <span class="endpoint-desc">C2PA extraction, SHA-256 calculation, evidence interpretation, and hardened verdict generation.</span>
                         <span class="endpoint-badge font-mono text-cyan">STATUS: OPERATIONAL</span>
                     </div>
                 </div>
@@ -956,7 +977,7 @@
         const dropPrompt = document.getElementById("dropPrompt");
         const uploadButton = document.getElementById("uploadButton");
         const clearFileBtn = document.getElementById("clearFileBtn");
-        
+
         const stagingStrip = document.getElementById("fileStagingStrip");
         const stagingThumb = document.getElementById("stagingThumb");
         const stagingFilename = document.getElementById("stagingFilename");
@@ -967,13 +988,17 @@
         const legacyVerdictBadge = document.getElementById("legacyVerdictBadge");
         const legacyHeadline = document.getElementById("legacyHeadline");
         const legacySub = document.getElementById("legacySub");
+        const legacySig = document.getElementById("legacySig");
         const legacyRevocationCheck = document.getElementById("legacyRevocationCheck");
+        const legacyExclusionCheck = document.getElementById("legacyExclusionCheck");
         const legacyVulnerabilityMsg = document.getElementById("legacyVulnerabilityMsg");
 
         const provoVerdictBadge = document.getElementById("provoVerdictBadge");
         const provoHeadline = document.getElementById("provoHeadline");
         const provoSub = document.getElementById("provoSub");
         const provoRevocationVal = document.getElementById("provoRevocationVal");
+        const provoTimestampVal = document.getElementById("provoTimestampVal");
+        const provoInjectionVal = document.getElementById("provoInjectionVal");
         const provoMitigationMsg = document.getElementById("provoMitigationMsg");
 
         // Sidebar Telemetry Elements
@@ -988,6 +1013,11 @@
         const resRevocationMethod = document.getElementById("resRevocationMethod");
         const resRevocationEvidence = document.getElementById("resRevocationEvidence");
 
+        const resTimestampBadge = document.getElementById("resTimestampBadge");
+        const resTimestampMsg = document.getElementById("resTimestampMsg");
+        const resTimestampClaimedTime = document.getElementById("resTimestampClaimedTime");
+        const resTimestampEvidence = document.getElementById("resTimestampEvidence");
+
         const resManifestFound = document.getElementById("resManifestFound");
         const resActiveManifest = document.getElementById("resActiveManifest");
         const resClaimGenerator = document.getElementById("resClaimGenerator");
@@ -996,6 +1026,7 @@
 
         const resExploitTitle = document.getElementById("resExploitTitle");
         const resExploitDetail = document.getElementById("resExploitDetail");
+        const resVerdictReasons = document.getElementById("resVerdictReasons");
         const resRawJson = document.getElementById("resRawJson");
 
         const btnCopyJson = document.getElementById("btnCopyJson");
@@ -1024,6 +1055,13 @@
         // Drag & Drop Handling
         dropZone.addEventListener("click", (e) => {
             if (e.target !== clearFileBtn && !clearFileBtn.contains(e.target)) {
+                fileInput.click();
+            }
+        });
+
+        dropZone.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
                 fileInput.click();
             }
         });
@@ -1058,7 +1096,7 @@
         function stageFile(file) {
             stagingFilename.textContent = file.name;
             stagingFilesize.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
-            
+
             const ext = file.name.split('.').pop().toUpperCase();
             stagingMime.textContent = ext || "FILE";
 
@@ -1132,32 +1170,121 @@
             const c2pa = data.c2pa || {};
             const isManifest = c2pa.manifest_found === true;
             const certRev = c2pa.certificate_revocation || {};
-            const isRevoked = certRev.status === "revoked";
+            const timestamp = c2pa.timestamp_security || {};
+            const hardened = c2pa.hardened_verdict || {};
+            const validationState = String(c2pa.validation_state || "Unchecked");
+            const activeResults = c2pa.validation_results?.activeManifest || {};
+            const successes = Array.isArray(activeResults.success) ? activeResults.success : [];
+            const failures = Array.isArray(activeResults.failure) ? activeResults.failure : [];
+            const successCodes = new Set(successes.map(item => item?.code).filter(Boolean));
+            const failureCodes = new Set(failures.map(item => item?.code).filter(Boolean));
+
+            // Missing backend verdicts deliberately fail closed. Only an explicit
+            // HARDENED_VALID response may receive the green treatment.
+            let verdict = hardened.verdict;
+            if (!verdict) {
+                verdict = !isManifest
+                    ? "NO_PROVENANCE"
+                    : (data.status === "error" || c2pa.status === "error" ? "INSPECTION_ERROR" : "VALID_WITH_GAPS");
+            }
+
+            const verdictPresentation = {
+                HARDENED_VALID: {
+                    badge: "HARDENED VALID", badgeClass: "badge-pass", titleClass: "text-cyan",
+                    title: "HARDENED VALIDATION PASSED", headline: "All Required Evidence Passed",
+                    action: "No policy failure was reported by the hardened backend."
+                },
+                VALID_WITH_GAPS: {
+                    badge: "VALID WITH GAPS", badgeClass: "badge-warn", titleClass: "text-gold",
+                    title: "VALIDATION EVIDENCE IS INCOMPLETE", headline: "Do Not Treat as Fully Trusted",
+                    action: "Hold or review the asset until the missing evidence is resolved."
+                },
+                UNTRUSTED_SIGNER: {
+                    badge: "UNTRUSTED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "SIGNER TRUST NOT ESTABLISHED", headline: "Untrusted Signing Credential",
+                    action: "Reject or quarantine under a trust-required policy."
+                },
+                TAMPERED: {
+                    badge: "TAMPERED", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "CONTENT INTEGRITY FAILURE", headline: "Tampering Evidence Detected",
+                    action: "Quarantine the asset; signed bytes or assertions failed validation."
+                },
+                REVOKED_SIGNER: {
+                    badge: "REVOKED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "REVOKED SIGNING CREDENTIAL", headline: "Revocation Evidence Detected",
+                    action: "Quarantine the asset and investigate the compromised credential."
+                },
+                TIMESTAMP_INVALID: {
+                    badge: "TIMESTAMP INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "TIMESTAMP SECURITY FAILURE", headline: "Timestamp Cannot Be Trusted",
+                    action: "Do not rely on the claimed signing time."
+                },
+                CREDENTIAL_INVALID: {
+                    badge: "CREDENTIAL INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "SIGNING CREDENTIAL INVALID", headline: "Certificate Validation Failed",
+                    action: "Reject or quarantine because credential validity was not established."
+                },
+                POLICY_VIOLATION: {
+                    badge: "POLICY VIOLATION", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "HARDENED POLICY VIOLATION", headline: "Required Security Policy Failed",
+                    action: "Apply the configured enforcement policy before distribution."
+                },
+                NO_PROVENANCE: {
+                    badge: "NO PROVENANCE", badgeClass: "badge-warn", titleClass: "text-gold",
+                    title: "NO C2PA PROVENANCE FOUND", headline: "Authenticity Not Established",
+                    action: "Treat the asset as provenance-unknown; absence is not evidence of manipulation or safety."
+                },
+                INSPECTION_ERROR: {
+                    badge: "INSPECTION ERROR", badgeClass: "badge-threat", titleClass: "text-crimson",
+                    title: "INSPECTION COULD NOT COMPLETE", headline: "No Security Decision Available",
+                    action: "Fail closed and retry or escalate the inspection error."
+                }
+            };
+            const display = verdictPresentation[verdict] || verdictPresentation.VALID_WITH_GAPS;
 
             auditAwaitingState.classList.add("hidden");
             auditDataContainer.classList.remove("hidden");
 
             // 1. File Identity
             resFilename.textContent = data.filename || "Uploaded File";
-            resFilesize.textContent = (data.file_size / (1024 * 1024)).toFixed(2) + " MB (" + data.file_size + " bytes)";
+            const fileSize = Number(data.file_size);
+            resFilesize.textContent = Number.isFinite(fileSize)
+                ? (fileSize / (1024 * 1024)).toFixed(2) + " MB (" + fileSize + " bytes)"
+                : "Not supplied";
             resSha256.textContent = data.sha256 || "N/A";
 
             // 2. Revocation Status
             resRevocationBadge.textContent = (certRev.status || "UNKNOWN").toUpperCase();
-            resRevocationBadge.className = "status-indicator-badge " + 
-                (isRevoked ? "badge-threat" : (certRev.status === "not_revoked" ? "badge-pass" : "badge-warn"));
+            resRevocationBadge.className = "status-indicator-badge " +
+                (certRev.status === "revoked" ? "badge-threat" : (certRev.status === "not_revoked" ? "badge-pass" : "badge-warn"));
             resRevocationMsg.textContent = certRev.message || "No revocation message provided";
             resRevocationMethod.textContent = certRev.method || "c2pa_ocsp_validation";
-            
-            const evCount = Array.isArray(certRev.evidence) ? certRev.evidence.length : 0;
-            resRevocationEvidence.textContent = evCount > 0 ? `${evCount} evidence code(s) recorded` : "No evidence codes returned";
 
-            // 3. Manifest Details
+            const revocationEvidence = Array.isArray(certRev.evidence) ? certRev.evidence : [];
+            resRevocationEvidence.textContent = revocationEvidence.length
+                ? revocationEvidence.map(item => item?.code || "unnamed evidence").join(", ")
+                : "No conclusive evidence returned";
+
+            // 3. Timestamp Security
+            const timestampStatus = String(timestamp.status || "unknown").toLowerCase();
+            resTimestampBadge.textContent = timestampStatus.toUpperCase();
+            resTimestampBadge.className = "status-indicator-badge " +
+                (timestampStatus === "valid" ? "badge-pass" : (timestampStatus === "invalid" ? "badge-threat" : "badge-warn"));
+            resTimestampMsg.textContent = timestamp.message || "No conclusive timestamp security result was returned.";
+            resTimestampClaimedTime.textContent = timestamp.claimed_time || c2pa.signature_info?.time || "Not supplied";
+            const timestampEvidence = Array.isArray(timestamp.evidence) ? timestamp.evidence : [];
+            resTimestampEvidence.textContent = timestampEvidence.length
+                ? timestampEvidence.map(item => item?.code || "unnamed evidence").join(", ")
+                : "No conclusive evidence returned";
+
+            // 4. Manifest Details
             resManifestFound.textContent = isManifest ? "TRUE (DETECTED)" : "FALSE (NO MANIFEST)";
             resManifestFound.className = "data-val font-mono " + (isManifest ? "text-cyan" : "text-crimson");
             resActiveManifest.textContent = c2pa.active_manifest || "None";
             resClaimGenerator.textContent = c2pa.claim_generator || "Unknown Claim Generator";
-            resValidationState.textContent = c2pa.validation_state || "Unchecked";
+            resValidationState.textContent = validationState;
+            resValidationState.className = "data-val font-mono " +
+                (validationState.toLowerCase() === "valid" ? "text-cyan" : "text-crimson");
 
             resAssertionsList.innerHTML = "";
             const assertions = c2pa.assertions || [];
@@ -1172,60 +1299,53 @@
                 resAssertionsList.innerHTML = "<li class='text-dim font-mono'>No assertions declared</li>";
             }
 
-            // 4. Exploit Determination Verdict
-            if (isRevoked) {
-                resExploitTitle.textContent = "CRITICAL: REVOKED SIGNING KEY DETECTED";
-                resExploitTitle.className = "exploit-title text-crimson";
-                resExploitDetail.textContent = "The private key used to sign this asset's C2PA manifest was revoked. Standard readers still pass this asset, creating an active vulnerability.";
-                
-                legacyVerdictBadge.textContent = "PASSED / AUTHENTIC";
-                legacyVerdictBadge.className = "verdict-badge badge-pass";
-                legacyHeadline.textContent = "Content Credentials Valid";
-                legacySub.textContent = "Standard reader confirmed cryptographic hash matches without checking OCSP.";
-                legacyRevocationCheck.textContent = "SKIPPED / IGNORED";
-                legacyVulnerabilityMsg.textContent = "CRITICAL BLIND SPOT: The legacy reader skipped OCSP revocation. The key was compromised, but the fake is declared authentic!";
+            // 5. Hardened Verdict: backend output is the authoritative policy decision.
+            resExploitTitle.textContent = display.title;
+            resExploitTitle.className = "exploit-title " + display.titleClass;
+            resExploitDetail.textContent = hardened.summary || display.action;
+            resVerdictReasons.innerHTML = "";
+            const reasons = Array.isArray(hardened.reasons) && hardened.reasons.length
+                ? hardened.reasons
+                : [display.action];
+            reasons.forEach(reason => {
+                const li = document.createElement("li");
+                li.textContent = reason;
+                resVerdictReasons.appendChild(li);
+            });
 
-                provoVerdictBadge.textContent = "INTERCEPTED & BLOCKED";
-                provoVerdictBadge.className = "verdict-badge badge-threat";
-                provoHeadline.textContent = "Revocation Quarantine Active";
-                provoSub.textContent = "PROVO middleware intercepted revoked X.509 certificate before ingestion.";
-                provoRevocationVal.textContent = "REVOKED (OCSP MATCH)";
-                provoMitigationMsg.textContent = "Enforced fail-closed policy: Quarantined media from distribution pipeline and flagged signing authority.";
-            } else if (!isManifest) {
-                resExploitTitle.textContent = "ORPHAN ASSET: ZERO PROVENANCE FOUND";
-                resExploitTitle.className = "exploit-title text-gold";
-                resExploitDetail.textContent = "No C2PA manifest found. May be stripped by WhatsApp/X/social media compression or raw AI synthetic media.";
+            // Standard SDK card reports only what the SDK actually established.
+            const stateLower = validationState.toLowerCase();
+            const sdkValid = stateLower === "valid";
+            const sdkInvalid = stateLower === "invalid";
+            legacyVerdictBadge.textContent = sdkValid ? "SDK: VALID" : (sdkInvalid ? "SDK: INVALID" : "SDK: INCONCLUSIVE");
+            legacyVerdictBadge.className = "verdict-badge " + (sdkValid ? "badge-pass" : (sdkInvalid ? "badge-threat" : "badge-warn"));
+            legacyHeadline.textContent = sdkValid ? "Standard Validation Passed" : (sdkInvalid ? "Standard Validation Failed" : "Standard State Unresolved");
+            legacySub.textContent = "This card reflects the validator state only; it is not a claim that the media is objectively true.";
+            legacySig.textContent = successCodes.has("claimSignature.validated")
+                ? "VALIDATED"
+                : (failureCodes.has("claimSignature.mismatch") ? "INVALID" : "NOT ESTABLISHED");
+            legacyRevocationCheck.textContent = validationState.toUpperCase();
+            legacyExclusionCheck.textContent = failureCodes.has("signingCredential.untrusted")
+                ? "UNTRUSTED"
+                : (successCodes.has("signingCredential.trusted") ? "TRUSTED" : "NOT ESTABLISHED");
+            legacyVulnerabilityMsg.textContent = sdkValid && verdict !== "HARDENED_VALID"
+                ? `The SDK state is valid, but PROVO reports ${verdict}. Standard validity must not override the hardened policy verdict.`
+                : "The SDK result and hardened policy are shown separately so missing evidence cannot silently become a safe result.";
 
-                legacyVerdictBadge.textContent = "NO CREDENTIALS";
-                legacyVerdictBadge.className = "verdict-badge badge-warn";
-                legacyHeadline.textContent = "Unsigned Media";
-                legacySub.textContent = "Standard reader cannot distinguish between stripped journalism and AI deepfakes.";
-                legacyRevocationCheck.textContent = "NOT APPLICABLE";
-                legacyVulnerabilityMsg.textContent = "Zero provenance data available. Creates false negatives for legitimate news photography.";
-
-                provoVerdictBadge.textContent = "ANALYSIS INCOMPLETE";
-                provoVerdictBadge.className = "verdict-badge badge-warn";
-                provoHeadline.textContent = "Zero-Trust Standby";
-                provoSub.textContent = "No cryptographic root found; routed to multimodal sensor fingerprinting.";
-                provoRevocationVal.textContent = "N/A";
-                provoMitigationMsg.textContent = "Initiated out-of-band perceptual hash lookup to attempt cloud manifest recovery.";
-            } else {
-                resExploitTitle.textContent = "HARDENED INTEGRITY VERIFIED";
-                resExploitTitle.className = "exploit-title text-cyan";
-                resExploitDetail.textContent = "Valid C2PA manifest with active unrevoked certificate, compliant timestamps, and uncorrupted assertion chain.";
-
-                legacyVerdictBadge.textContent = "PASSED / AUTHENTIC";
-                legacyVerdictBadge.className = "verdict-badge badge-pass";
-                legacyHeadline.textContent = "Content Credentials Valid";
-                legacySub.textContent = "Signed by authentic hardware or authoring suite.";
-
-                provoVerdictBadge.textContent = "PROVO VALIDATED";
-                provoVerdictBadge.className = "verdict-badge badge-pass";
-                provoHeadline.textContent = "All Hardening Checks Passed";
-                provoSub.textContent = "Passed OCSP revocation, temporal drift analysis, and exclusion range audit.";
-                provoRevocationVal.textContent = "CONFIRMED NOT REVOKED";
-                provoMitigationMsg.textContent = "Asset approved for downstream enterprise publishing and archival.";
-            }
+            provoVerdictBadge.textContent = display.badge;
+            provoVerdictBadge.className = "verdict-badge " + display.badgeClass;
+            provoHeadline.textContent = display.headline;
+            provoHeadline.className = "verdict-headline " + display.titleClass;
+            provoSub.textContent = hardened.summary || display.action;
+            provoRevocationVal.textContent = String(certRev.status || "unknown").toUpperCase();
+            provoRevocationVal.className = "readout-val font-mono " +
+                (certRev.status === "not_revoked" ? "text-cyan" : (certRev.status === "revoked" ? "text-crimson" : "text-gold"));
+            provoTimestampVal.textContent = timestampStatus.toUpperCase();
+            provoTimestampVal.className = "readout-val font-mono " +
+                (timestampStatus === "valid" ? "text-cyan" : (timestampStatus === "invalid" ? "text-crimson" : "text-gold"));
+            provoInjectionVal.textContent = verdict;
+            provoInjectionVal.className = "readout-val font-mono " + display.titleClass;
+            provoMitigationMsg.textContent = display.action;
 
             resRawJson.textContent = JSON.stringify(data, null, 2);
         }
@@ -1258,13 +1378,31 @@
                         signature_info: { issuer: "Rogue CA Sub-Authority", alg: "es256" },
                         assertions: ["c2pa.actions", "c2pa.hash.data", "stds.schema-org.CreativeWork"],
                         validation_state: "Valid",
-                        validation_results: [{ status: "valid", claim: "c2pa.signature" }],
+                        validation_results: {
+                            activeManifest: {
+                                success: [{ code: "claimSignature.validated" }],
+                                failure: [{ code: "signingCredential.revoked" }]
+                            }
+                        },
                         certificate_revocation: {
                             status: "revoked",
                             checked: true,
                             method: "c2pa_ocsp_validation",
                             message: "The signing certificate was revoked at signing time.",
-                            evidence: [{ code: "signingCredential.revoked", url: "http://ocsp.digicert.com" }]
+                            evidence: [{ code: "signingCredential.revoked" }]
+                        },
+                        timestamp_security: {
+                            status: "valid", checked: true, trusted: true,
+                            claimed_time: "2026-01-17T09:14:00Z",
+                            message: "The simulated timestamp is valid and trusted.",
+                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
+                        },
+                        hardened_verdict: {
+                            verdict: "REVOKED_SIGNER", severity: "critical", hardened_valid: false,
+                            summary: "Revocation evidence identifies the active signing credential as revoked.",
+                            reasons: ["The active manifest contains signingCredential.revoked evidence."],
+                            standard_validation_state: "Valid",
+                            evidence_codes: ["signingCredential.revoked"]
                         }
                     }
                 };
@@ -1284,13 +1422,30 @@
                         signature_info: { issuer: "Hardware Root CA", alg: "rs256" },
                         assertions: ["c2pa.actions", "c2pa.exclusion.ranges"],
                         validation_state: "Invalid",
-                        validation_results: [{ status: "invalid", claim: "c2pa.hash.data" }],
+                        validation_results: {
+                            activeManifest: {
+                                success: [{ code: "signingCredential.notRevoked" }],
+                                failure: [{ code: "assertion.dataHash.mismatch" }]
+                            }
+                        },
                         certificate_revocation: {
                             status: "not_revoked",
                             checked: true,
                             method: "c2pa_ocsp_validation",
                             message: "OCSP evidence shows certificate was not revoked.",
                             evidence: [{ code: "signingCredential.notRevoked" }]
+                        },
+                        timestamp_security: {
+                            status: "unknown", checked: false, trusted: false,
+                            claimed_time: null,
+                            message: "No conclusive timestamp evidence was returned.", evidence: []
+                        },
+                        hardened_verdict: {
+                            verdict: "TAMPERED", severity: "critical", hardened_valid: false,
+                            summary: "The signed content or assertion hashes failed validation.",
+                            reasons: ["The active manifest contains assertion.dataHash.mismatch evidence."],
+                            standard_validation_state: "Invalid",
+                            evidence_codes: ["assertion.dataHash.mismatch"]
                         }
                     }
                 };
@@ -1310,13 +1465,37 @@
                         signature_info: { issuer: "Leica Camera AG CA", alg: "es256" },
                         assertions: ["c2pa.actions", "c2pa.hash.data", "c2pa.thumbnail.claim.jpeg"],
                         validation_state: "Valid",
-                        validation_results: [{ status: "valid", claim: "c2pa.signature" }],
+                        validation_results: {
+                            activeManifest: {
+                                success: [
+                                    { code: "claimSignature.validated" },
+                                    { code: "signingCredential.trusted" },
+                                    { code: "signingCredential.notRevoked" },
+                                    { code: "timeStamp.validated" },
+                                    { code: "timeStamp.trusted" }
+                                ],
+                                failure: []
+                            }
+                        },
                         certificate_revocation: {
                             status: "not_revoked",
                             checked: true,
                             method: "c2pa_ocsp_validation",
                             message: "OCSP evidence shows the certificate was not revoked at signing time.",
                             evidence: [{ code: "signingCredential.notRevoked" }]
+                        },
+                        timestamp_security: {
+                            status: "valid", checked: true, trusted: true,
+                            claimed_time: "2026-01-17T09:14:00Z",
+                            message: "The simulated timestamp is valid and trusted.",
+                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
+                        },
+                        hardened_verdict: {
+                            verdict: "HARDENED_VALID", severity: "none", hardened_valid: true,
+                            summary: "All security evidence required by the prototype policy is present.",
+                            reasons: ["Signature, signer trust, revocation, and timestamp evidence passed."],
+                            standard_validation_state: "Valid",
+                            evidence_codes: ["claimSignature.validated", "signingCredential.trusted", "signingCredential.notRevoked", "timeStamp.validated", "timeStamp.trusted"]
                         }
                     }
                 };
@@ -1336,7 +1515,19 @@
                             status: "unknown",
                             checked: false,
                             method: "c2pa_ocsp_validation",
-                            message: "No conclusive OCSP revocation evidence was returned."
+                            message: "No conclusive OCSP revocation evidence was returned.", evidence: []
+                        },
+                        timestamp_security: {
+                            status: "unknown", checked: false, trusted: false,
+                            claimed_time: null,
+                            message: "No C2PA timestamp is available without a manifest.", evidence: []
+                        },
+                        hardened_verdict: {
+                            verdict: "NO_PROVENANCE", severity: "medium", hardened_valid: false,
+                            summary: "No C2PA manifest was found, so provenance cannot be established.",
+                            reasons: ["The asset contains no discoverable C2PA manifest."],
+                            standard_validation_state: "NoManifestFound",
+                            evidence_codes: []
                         }
                     }
                 };
@@ -1401,13 +1592,8 @@
         if (contactForm) {
             contactForm.addEventListener("submit", (e) => {
                 e.preventDefault();
-                contactStatusMsg.textContent = "Transmitting inquiry to PROVO security registry...";
-                contactStatusMsg.style.color = "var(--cyan-primary)";
-                
-                setTimeout(() => {
-                    contactStatusMsg.textContent = "✓ Inquiry successfully queued. Our verification engineering team will respond shortly.";
-                    contactForm.reset();
-                }, 1000);
+                contactStatusMsg.textContent = "Demo only: this form does not transmit data. Please use the GitHub repository to contact the project team.";
+                contactStatusMsg.style.color = "var(--gold-primary)";
             });
         }
 

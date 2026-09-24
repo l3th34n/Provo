@@ -24,6 +24,7 @@ CREDENTIAL_INVALID_CODES = {
 
 UNTRUSTED_SIGNER_CODE = "signingCredential.untrusted"
 TRUSTED_SIGNER_CODE = "signingCredential.trusted"
+VALID_SIGNATURE_CODE = "claimSignature.validated"
 
 
 def _entries(value: Any):
@@ -186,6 +187,9 @@ def evaluate_hardened_verdict(c2pa_result: Any) -> dict[str, Any]:
 
     gaps = []
     gap_codes = set()
+
+    if VALID_SIGNATURE_CODE not in success_codes:
+        gaps.append("The active claim signature was not positively validated.")
 
     if TRUSTED_SIGNER_CODE not in success_codes:
         gaps.append("The active signer was not positively established as trusted.")

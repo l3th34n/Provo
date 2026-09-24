@@ -6,7 +6,6 @@ import logging
 
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 
 from c2pa_checker import check_c2pa
 
@@ -25,8 +24,6 @@ FRONTEND_DIR = BASE_DIR / "frontend"
 UPLOAD_DIR = BASE_DIR / "uploads"
 
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-
-app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
 ALLOWED_EXTENSIONS = {
     ".jpg", ".jpeg", ".png", ".webp",
@@ -56,7 +53,12 @@ def homepage():
 # --------------------------------
 # 4. HEALTH CHECK
 # --------------------------------
-
+@app.get("/style.css", include_in_schema=False)
+def frontend_stylesheet():
+    return FileResponse(
+        FRONTEND_DIR / "style.css",
+        media_type="text/css",
+    )
 @app.get("/api/health")
 def health():
     return {
