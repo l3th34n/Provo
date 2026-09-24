@@ -57,10 +57,7 @@
 
             <!-- Navigation Actions -->
             <div class="nav-actions">
-                <button type="button" class="btn btn-secondary btn-sm" id="btnHeaderDemo">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    Simulated Attack Demo
-                </button>
+                <a href="#workbench" class="btn btn-secondary btn-sm">Inspect Media</a>
                 <button type="button" class="btn btn-primary btn-sm" id="btnOpenContactHeader">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     Contact Us
@@ -92,6 +89,8 @@
             <div class="ticker-item"><span class="ticker-code">FAIL-CLOSED POLICY</span> UNKNOWN REVOCATION EVIDENCE NEVER EQUALS SAFE</div>
         </div>
     </div>
+
+
 
     <!-- ==============================================================
          3. HERO SECTION (PARALLAX & ENTERPRISE VALUE PROPOSITION)
@@ -156,7 +155,7 @@
                                  class="hero-media-img" loading="eager">
                             <div class="visual-scanline"></div>
                             <div class="interactive-tag tag-top-right">
-                                <span class="tag-status badge-pass">LEGACY C2PA: VALID [PASSED]</span>
+                                <span class="tag-status badge-pass">C2PA SIGNATURE: VALID [SIMULATED]</span>
                             </div>
                             <div class="interactive-tag tag-bottom-left">
                                 <span class="tag-status badge-threat">PROVO: EVIDENCE GAP EXPOSED</span>
@@ -168,7 +167,7 @@
                                 <span class="val font-mono text-crimson">SIMULATED REVOKED CREDENTIAL</span>
                             </div>
                             <div class="telemetry-row">
-                                <span class="lbl">STANDARD VALIDATOR:</span>
+                                <span class="lbl">C2PA EVIDENCE ALONE:</span>
                                 <span class="val font-mono text-cyan">VALID SIGNATURE / TRUST UNRESOLVED</span>
                             </div>
                             <div class="telemetry-row">
@@ -189,7 +188,7 @@
         <div class="workbench-main">
 
             <!-- INGESTION PANEL -->
-            <section class="workbench-panel">
+            <section class="workbench-panel" id="ingestion-panel">
                 <div class="panel-header-deck">
                     <div class="panel-titles">
                         <span class="eyebrow text-cyan">OPERATIONAL VERIFICATION DECK</span>
@@ -199,27 +198,7 @@
                         </p>
                     </div>
 
-                    <!-- Evaluation Presets -->
-                    <div class="quick-eval-card">
-                        <span class="eval-label">SIMULATED HACKATHON PRESETS — DEMONSTRATION DATA:</span>
-                        <div class="eval-btn-group">
-                            <button type="button" class="btn btn-chip" data-eval="revoked">
-                                <span class="chip-status-dot dot-red"></span> Revoked Key Attack
-                            </button>
-                            <button type="button" class="btn btn-chip" data-eval="modified">
-                                <span class="chip-status-dot dot-yellow"></span> Injected / Modified
-                            </button>
-                            <button type="button" class="btn btn-chip" data-eval="signed">
-                                <span class="chip-status-dot dot-green"></span> Policy Pass
-                            </button>
-                            <button type="button" class="btn btn-chip" data-eval="ordinary">
-                                <span class="chip-status-dot dot-gray"></span> Ordinary (Unsigned)
-                            </button>
-                            <button type="button" class="btn btn-chip" data-eval="exclusion">
-                                <span class="chip-status-dot dot-yellow"></span> Extra Exclusion
-                            </button>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- Upload Drag-and-Drop Form -->
@@ -292,114 +271,19 @@
                             <span class="btn-text">Execute PROVO Security Inspection</span>
                         </button>
                     </div>
+                    <div class="comparison-launch">
+                        <a id="openComparisonPage" class="comparison-pill hidden" href="/frontend/comparison.html">
+                            EVIDENCE COMPARISON &amp; SIMULATED ATTACK PRESETS <span aria-hidden="true">↗</span>
+                        </a>
+                        <p id="comparisonAvailability" class="comparison-availability" role="status"></p>
+                    </div>
                 </form>
             </section>
 
-            <!-- DUAL-ENGINE LIVE INTERCEPT DEMO MATRIX -->
-            <section class="workbench-panel" id="intercept-matrix">
-                <div class="panel-section-header">
-                    <span class="eyebrow text-gold">EVIDENCE COMPARISON & SIMULATED ATTACK PRESETS</span>
-                    <h2 class="panel-heading">Standard C2PA vs. PROVO Hardened Middleware</h2>
-                    <p class="panel-sub">
-                        Compare the SDK validation state with PROVO’s stricter verdict. Preset buttons use clearly labeled simulated data; uploaded files use live backend results.
-                    </p>
-                </div>
 
-                <div class="intercept-grid">
-                    <!-- Standard / Legacy C2PA Validator (Vulnerable) -->
-                    <div class="validator-card legacy-validator">
-                        <div class="validator-header">
-                            <div class="validator-identity">
-                                <span class="validator-tag">LEGACY C2PA VALIDATOR</span>
-                                <h3 class="validator-name">Standard Industry Reader</h3>
-                            </div>
-                            <span class="verdict-badge badge-warn" id="legacyVerdictBadge">AWAITING RESULT</span>
-                        </div>
-
-                        <div class="validator-body">
-                            <div class="verdict-icon-container">
-                                <div class="verdict-icon-circle icon-green" id="legacyVerdictIcon">
-                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <div class="verdict-text-group">
-                                    <h4 class="verdict-headline" id="legacyHeadline">No SDK Result Yet</h4>
-                                    <p class="verdict-sub" id="legacySub">Upload an asset or select a simulated preset.</p>
-                                </div>
-                            </div>
-
-                            <div class="telemetry-readout">
-                                <div class="readout-row">
-                                    <span class="readout-lbl">Signature Integrity:</span>
-                                    <span class="readout-val text-dim font-mono" id="legacySig">NOT ESTABLISHED</span>
-                                </div>
-                                <div class="readout-row">
-                                    <span class="readout-lbl">SDK Validation State:</span>
-                                    <span class="readout-val text-dim font-mono" id="legacyRevocationCheck">NOT ESTABLISHED</span>
-                                </div>
-                                <div class="readout-row">
-                                    <span class="readout-lbl">Signer Trust:</span>
-                                    <span class="readout-val text-dim font-mono" id="legacyExclusionCheck">NOT ESTABLISHED</span>
-                                </div>
-                            </div>
-
-                            <div class="vulnerability-warning-box">
-                                <span class="warn-badge">EXPOSED VULNERABILITY:</span>
-                                <p id="legacyVulnerabilityMsg">
-                                    Standard validation and PROVO policy results will be displayed separately.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROVO Hardened Security Middleware (Intercepts) -->
-                    <div class="validator-card provo-validator">
-                        <div class="validator-header">
-                            <div class="validator-identity">
-                                <span class="validator-tag text-cyan">PROVO HARDENED ENGINE</span>
-                                <h3 class="validator-name">Zero-Trust Intercept Middleware</h3>
-                            </div>
-                            <span class="verdict-badge badge-warn" id="provoVerdictBadge">AWAITING RESULT</span>
-                        </div>
-
-                        <div class="validator-body">
-                            <div class="verdict-icon-container">
-                                <div class="verdict-icon-circle icon-red" id="provoVerdictIcon">
-                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                                </div>
-                                <div class="verdict-text-group">
-                                    <h4 class="verdict-headline text-gold" id="provoHeadline">No Hardened Verdict Yet</h4>
-                                    <p class="verdict-sub" id="provoSub">Only an explicit HARDENED_VALID result can render as safe.</p>
-                                </div>
-                            </div>
-
-                            <div class="telemetry-readout">
-                                <div class="readout-row">
-                                    <span class="readout-lbl">Revocation Evidence:</span>
-                                    <span class="readout-val text-dim font-mono" id="provoRevocationVal">UNKNOWN</span>
-                                </div>
-                                <div class="readout-row">
-                                    <span class="readout-lbl">Timestamp Security:</span>
-                                    <span class="readout-val text-dim font-mono" id="provoTimestampVal">UNKNOWN</span>
-                                </div>
-                                <div class="readout-row">
-                                    <span class="readout-lbl">Hardened Policy:</span>
-                                    <span class="readout-val text-dim font-mono" id="provoInjectionVal">NOT EVALUATED</span>
-                                </div>
-                            </div>
-
-                            <div class="mitigation-success-box">
-                                <span class="safe-badge">PROVO NEUTRALIZATION:</span>
-                                <p id="provoMitigationMsg">
-                                    Awaiting the backend's combined revocation, timestamp, credential, integrity, and policy verdict.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
 
-        <!-- STICKY FORENSIC TELEMETRY DRAWER (SIDEBAR) -->
+        <!-- FULL-WIDTH FORENSIC TELEMETRY -->
         <aside class="sticky-audit-sidebar" id="auditSidebar">
             <div class="sidebar-inner">
                 <div class="sidebar-header">
@@ -407,16 +291,20 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         <span class="sidebar-title">FORENSIC TELEMETRY DRAWER</span>
                     </div>
-                    <button type="button" class="btn-copy-telemetry" id="btnCopyJson" title="Copy Raw Diagnostic JSON">Copy JSON</button>
+                    <div class="telemetry-actions">
+                        <a class="btn-copy-telemetry hidden" id="openTelemetryPage" href="#" target="_blank" rel="noopener noreferrer">Open full report ↗</a>
+                        <button type="button" class="btn-copy-telemetry" id="btnCopyJson" title="Copy Raw Diagnostic JSON">Copy JSON</button>
+                    </div>
                 </div>
 
+                <p class="telemetry-source-note" id="telemetrySourceNote">No inspection yet. Choose a preset or upload a file.</p>
                 <div class="sidebar-content" id="sidebarContent">
                     <!-- Awaiting State -->
                     <div class="audit-awaiting" id="auditAwaitingState">
                         <div class="pulsing-radar"></div>
                         <h4 class="awaiting-title">No Asset Ingested</h4>
                         <p class="awaiting-desc">
-                            Select an evaluation preset above or drop an image/video to inspect SHA-256 integrity, C2PA manifest claims, and OCSP certificate status.
+                            Upload media and execute an inspection to view file identity, C2PA evidence, and PROVO’s additional policy findings.
                         </p>
                     </div>
 
@@ -551,6 +439,8 @@
             </div>
         </aside>
     </main>
+
+
 
     <!-- ==============================================================
          5. "ABOUT" SECTION (#about)
@@ -936,7 +826,7 @@
                     <ul class="footer-nav">
                         <li><a href="#hero">Overview</a></li>
                         <li><a href="#workbench">Inspection Console</a></li>
-                        <li><a href="#intercept-matrix">Dual-Engine Demo</a></li>
+                        <li><a href="#workbench">Inspect &amp; Compare Evidence</a></li>
                         <li><a href="#why-provo">Why PROVO?</a></li>
                         <li><a href="#about">About Project</a></li>
                     </ul>
@@ -981,694 +871,7 @@
     <!-- ==============================================================
          12. CLIENT INTERACTION JAVASCRIPT
          ============================================================== -->
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        // Form & Upload Elements
-        const form = document.getElementById("uploadForm");
-        const fileInput = document.getElementById("mediaFile");
-        const dropZone = document.getElementById("dropZone");
-        const dropPrompt = document.getElementById("dropPrompt");
-        const uploadButton = document.getElementById("uploadButton");
-        const clearFileBtn = document.getElementById("clearFileBtn");
-
-        const stagingStrip = document.getElementById("fileStagingStrip");
-        const stagingThumb = document.getElementById("stagingThumb");
-        const stagingFilename = document.getElementById("stagingFilename");
-        const stagingFilesize = document.getElementById("stagingFilesize");
-        const stagingMime = document.getElementById("stagingMime");
-
-        // Dual Engine Elements
-        const legacyVerdictBadge = document.getElementById("legacyVerdictBadge");
-        const legacyHeadline = document.getElementById("legacyHeadline");
-        const legacySub = document.getElementById("legacySub");
-        const legacySig = document.getElementById("legacySig");
-        const legacyRevocationCheck = document.getElementById("legacyRevocationCheck");
-        const legacyExclusionCheck = document.getElementById("legacyExclusionCheck");
-        const legacyVulnerabilityMsg = document.getElementById("legacyVulnerabilityMsg");
-
-        const provoVerdictBadge = document.getElementById("provoVerdictBadge");
-        const provoHeadline = document.getElementById("provoHeadline");
-        const provoSub = document.getElementById("provoSub");
-        const provoRevocationVal = document.getElementById("provoRevocationVal");
-        const provoTimestampVal = document.getElementById("provoTimestampVal");
-        const provoInjectionVal = document.getElementById("provoInjectionVal");
-        const provoMitigationMsg = document.getElementById("provoMitigationMsg");
-
-        // Sidebar Telemetry Elements
-        const auditAwaitingState = document.getElementById("auditAwaitingState");
-        const auditDataContainer = document.getElementById("auditDataContainer");
-        const resFilename = document.getElementById("resFilename");
-        const resFilesize = document.getElementById("resFilesize");
-        const resSha256 = document.getElementById("resSha256");
-
-        const resRevocationBadge = document.getElementById("resRevocationBadge");
-        const resRevocationMsg = document.getElementById("resRevocationMsg");
-        const resRevocationMethod = document.getElementById("resRevocationMethod");
-        const resRevocationEvidence = document.getElementById("resRevocationEvidence");
-
-        const resTimestampBadge = document.getElementById("resTimestampBadge");
-        const resTimestampMsg = document.getElementById("resTimestampMsg");
-        const resTimestampClaimedTime = document.getElementById("resTimestampClaimedTime");
-        const resTimestampEvidence = document.getElementById("resTimestampEvidence");
-        const resPipelineBadge = document.getElementById("resPipelineBadge");
-        const resPipelineMsg = document.getElementById("resPipelineMsg");
-        const resPipelineFindings = document.getElementById("resPipelineFindings");
-        const resPipelineCoverage = document.getElementById("resPipelineCoverage");
-
-        const resManifestFound = document.getElementById("resManifestFound");
-        const resActiveManifest = document.getElementById("resActiveManifest");
-        const resClaimGenerator = document.getElementById("resClaimGenerator");
-        const resValidationState = document.getElementById("resValidationState");
-        const resAssertionsList = document.getElementById("resAssertionsList");
-
-        const resExploitTitle = document.getElementById("resExploitTitle");
-        const resExploitDetail = document.getElementById("resExploitDetail");
-        const resVerdictReasons = document.getElementById("resVerdictReasons");
-        const resRawJson = document.getElementById("resRawJson");
-
-        const btnCopyJson = document.getElementById("btnCopyJson");
-        let activeTelemetryPayload = null;
-
-        // Backend Health Ping
-        const backendStatusText = document.getElementById("backendStatusText");
-        const backendStatusPill = document.getElementById("backendStatusPill");
-
-        async function pingBackend() {
-            try {
-                const res = await fetch("/api/health");
-                if (res.ok) {
-                    backendStatusText.textContent = "ONLINE (FASTAPI)";
-                    backendStatusPill.classList.add("status-online");
-                } else {
-                    throw new Error("Bad status");
-                }
-            } catch (err) {
-                backendStatusText.textContent = "STANDALONE / DISCONNECTED";
-                backendStatusPill.classList.add("status-warn");
-            }
-        }
-        pingBackend();
-
-        // Drag & Drop Handling
-        dropZone.addEventListener("click", (e) => {
-            if (e.target !== clearFileBtn && !clearFileBtn.contains(e.target)) {
-                fileInput.click();
-            }
-        });
-
-        dropZone.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                fileInput.click();
-            }
-        });
-
-        ["dragenter", "dragover"].forEach(evt => {
-            dropZone.addEventListener(evt, (e) => {
-                e.preventDefault();
-                dropZone.classList.add("dragover");
-            });
-        });
-
-        ["dragleave", "drop"].forEach(evt => {
-            dropZone.addEventListener(evt, (e) => {
-                e.preventDefault();
-                dropZone.classList.remove("dragover");
-            });
-        });
-
-        dropZone.addEventListener("drop", (e) => {
-            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-                fileInput.files = e.dataTransfer.files;
-                stageFile(fileInput.files[0]);
-            }
-        });
-
-        fileInput.addEventListener("change", () => {
-            if (fileInput.files && fileInput.files[0]) {
-                stageFile(fileInput.files[0]);
-            }
-        });
-
-        function stageFile(file) {
-            stagingFilename.textContent = file.name;
-            stagingFilesize.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
-
-            const ext = file.name.split('.').pop().toUpperCase();
-            stagingMime.textContent = ext || "FILE";
-
-            if (file.type.startsWith("image/")) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    stagingThumb.src = e.target.result;
-                    stagingThumb.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                stagingThumb.style.display = "none";
-            }
-
-            dropPrompt.classList.add("hidden");
-            stagingStrip.classList.remove("hidden");
-        }
-
-        clearFileBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            fileInput.value = "";
-            stagingStrip.classList.add("hidden");
-            dropPrompt.classList.remove("hidden");
-        });
-
-        // Form Submit -> POST /api/upload
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert("Please select or drop a media file first, or choose one of the sample test presets.");
-                return;
-            }
-
-            if (file.size > 25 * 1024 * 1024) {
-                alert("File exceeds maximum allowed limit of 25 MB.");
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append("file", file);
-
-            uploadButton.disabled = true;
-            uploadButton.querySelector(".btn-text").textContent = "Executing Hardened Inspection...";
-
-            try {
-                const response = await fetch("/api/upload", {
-                    method: "POST",
-                    body: formData
-                });
-
-                const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(data.detail || "Inspection request failed");
-                }
-
-                activeTelemetryPayload = data;
-                renderInspectionResults(data);
-
-            } catch (err) {
-                alert("Upload failed: " + err.message + "\n(If running standalone without backend, click an Evaluation Preset above to simulate).");
-            } finally {
-                uploadButton.disabled = false;
-                uploadButton.querySelector(".btn-text").textContent = "Execute PROVO Security Inspection";
-            }
-        });
-
-        // Render Telemetry & Dual-Engine Matrix
-        function renderInspectionResults(data) {
-            const c2pa = data.c2pa || {};
-            const isManifest = c2pa.manifest_found === true;
-            const certRev = c2pa.certificate_revocation || {};
-            const timestamp = c2pa.timestamp_security || {};
-            const hardened = c2pa.hardened_verdict || {};
-            const validationState = String(c2pa.validation_state || "Unchecked");
-            const activeResults = c2pa.validation_results?.activeManifest || {};
-            const successes = Array.isArray(activeResults.success) ? activeResults.success : [];
-            const failures = Array.isArray(activeResults.failure) ? activeResults.failure : [];
-            const successCodes = new Set(successes.map(item => item?.code).filter(Boolean));
-            const failureCodes = new Set(failures.map(item => item?.code).filter(Boolean));
-
-            // Missing backend verdicts deliberately fail closed. Only an explicit
-            // HARDENED_VALID response may receive the green treatment.
-            let verdict = hardened.verdict;
-            if (!verdict) {
-                verdict = !isManifest
-                    ? "NO_PROVENANCE"
-                    : (data.status === "error" || c2pa.status === "error" ? "INSPECTION_ERROR" : "VALID_WITH_GAPS");
-            }
-
-            const verdictPresentation = {
-                HARDENED_VALID: {
-                    badge: "HARDENED VALID", badgeClass: "badge-pass", titleClass: "text-cyan",
-                    title: "HARDENED VALIDATION PASSED", headline: "All Required Evidence Passed",
-                    action: "No policy failure was reported by the hardened backend."
-                },
-                VALID_WITH_GAPS: {
-                    badge: "VALID WITH GAPS", badgeClass: "badge-warn", titleClass: "text-gold",
-                    title: "VALIDATION EVIDENCE IS INCOMPLETE", headline: "Do Not Treat as Fully Trusted",
-                    action: "Hold or review the asset until the missing evidence is resolved."
-                },
-                UNTRUSTED_SIGNER: {
-                    badge: "UNTRUSTED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "SIGNER TRUST NOT ESTABLISHED", headline: "Untrusted Signing Credential",
-                    action: "Reject or quarantine under a trust-required policy."
-                },
-                TAMPERED: {
-                    badge: "TAMPERED", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "CONTENT INTEGRITY FAILURE", headline: "Tampering Evidence Detected",
-                    action: "Quarantine the asset; signed bytes or assertions failed validation."
-                },
-                REVOKED_SIGNER: {
-                    badge: "REVOKED SIGNER", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "REVOKED SIGNING CREDENTIAL", headline: "Revocation Evidence Detected",
-                    action: "Quarantine the asset and investigate the compromised credential."
-                },
-                TIMESTAMP_INVALID: {
-                    badge: "TIMESTAMP INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "TIMESTAMP SECURITY FAILURE", headline: "Timestamp Cannot Be Trusted",
-                    action: "Do not rely on the claimed signing time."
-                },
-                CREDENTIAL_INVALID: {
-                    badge: "CREDENTIAL INVALID", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "SIGNING CREDENTIAL INVALID", headline: "Certificate Validation Failed",
-                    action: "Reject or quarantine because credential validity was not established."
-                },
-                POLICY_VIOLATION: {
-                    badge: "POLICY VIOLATION", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "HARDENED POLICY VIOLATION", headline: "Required Security Policy Failed",
-                    action: "Apply the configured enforcement policy before distribution."
-                },
-                NO_PROVENANCE: {
-                    badge: "NO PROVENANCE", badgeClass: "badge-warn", titleClass: "text-gold",
-                    title: "NO C2PA PROVENANCE FOUND", headline: "Authenticity Not Established",
-                    action: "Treat the asset as provenance-unknown; absence is not evidence of manipulation or safety."
-                },
-                INSPECTION_ERROR: {
-                    badge: "INSPECTION ERROR", badgeClass: "badge-threat", titleClass: "text-crimson",
-                    title: "INSPECTION COULD NOT COMPLETE", headline: "No Security Decision Available",
-                    action: "Fail closed and retry or escalate the inspection error."
-                }
-            };
-            const display = verdictPresentation[verdict] || verdictPresentation.VALID_WITH_GAPS;
-
-            auditAwaitingState.classList.add("hidden");
-            auditDataContainer.classList.remove("hidden");
-
-            // 1. File Identity
-            resFilename.textContent = data.filename || "Uploaded File";
-            const fileSize = Number(data.file_size);
-            resFilesize.textContent = Number.isFinite(fileSize)
-                ? (fileSize / (1024 * 1024)).toFixed(2) + " MB (" + fileSize + " bytes)"
-                : "Not supplied";
-            resSha256.textContent = data.sha256 || "N/A";
-
-            // 2. Revocation Status
-            resRevocationBadge.textContent = (certRev.status || "UNKNOWN").toUpperCase();
-            resRevocationBadge.className = "status-indicator-badge " +
-                (certRev.status === "revoked" ? "badge-threat" : (certRev.status === "not_revoked" ? "badge-pass" : "badge-warn"));
-            resRevocationMsg.textContent = certRev.message || "No revocation message provided";
-            resRevocationMethod.textContent = certRev.method || "c2pa_ocsp_validation";
-
-            const revocationEvidence = Array.isArray(certRev.evidence) ? certRev.evidence : [];
-            resRevocationEvidence.textContent = revocationEvidence.length
-                ? revocationEvidence.map(item => item?.code || "unnamed evidence").join(", ")
-                : "No conclusive evidence returned";
-
-            // 3. Timestamp Security
-            const timestampStatus = String(timestamp.status || "unknown").toLowerCase();
-            resTimestampBadge.textContent = timestampStatus.toUpperCase();
-            resTimestampBadge.className = "status-indicator-badge " +
-                (timestampStatus === "valid" ? "badge-pass" : (timestampStatus === "invalid" ? "badge-threat" : "badge-warn"));
-            resTimestampMsg.textContent = timestamp.message || "No conclusive timestamp security result was returned.";
-            resTimestampClaimedTime.textContent = timestamp.claimed_time || c2pa.signature_info?.time || "Not supplied";
-            const timestampEvidence = Array.isArray(timestamp.evidence) ? timestamp.evidence : [];
-            resTimestampEvidence.textContent = timestampEvidence.length
-                ? timestampEvidence.map(item => item?.code || "unnamed evidence").join(", ")
-                : "No conclusive evidence returned";
-
-            const pipeline = c2pa.pipeline_audit || {};
-            resPipelineBadge.textContent = String(pipeline.status || "not_assessed").toUpperCase();
-            resPipelineBadge.className = "status-indicator-badge " +
-                (pipeline.status === "invalid" ? "badge-threat" : "badge-warn");
-            resPipelineMsg.textContent = pipeline.message || "No pipeline audit was returned by this backend.";
-            resPipelineFindings.replaceChildren();
-            for (const finding of (Array.isArray(pipeline.findings) ? pipeline.findings : [])) {
-                const li = document.createElement("li");
-                li.textContent = `${finding.code || "Finding"}: ${finding.message || "Review required"}`;
-                resPipelineFindings.appendChild(li);
-            }
-            const coverage = pipeline.coverage && typeof pipeline.coverage === "object" ? pipeline.coverage : {};
-            resPipelineCoverage.textContent = Object.entries(coverage)
-                .map(([check, status]) => `${check}: ${status}`).join(" · ");
-
-            // 4. Manifest Details
-            resManifestFound.textContent = isManifest ? "TRUE (DETECTED)" : "FALSE (NO MANIFEST)";
-            resManifestFound.className = "data-val font-mono " + (isManifest ? "text-cyan" : "text-crimson");
-            resActiveManifest.textContent = c2pa.active_manifest || "None";
-            resClaimGenerator.textContent = c2pa.claim_generator || "Unknown Claim Generator";
-            resValidationState.textContent = validationState;
-            resValidationState.className = "data-val font-mono " +
-                (validationState.toLowerCase() === "valid" ? "text-cyan" : "text-crimson");
-
-            resAssertionsList.innerHTML = "";
-            const assertions = c2pa.assertions || [];
-            if (assertions.length > 0) {
-                assertions.forEach(label => {
-                    const li = document.createElement("li");
-                    li.className = "assertion-tag font-mono";
-                    li.textContent = label;
-                    resAssertionsList.appendChild(li);
-                });
-            } else {
-                resAssertionsList.innerHTML = "<li class='text-dim font-mono'>No assertions declared</li>";
-            }
-
-            // 5. Hardened Verdict: backend output is the authoritative policy decision.
-            resExploitTitle.textContent = display.title;
-            resExploitTitle.className = "exploit-title " + display.titleClass;
-            resExploitDetail.textContent = hardened.summary || display.action;
-            resVerdictReasons.innerHTML = "";
-            const reasons = Array.isArray(hardened.reasons) && hardened.reasons.length
-                ? hardened.reasons
-                : [display.action];
-            reasons.forEach(reason => {
-                const li = document.createElement("li");
-                li.textContent = reason;
-                resVerdictReasons.appendChild(li);
-            });
-
-            // Standard SDK card reports only what the SDK actually established.
-            const stateLower = validationState.toLowerCase();
-            const sdkValid = stateLower === "valid";
-            const sdkInvalid = stateLower === "invalid";
-            legacyVerdictBadge.textContent = sdkValid ? "SDK: VALID" : (sdkInvalid ? "SDK: INVALID" : "SDK: INCONCLUSIVE");
-            legacyVerdictBadge.className = "verdict-badge " + (sdkValid ? "badge-pass" : (sdkInvalid ? "badge-threat" : "badge-warn"));
-            legacyHeadline.textContent = sdkValid ? "Standard Validation Passed" : (sdkInvalid ? "Standard Validation Failed" : "Standard State Unresolved");
-            legacySub.textContent = "This card reflects the validator state only; it is not a claim that the media is objectively true.";
-            legacySig.textContent = successCodes.has("claimSignature.validated")
-                ? "VALIDATED"
-                : (failureCodes.has("claimSignature.mismatch") ? "INVALID" : "NOT ESTABLISHED");
-            legacyRevocationCheck.textContent = validationState.toUpperCase();
-            legacyExclusionCheck.textContent = failureCodes.has("signingCredential.untrusted")
-                ? "UNTRUSTED"
-                : (successCodes.has("signingCredential.trusted") ? "TRUSTED" : "NOT ESTABLISHED");
-            legacyVulnerabilityMsg.textContent = sdkValid && verdict !== "HARDENED_VALID"
-                ? `The SDK state is valid, but PROVO reports ${verdict}. Standard validity must not override the hardened policy verdict.`
-                : "The SDK result and hardened policy are shown separately so missing evidence cannot silently become a safe result.";
-
-            provoVerdictBadge.textContent = display.badge;
-            provoVerdictBadge.className = "verdict-badge " + display.badgeClass;
-            provoHeadline.textContent = display.headline;
-            provoHeadline.className = "verdict-headline " + display.titleClass;
-            provoSub.textContent = hardened.summary || display.action;
-            provoRevocationVal.textContent = String(certRev.status || "unknown").toUpperCase();
-            provoRevocationVal.className = "readout-val font-mono " +
-                (certRev.status === "not_revoked" ? "text-cyan" : (certRev.status === "revoked" ? "text-crimson" : "text-gold"));
-            provoTimestampVal.textContent = timestampStatus.toUpperCase();
-            provoTimestampVal.className = "readout-val font-mono " +
-                (timestampStatus === "valid" ? "text-cyan" : (timestampStatus === "invalid" ? "text-crimson" : "text-gold"));
-            provoInjectionVal.textContent = verdict;
-            provoInjectionVal.className = "readout-val font-mono " + display.titleClass;
-            provoMitigationMsg.textContent = display.action;
-
-            resRawJson.textContent = JSON.stringify(data, null, 2);
-        }
-
-        // Evaluation Presets
-        const evalButtons = document.querySelectorAll("[data-eval]");
-        evalButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const sampleType = btn.getAttribute("data-eval");
-                triggerEvaluationSample(sampleType);
-            });
-        });
-
-        function triggerEvaluationSample(type) {
-            let mockResult = {};
-
-            if (type === "revoked") {
-                mockResult = {
-                    status: "uploaded",
-                    file_id: "provo-revoked-sample-01",
-                    filename: "compromised_signer_deepfake.jpg",
-                    file_size: 3410291,
-                    sha256: "9f83c2718228392a83f9821d7b1a0391d848209341209e8471b0231d8f742110",
-                    verification_status: "manifest_found",
-                    c2pa: {
-                        status: "manifest_found",
-                        manifest_found: true,
-                        active_manifest: "urn:c2pa:provo:exploit:revoked:01",
-                        claim_generator: "Adobe Firefly Authenticity Suite v2.0",
-                        signature_info: { issuer: "Rogue CA Sub-Authority", alg: "es256" },
-                        assertions: ["c2pa.actions", "c2pa.hash.data", "stds.schema-org.CreativeWork"],
-                        validation_state: "Valid",
-                        validation_results: {
-                            activeManifest: {
-                                success: [{ code: "claimSignature.validated" }],
-                                failure: [{ code: "signingCredential.revoked" }]
-                            }
-                        },
-                        certificate_revocation: {
-                            status: "revoked",
-                            checked: true,
-                            method: "c2pa_ocsp_validation",
-                            message: "The signing certificate was revoked at signing time.",
-                            evidence: [{ code: "signingCredential.revoked" }]
-                        },
-                        timestamp_security: {
-                            status: "valid", checked: true, trusted: true,
-                            claimed_time: "2026-01-17T09:14:00Z",
-                            message: "The simulated timestamp is valid and trusted.",
-                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
-                        },
-                        hardened_verdict: {
-                            verdict: "REVOKED_SIGNER", severity: "critical", hardened_valid: false,
-                            summary: "Revocation evidence identifies the active signing credential as revoked.",
-                            reasons: ["The active manifest contains signingCredential.revoked evidence."],
-                            standard_validation_state: "Valid",
-                            evidence_codes: ["signingCredential.revoked"]
-                        }
-                    }
-                };
-            } else if (type === "modified") {
-                mockResult = {
-                    status: "uploaded",
-                    file_id: "provo-modified-sample-02",
-                    filename: "tests_samples_modified.jpg",
-                    file_size: 1001720,
-                    sha256: "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
-                    verification_status: "manifest_found",
-                    c2pa: {
-                        status: "manifest_found",
-                        manifest_found: true,
-                        active_manifest: "urn:c2pa:provo:test:sample:modified",
-                        claim_generator: "C2PA Test Harness / Hardware Ingestion",
-                        signature_info: { issuer: "Hardware Root CA", alg: "rs256" },
-                        assertions: ["c2pa.actions", "c2pa.exclusion.ranges"],
-                        validation_state: "Invalid",
-                        validation_results: {
-                            activeManifest: {
-                                success: [{ code: "signingCredential.notRevoked" }],
-                                failure: [{ code: "assertion.dataHash.mismatch" }]
-                            }
-                        },
-                        certificate_revocation: {
-                            status: "not_revoked",
-                            checked: true,
-                            method: "c2pa_ocsp_validation",
-                            message: "OCSP evidence shows certificate was not revoked.",
-                            evidence: [{ code: "signingCredential.notRevoked" }]
-                        },
-                        timestamp_security: {
-                            status: "unknown", checked: false, trusted: false,
-                            claimed_time: null,
-                            message: "No conclusive timestamp evidence was returned.", evidence: []
-                        },
-                        hardened_verdict: {
-                            verdict: "TAMPERED", severity: "critical", hardened_valid: false,
-                            summary: "The signed content or assertion hashes failed validation.",
-                            reasons: ["The active manifest contains assertion.dataHash.mismatch evidence."],
-                            standard_validation_state: "Invalid",
-                            evidence_codes: ["assertion.dataHash.mismatch"]
-                        }
-                    }
-                };
-            } else if (type === "signed" || type === "exclusion") {
-                mockResult = {
-                    status: "uploaded",
-                    file_id: "provo-original-sample-03",
-                    filename: "tests_samples_original_signed.jpg",
-                    file_size: 1047024,
-                    sha256: "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
-                    verification_status: "manifest_found",
-                    c2pa: {
-                        status: "manifest_found",
-                        manifest_found: true,
-                        active_manifest: "urn:c2pa:provo:test:sample:original_signed",
-                        claim_generator: "Leica Camera Authenticity Engine v1.0",
-                        signature_info: { issuer: "Leica Camera AG CA", alg: "es256" },
-                        assertions: ["c2pa.actions", "c2pa.hash.data", "c2pa.thumbnail.claim.jpeg"],
-                        validation_state: "Valid",
-                        validation_results: {
-                            activeManifest: {
-                                success: [
-                                    { code: "claimSignature.validated" },
-                                    { code: "signingCredential.trusted" },
-                                    { code: "signingCredential.notRevoked" },
-                                    { code: "timeStamp.validated" },
-                                    { code: "timeStamp.trusted" }
-                                ],
-                                failure: []
-                            }
-                        },
-                        certificate_revocation: {
-                            status: "not_revoked",
-                            checked: true,
-                            method: "c2pa_ocsp_validation",
-                            message: "OCSP evidence shows the certificate was not revoked at signing time.",
-                            evidence: [{ code: "signingCredential.notRevoked" }]
-                        },
-                        timestamp_security: {
-                            status: "valid", checked: true, trusted: true,
-                            claimed_time: "2026-01-17T09:14:00Z",
-                            message: "The simulated timestamp is valid and trusted.",
-                            evidence: [{ code: "timeStamp.validated" }, { code: "timeStamp.trusted" }]
-                        },
-                        hardened_verdict: {
-                            verdict: "HARDENED_VALID", severity: "none", hardened_valid: true,
-                            summary: "All security evidence required by the prototype policy is present.",
-                            reasons: ["Signature, signer trust, revocation, and timestamp evidence passed."],
-                            standard_validation_state: "Valid",
-                            evidence_codes: ["claimSignature.validated", "signingCredential.trusted", "signingCredential.notRevoked", "timeStamp.validated", "timeStamp.trusted"]
-                        }
-                    }
-                };
-            } else {
-                mockResult = {
-                    status: "uploaded",
-                    file_id: "provo-ordinary-sample-04",
-                    filename: "tests_samples_ordinary.jpg",
-                    file_size: 4820316,
-                    sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-                    verification_status: "no_manifest",
-                    c2pa: {
-                        status: "no_manifest",
-                        manifest_found: false,
-                        validation_state: "NoManifestFound",
-                        certificate_revocation: {
-                            status: "unknown",
-                            checked: false,
-                            method: "c2pa_ocsp_validation",
-                            message: "No conclusive OCSP revocation evidence was returned.", evidence: []
-                        },
-                        timestamp_security: {
-                            status: "unknown", checked: false, trusted: false,
-                            claimed_time: null,
-                            message: "No C2PA timestamp is available without a manifest.", evidence: []
-                        },
-                        hardened_verdict: {
-                            verdict: "NO_PROVENANCE", severity: "medium", hardened_valid: false,
-                            summary: "No C2PA manifest was found, so provenance cannot be established.",
-                            reasons: ["The asset contains no discoverable C2PA manifest."],
-                            standard_validation_state: "NoManifestFound",
-                            evidence_codes: []
-                        }
-                    }
-                };
-            }
-
-            mockResult.simulated = true;
-            mockResult.c2pa.pipeline_audit = {
-                status: mockResult.c2pa.manifest_found ? "no_flags" : "not_assessed",
-                checked: mockResult.c2pa.manifest_found,
-                coverage: { demonstration: "simulated" },
-                findings: [],
-                message: "Simulated preset: no file bytes were inspected. Upload a file for a real audit."
-            };
-            if (type === "exclusion") {
-                const code = "assertion.dataHash.additionalExclusionsPresent";
-                mockResult.filename = "SIMULATED_extra_exclusion.jpg";
-                mockResult.c2pa.validation_results.activeManifest.informational = [{ code }];
-                mockResult.c2pa.pipeline_audit.status = "review_required";
-                mockResult.c2pa.pipeline_audit.findings = [{
-                    code, level: "review", category: "additional_exclusion",
-                    message: "Simulated additional exclusion: inspect bytes outside the hard binding."
-                }];
-                mockResult.c2pa.hardened_verdict = {
-                    verdict: "VALID_WITH_GAPS", severity: "warning", hardened_valid: false,
-                    summary: "The SDK state is Valid, but an additional exclusion requires review.",
-                    reasons: ["Pipeline structure requires review."],
-                    standard_validation_state: "Valid", evidence_codes: [code]
-                };
-            }
-            activeTelemetryPayload = mockResult;
-            renderInspectionResults(mockResult);
-            document.getElementById("intercept-matrix").scrollIntoView({ behavior: "smooth" });
-        }
-
-        // Header Demo Trigger
-        const btnHeaderDemo = document.getElementById("btnHeaderDemo");
-        if (btnHeaderDemo) {
-            btnHeaderDemo.addEventListener("click", () => triggerEvaluationSample("revoked"));
-        }
-
-        // Copy JSON Button
-        btnCopyJson.addEventListener("click", () => {
-            if (!activeTelemetryPayload) {
-                alert("No telemetry to copy. Please ingest an asset first.");
-                return;
-            }
-            navigator.clipboard.writeText(JSON.stringify(activeTelemetryPayload, null, 2)).then(() => {
-                const original = btnCopyJson.textContent;
-                btnCopyJson.textContent = "COPIED!";
-                setTimeout(() => btnCopyJson.textContent = original, 1800);
-            });
-        });
-
-        // Contact Modal Controls
-        const contactModal = document.getElementById("contactModal");
-        const btnOpenContactHeader = document.getElementById("btnOpenContactHeader");
-        const btnHeroContact = document.getElementById("btnHeroContact");
-        const btnFooterContact = document.getElementById("btnFooterContact");
-        const btnCloseContactModal = document.getElementById("btnCloseContactModal");
-        const btnDismissModal = document.getElementById("btnDismissModal");
-        const btnJumpToForm = document.getElementById("btnJumpToForm");
-
-        function openModal() {
-            if (contactModal) contactModal.showModal();
-        }
-
-        function closeModal() {
-            if (contactModal) contactModal.close();
-        }
-
-        if (btnOpenContactHeader) btnOpenContactHeader.addEventListener("click", openModal);
-        if (btnHeroContact) btnHeroContact.addEventListener("click", openModal);
-        if (btnFooterContact) btnFooterContact.addEventListener("click", openModal);
-        if (btnCloseContactModal) btnCloseContactModal.addEventListener("click", closeModal);
-        if (btnDismissModal) btnDismissModal.addEventListener("click", closeModal);
-        if (btnJumpToForm) {
-            btnJumpToForm.addEventListener("click", () => {
-                closeModal();
-            });
-        }
-
-        // Contact Form Submission (Simulated / Local)
-        const contactForm = document.getElementById("contactForm");
-        const contactStatusMsg = document.getElementById("contactStatusMsg");
-
-        if (contactForm) {
-            contactForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                contactStatusMsg.textContent = "Demo only: this form does not transmit data. Please use the GitHub repository to contact the project team.";
-                contactStatusMsg.style.color = "var(--gold-primary)";
-            });
-        }
-
-        // Scroll Progress & Parallax
-        const scrollIndicator = document.getElementById("scrollProgress");
-        window.addEventListener("scroll", () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / (docHeight || 1)) * 100;
-            if (scrollIndicator) scrollIndicator.style.width = scrollPercent + "%";
-
-            // Parallax element calculation
-            const parallaxEls = document.querySelectorAll("[data-parallax-speed]");
-            parallaxEls.forEach(el => {
-                const speed = parseFloat(el.getAttribute("data-parallax-speed") || 0);
-                el.style.transform = `translate3d(0, ${scrollTop * speed}px, 0)`;
-            });
-        }, { passive: true });
-    });
-    </script>
+    <script src="/frontend/app.js" defer></script>
+<script src="/frontend/telemetry.js" defer></script>
 </body>
 </html>

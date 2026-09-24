@@ -718,7 +718,7 @@ code, pre {
     margin: 0 auto;
     padding: 3.5rem 1.75rem 5rem 1.75rem;
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
     position: relative;
@@ -781,10 +781,13 @@ code, pre {
     border: 1px solid var(--border-subtle);
     padding: 0.85rem 1rem;
     border-radius: var(--radius-md);
-    flex-shrink: 0;
+    min-width: 0;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .eval-label {
+    overflow-wrap: anywhere;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     color: var(--text-dim);
@@ -792,6 +795,7 @@ code, pre {
 }
 
 .eval-btn-group {
+    min-width: 0;
     display: flex;
     gap: 0.45rem;
     flex-wrap: wrap;
@@ -1167,9 +1171,9 @@ code, pre {
    9. STICKY FORENSIC TELEMETRY SIDEBAR
    -------------------------------------------------------------------------- */
 .sticky-audit-sidebar {
-    position: sticky;
-    top: 88px;
-    max-height: calc(100vh - 105px);
+    position: static;
+    min-width: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -1186,6 +1190,8 @@ code, pre {
 }
 
 .sidebar-header {
+    flex-wrap: wrap;
+    gap: 1rem;
     background: #0d131c;
     padding: 0.85rem 1.25rem;
     display: flex;
@@ -1975,6 +1981,83 @@ code, pre {
 }
 
 /* Hardened verdict detail and accessibility */
+/* Full-width inspection console and standalone report */
+.comparison-launch { margin-top: 1.1rem; text-align: center; }
+.comparison-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 100%;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid var(--cyan-primary);
+    border-radius: 999px;
+    color: var(--cyan-primary);
+    background: var(--cyan-dim);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    box-shadow: 0 0 20px -8px var(--cyan-glow);
+}
+.comparison-pill:hover { background: rgba(81, 240, 201, 0.2); }
+.comparison-pill:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+.comparison-pill span { flex-shrink: 0; }
+.comparison-availability { color: var(--gold-warn); font-size: 0.8rem; }
+.comparison-page-header, .comparison-gate { max-width: 1440px; margin: auto; padding: 2rem 1.75rem; }
+.comparison-page-header h1 { margin: 1rem 0 0.5rem; font-size: clamp(1.5rem, 4vw, 2.5rem); }
+.comparison-page-header p, .comparison-gate p { color: var(--text-muted); margin-bottom: 1rem; }
+.comparison-source { color: var(--gold-warn); overflow-wrap: anywhere; margin-bottom: 0.75rem; }
+#restoreUploadedResult { margin-bottom: 1.5rem; white-space: normal; }
+
+#intercept-matrix {
+    scroll-margin-top: 110px;
+    border-color: var(--cyan-border);
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+.workbench-panel, .validator-card, .validator-identity,
+.verdict-text-group, .telemetry-block, .panel-titles {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.quick-eval-card .btn-chip {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+}
+
+.chip-status-dot { flex-shrink: 0; }
+.validator-header, .readout-row { flex-wrap: wrap; gap: 0.65rem; }
+.readout-val { overflow-wrap: anywhere; }
+.telemetry-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.telemetry-actions a { display: inline-flex; align-items: center; }
+.telemetry-source-note { padding: 1rem 1.25rem 0; color: var(--gold-warn); font-size: 0.8rem; }
+.audit-data-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.audit-data-container.hidden { display: none; }
+.audit-data-container > .telemetry-details { grid-column: 1 / -1; min-width: 0; }
+.audit-data-container .telemetry-block { margin-bottom: 0; }
+.data-val, .hash-box { overflow-wrap: anywhere; }
+.sidebar-footer { flex-wrap: wrap; gap: 0.5rem; }
+.report-page { max-width: 1440px; margin: 0 auto; padding: 2rem; }
+.report-page > a { display: inline-block; margin-bottom: 1rem; color: var(--cyan-primary); }
+.report-page .json-dump { max-height: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+    .workbench-layout { padding: 1.5rem 1rem 3rem; }
+    .workbench-panel { padding: 1.25rem; }
+    .audit-data-container { grid-template-columns: minmax(0, 1fr); }
+    .sidebar-header, .sidebar-content { padding: 1rem; }
+    .report-page { padding: 1rem; }
+    .nav-container, .brand-group, .nav-actions { flex-wrap: wrap; }
+    .brand-logo { flex-wrap: wrap; }
+    .logo-division { display: none; }
+    .btn-block-hero { white-space: normal; }
+}
+
 .verdict-reasons {
     margin: 0.85rem 0 0;
     padding-left: 1.2rem;
