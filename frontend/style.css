@@ -2099,3 +2099,227 @@ textarea:focus-visible,
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ========================================================================== 
+   COMPARISON PAGE — SCOPED PRESENTATION OVERRIDES
+   All inspection data IDs and event handlers are intentionally unchanged.
+   ========================================================================== */
+body[data-page="comparison"] .comparison-page-header {
+    max-width: 1440px; margin: 0 auto; padding: 3.75rem 1.75rem 1.25rem;
+    position: relative; z-index: 1;
+}
+body[data-page="comparison"] .comparison-page-header h1 {
+    max-width: 900px; margin: .8rem 0 .9rem;
+    font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.12; letter-spacing: -.035em;
+}
+body[data-page="comparison"] .comparison-page-header p {
+    max-width: 780px; font-size: 1.02rem; line-height: 1.7; color: #b6c5d7;
+}
+body[data-page="comparison"] .workbench-layout { padding-top: 1.25rem; }
+body[data-page="comparison"] .comparison-gate { position: relative; z-index: 1; }
+body[data-page="comparison"] .nav-item:focus-visible,
+body[data-page="comparison"] a:focus-visible,
+body[data-page="comparison"] button:focus-visible {
+    outline: 2px solid var(--cyan-primary); outline-offset: 4px;
+}
+body[data-page="comparison"] .comparison-home-link { padding: .75rem 1.25rem; border-radius: 999px; }
+body[data-page="comparison"] .quick-eval-card {
+    gap: 1.25rem; padding: clamp(1.25rem, 2.5vw, 2rem);
+    background: linear-gradient(135deg, rgba(81,240,201,.055), #0b1420 72%);
+    border: 1px solid rgba(81,240,201,.27); border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+body[data-page="comparison"] .preset-heading-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1rem; flex-wrap: wrap;
+}
+body[data-page="comparison"] .eval-label {
+    display: block; font-family: var(--font-mono); font-size: .87rem;
+    line-height: 1.5; font-weight: 700; color: #e8f9ff; letter-spacing: .075em;
+}
+body[data-page="comparison"] .preset-hint {
+    color: #b5c7d6; font-size: .9rem; line-height: 1.6; margin: .45rem 0 0;
+    max-width: 650px;
+}
+body[data-page="comparison"] .demo-data-badge {
+    font: 700 .68rem var(--font-mono); letter-spacing: .085em; color: #ffe4a0;
+    border: 1px solid rgba(245,158,11,.45); background: rgba(245,158,11,.10);
+    border-radius: 999px; padding: .5rem .85rem; flex-shrink: 0;
+}
+body[data-page="comparison"] .eval-btn-group {
+    display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,210px),1fr));
+    gap: .8rem;
+}
+body[data-page="comparison"] .quick-eval-card .btn-chip {
+    display: inline-flex; justify-content: flex-start; align-items: center;
+    min-height: 67px; width: 100%; padding: 1rem 1.15rem;
+    border-radius: 12px; border: 1px solid #38536a;
+    color: #e9f4fd; background: #172332;
+    font-size: .91rem; font-family: var(--font-sans); font-weight: 650;
+    line-height: 1.35; cursor: pointer; white-space: normal;
+    transition: border-color .18s, transform .18s, background .18s, box-shadow .18s;
+}
+body[data-page="comparison"] .quick-eval-card .btn-chip .chip-status-dot {
+    width: 10px; height: 10px; margin-right: .25rem;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.045);
+}
+body[data-page="comparison"] .quick-eval-card .btn-chip:hover {
+    transform: translateY(-2px); border-color: var(--cyan-primary);
+    background: #203548; box-shadow: 0 8px 24px rgba(0,0,0,.22);
+}
+body[data-page="comparison"] .quick-eval-card .btn-chip:active { transform: translateY(0); }
+body[data-page="comparison"] .quick-eval-card .btn-chip[aria-pressed="true"] {
+    border-color: var(--cyan-primary); background: rgba(81,240,201,.13);
+    box-shadow: inset 0 0 0 1px rgba(81,240,201,.26), 0 0 18px rgba(81,240,201,.10);
+    color: #effffb;
+}
+body[data-page="comparison"] .comparison-state-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; flex-wrap: wrap; margin: 0 0 1.35rem;
+    padding: .95rem 1.15rem; border: 1px solid #34475c;
+    border-radius: 10px; background: #0e1926;
+}
+body[data-page="comparison"] .comparison-source {
+    font: 600 .85rem/1.55 var(--font-mono); color: #ffdc91; margin: 0;
+}
+body[data-page="comparison"] #restoreUploadedResult {
+    margin: 0; border-radius: 999px; padding: .75rem 1rem;
+    font-size: .82rem; cursor: pointer;
+}
+/* The drawer is a full-width report with readable, scan-friendly evidence cards. */
+body[data-page="comparison"] .sticky-audit-sidebar,
+body.comparison-report .sticky-audit-sidebar { width: 100%; max-width: none; min-width: 0; }
+body[data-page="comparison"] .sidebar-inner,
+body.comparison-report .sidebar-inner {
+    background: #0b121d; border-color: #38506b; border-radius: 16px;
+}
+body[data-page="comparison"] .sidebar-header,
+body.comparison-report .sidebar-header {
+    background: #111e2c; padding: 1.4rem clamp(1.15rem,2.6vw,2rem);
+    align-items: center;
+}
+body[data-page="comparison"] .sidebar-title,
+body.comparison-report .sidebar-title {
+    font: 750 clamp(1rem,1.6vw,1.3rem)/1.45 var(--font-sans);
+    letter-spacing: .018em; color: #f1f8ff;
+}
+body[data-page="comparison"] .sidebar-title-group svg { width: 24px; height: 24px; }
+body[data-page="comparison"] .telemetry-actions { gap: .65rem; }
+body[data-page="comparison"] .btn-copy-telemetry {
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+    min-height: 42px; border-radius: 8px; padding: .6rem .95rem;
+    font-size: .79rem; font-weight: 700; color: #e8f4ff;
+    background: #1d3042; border-color: #506881;
+}
+body[data-page="comparison"] .btn-copy-telemetry:hover {
+    color: #effffb; background: #234454; border-color: var(--cyan-primary);
+}
+body[data-page="comparison"] .telemetry-introduction,
+body.comparison-report .telemetry-introduction {
+    padding: 1.3rem clamp(1.15rem,2.6vw,2rem) 0;
+}
+body[data-page="comparison"] .telemetry-description,
+body.comparison-report .telemetry-description {
+    margin: 0; max-width: 910px; color: #c7d6e5;
+    font-size: .95rem; line-height: 1.7;
+}
+body[data-page="comparison"] .telemetry-source-note,
+body.comparison-report .telemetry-source-note {
+    display: inline-block; padding: .7rem .95rem; margin: 1rem 0 0;
+    border-radius: 8px; border: 1px solid rgba(245,158,11,.34);
+    background: rgba(245,158,11,.065); color: #ffdea1;
+    font: 600 .77rem/1.6 var(--font-mono);
+}
+body[data-page="comparison"] .sidebar-content,
+body.comparison-report .sidebar-content { padding: 1.4rem clamp(1.15rem,2.6vw,2rem) 2rem; overflow: visible; }
+body[data-page="comparison"] .audit-data-container,
+body.comparison-report .audit-data-container {
+    display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 1rem; align-items: stretch;
+}
+body[data-page="comparison"] .audit-data-container.hidden,
+body.comparison-report .audit-data-container.hidden { display:none; }
+body[data-page="comparison"] .telemetry-block,
+body.comparison-report .telemetry-block {
+    min-width: 0; margin: 0; padding: 1.45rem;
+    border: 1px solid #30475e; border-radius: 12px;
+    background: linear-gradient(155deg, #152233, #101a28);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+body[data-page="comparison"] .telemetry-section-lbl,
+body.comparison-report .telemetry-section-lbl {
+    font: 750 .94rem/1.5 var(--font-sans); letter-spacing: .012em;
+    color: #e8f6ff; margin-bottom: 1.15rem;
+    padding-bottom: .8rem; border-bottom: 1px solid #33475c;
+}
+body[data-page="comparison"] .data-item,
+body.comparison-report .data-item { padding: .55rem 0; margin: 0; }
+body[data-page="comparison"] .data-item + .data-item,
+body.comparison-report .data-item + .data-item { border-top: 1px solid rgba(155,181,203,.11); }
+body[data-page="comparison"] .data-key,
+body.comparison-report .data-key {
+    color: #adc5db; font: 650 .72rem/1.5 var(--font-mono);
+    letter-spacing: .045em; margin-bottom: .35rem;
+}
+body[data-page="comparison"] .data-val,
+body.comparison-report .data-val {
+    color: #f0f7ff; font-size: .91rem; line-height: 1.7;
+    font-weight: 600; word-break: normal; overflow-wrap: anywhere;
+}
+body[data-page="comparison"] .hash-box,
+body.comparison-report .hash-box {
+    background: #080f19; border-color: #3a5770;
+    padding: .9rem 1rem; font-size: .8rem; line-height: 1.85;
+    overflow-wrap: anywhere; word-break: break-all; user-select: all;
+}
+body[data-page="comparison"] .revocation-status-banner,
+body.comparison-report .revocation-status-banner {
+    background: #101d2e; border-color: #3b526b;
+    padding: 1rem 1.1rem; border-radius: 9px;
+}
+body[data-page="comparison"] .revocation-msg,
+body.comparison-report .revocation-msg {
+    color: #c5d5e4; font-size: .88rem; line-height: 1.7;
+}
+body[data-page="comparison"] .status-indicator-badge,
+body.comparison-report .status-indicator-badge { font-size: .76rem; padding: .4rem .75rem; }
+body[data-page="comparison"] .verdict-reasons,
+body.comparison-report .verdict-reasons { color: #c7d9e9; font-size: .86rem; line-height: 1.75; }
+body[data-page="comparison"] .audit-data-container > .telemetry-details,
+body.comparison-report .audit-data-container > .telemetry-details {
+    grid-column: 1 / -1; background: #080f19; border-color: #3b536c;
+    border-radius: 10px; overflow: hidden;
+}
+body[data-page="comparison"] .details-summary,
+body.comparison-report .details-summary {
+    padding: 1rem 1.3rem; font-size: .85rem; font-weight: 650; color: #d6ebff;
+}
+body[data-page="comparison"] .json-dump,
+body.comparison-report .json-dump {
+    padding: 1.25rem; color: #c7d8ff; font-size: .82rem;
+    line-height: 1.7; max-height: 430px; white-space: pre-wrap;
+    overflow-wrap: anywhere; tab-size: 2;
+}
+body.comparison-report .json-dump { max-height:none; }
+body[data-page="comparison"] .sidebar-footer,
+body.comparison-report .sidebar-footer {
+    padding: 1rem clamp(1.15rem,2.6vw,2rem); color: #afc4d8;
+    background: #101b2a; font-size: .74rem;
+}
+@media (max-width: 800px) {
+    body[data-page="comparison"] .audit-data-container,
+    body.comparison-report .audit-data-container { grid-template-columns: minmax(0,1fr); }
+    body[data-page="comparison"] .comparison-page-header { padding-top: 2rem; }
+    body[data-page="comparison"] .sidebar-header { align-items: flex-start; }
+}
+@media (max-width: 600px) {
+    body[data-page="comparison"] .nav-container { height: auto; min-height: 72px; padding: .75rem 1rem; }
+    body[data-page="comparison"] .comparison-page-header { padding: 2rem 1rem 1rem; }
+    body[data-page="comparison"] .demo-data-badge { width: fit-content; }
+    body[data-page="comparison"] .workbench-layout { padding-top: 1rem; }
+    body[data-page="comparison"] .telemetry-block { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body[data-page="comparison"] .quick-eval-card .btn-chip { transition:none; }
+    body[data-page="comparison"] .quick-eval-card .btn-chip:hover { transform:none; }
+}
