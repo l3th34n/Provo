@@ -22,11 +22,15 @@ class Element {
     constructor(attrs = '') {
         this.attrs = Object.fromEntries([...attrs.matchAll(/([\w-]+)="([^"]*)"/g)].map(m => [m[1], m[2]]));
         this.className = this.attrs.class || '';
-        this.textContent = ''; this.style = {}; this.events = {}; this.files = [];
+        this.textContent = ''; this.style = {setProperty: (name, value) => { this.style[name] = value; }}; this.events = {}; this.files = [];
         this.classList = {
             contains: value => this.className.split(/\s+/).includes(value),
             add: (...values) => { this.className += ' ' + values.join(' '); },
-            remove: (...values) => { this.className = this.className.split(/\s+/).filter(v => !values.includes(v)).join(' '); }
+            remove: (...values) => { this.className = this.className.split(/\s+/).filter(v => !values.includes(v)).join(' '); },
+            toggle: (value, force) => {
+                const shouldAdd = force === undefined ? !this.className.split(/\s+/).includes(value) : force;
+                if (shouldAdd) this.classList.add(value); else this.classList.remove(value);
+            }
         };
     }
     addEventListener(name, fn) { this.events[name] = fn; }

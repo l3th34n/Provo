@@ -65,6 +65,7 @@
         const resEnforcementReasons = document.getElementById("resEnforcementReasons");
         const resEnforcementPolicy = document.getElementById("resEnforcementPolicy");
         const resTrustRating = document.getElementById("resTrustRating");
+        const resTrustGauge = document.getElementById("resTrustGauge");
         const resTrustScore = document.getElementById("resTrustScore");
         const resTrustCriteria = document.getElementById("resTrustCriteria");
         const resTrustAdjustments = document.getElementById("resTrustAdjustments");
@@ -492,6 +493,15 @@
             const trustAvailable = trust && typeof trust === "object" && Number.isFinite(Number(trust.score));
             const trustValue = trustAvailable ? Number(trust.score) : null;
             const trustRating = trustAvailable ? String(trust.rating || "UNRATED").toUpperCase() : "NOT SCORED";
+            const boundedTrustValue = trustAvailable ? Math.max(0, Math.min(100, trustValue)) : 0;
+            resTrustGauge.style.setProperty("--trust-angle", `${-180 + (boundedTrustValue * 1.8)}deg`);
+            resTrustGauge.classList.toggle("trust-gauge-unavailable", !trustAvailable);
+            resTrustGauge.setAttribute(
+                "aria-label",
+                trustAvailable
+                    ? `Provenance trust score ${boundedTrustValue} out of 100, rated ${trustRating}`
+                    : "Provenance trust score not available"
+            );
             resTrustRating.textContent = trustRating;
             resTrustRating.className = "status-indicator-badge " + (
                 trustValue >= 90 ? "badge-pass" : (trustValue >= 40 ? "badge-warn" : "badge-threat")

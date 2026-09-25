@@ -442,6 +442,13 @@
                         <!-- 08. Transparent Provenance Trust Score -->
                         <section class="telemetry-block" aria-label="Provenance trust score">
                             <span class="telemetry-section-lbl">08 // PROVENANCE TRUST SCORE</span>
+                            <div class="trust-gauge" id="resTrustGauge" role="img" aria-label="Provenance trust score not available">
+                                <div class="trust-gauge-dial"></div>
+                                <div class="trust-gauge-needle"></div>
+                                <div class="trust-gauge-hub"></div>
+                                <span class="trust-gauge-edge trust-gauge-low">0</span>
+                                <span class="trust-gauge-edge trust-gauge-high">100</span>
+                            </div>
                             <div class="revocation-status-banner">
                                 <span class="status-indicator-badge badge-warn" id="resTrustRating">NOT SCORED</span>
                                 <p class="revocation-msg font-mono" id="resTrustScore">— / 100</p>
