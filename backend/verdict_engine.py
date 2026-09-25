@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from enforcement_policy import decide_enforcement
+
 
 TAMPER_CODES = {
     "claimSignature.mismatch",
@@ -59,7 +61,7 @@ def _result(
     validation_state: Any,
     evidence_codes: set[str],
 ) -> dict[str, Any]:
-    return {
+    result = {
         "verdict": verdict,
         "severity": severity,
         "hardened_valid": verdict == "HARDENED_VALID",
@@ -68,6 +70,8 @@ def _result(
         "standard_validation_state": validation_state,
         "evidence_codes": sorted(evidence_codes),
     }
+    result["enforcement_decision"] = decide_enforcement(result)
+    return result
 
 
 def evaluate_hardened_verdict(c2pa_result: Any) -> dict[str, Any]:

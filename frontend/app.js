@@ -60,6 +60,10 @@
         const resExploitTitle = document.getElementById("resExploitTitle");
         const resExploitDetail = document.getElementById("resExploitDetail");
         const resVerdictReasons = document.getElementById("resVerdictReasons");
+        const resEnforcementAction = document.getElementById("resEnforcementAction");
+        const resEnforcementRemediation = document.getElementById("resEnforcementRemediation");
+        const resEnforcementReasons = document.getElementById("resEnforcementReasons");
+        const resEnforcementPolicy = document.getElementById("resEnforcementPolicy");
         const resRawJson = document.getElementById("resRawJson");
 
         const resExifBadge = document.getElementById("resExifBadge");
@@ -311,6 +315,19 @@
             };
             const display = verdictPresentation[verdict] || verdictPresentation.VALID_WITH_GAPS;
 
+            // The backend decision is authoritative for real inspections. A
+            // missing or malformed decision fails closed in the UI as well.
+            const suppliedEnforcement = hardened.enforcement_decision;
+            const enforcement = suppliedEnforcement && typeof suppliedEnforcement === "object"
+                ? suppliedEnforcement
+                : {
+                    action: "BLOCK",
+                    reason_codes: ["MISSING_ENFORCEMENT_DECISION"],
+                    remediation: "Do not distribute the asset until a backend enforcement decision is available.",
+                    policy_id: "frontend-fail-closed",
+                    policy_version: "1.0"
+                };
+
             auditAwaitingState.classList.add("hidden");
             auditDataContainer.classList.remove("hidden");
 
@@ -449,6 +466,21 @@
                 resVerdictReasons.appendChild(li);
             });
 
+            const enforcementAction = String(enforcement.action || "BLOCK").toUpperCase();
+            const enforcementClass = enforcementAction === "ALLOW"
+                ? "badge-pass"
+                : (enforcementAction === "ALLOW_WITH_WARNING" || enforcementAction === "QUARANTINE"
+                    ? "badge-warn"
+                    : "badge-threat");
+            resEnforcementAction.textContent = enforcementAction.replaceAll("_", " ");
+            resEnforcementAction.className = "status-indicator-badge " + enforcementClass;
+            resEnforcementRemediation.textContent = enforcement.remediation || "No remediation guidance was returned.";
+            const enforcementReasons = Array.isArray(enforcement.reason_codes) ? enforcement.reason_codes : [];
+            resEnforcementReasons.textContent = enforcementReasons.length
+                ? enforcementReasons.join(", ")
+                : "UNKNOWN_VERDICT_FAILED_CLOSED";
+            resEnforcementPolicy.textContent = `Policy: ${enforcement.policy_id || "unknown"} v${enforcement.policy_version || "unknown"}`;
+
             if (legacyVerdictBadge) {
             // C2PA evidence without PROVO policy: not a competing or defective validator.
             const stateLower = validationState.toLowerCase();
@@ -547,7 +579,12 @@
                             summary: "Revocation evidence identifies the active signing credential as revoked.",
                             reasons: ["The active manifest contains signingCredential.revoked evidence."],
                             standard_validation_state: "Valid",
-                            evidence_codes: ["signingCredential.revoked"]
+                            evidence_codes: ["signingCredential.revoked"],
+                            enforcement_decision: {
+                                action: "BLOCK", policy_id: "provo-default-enforcement", policy_version: "1.0",
+                                evaluated_verdict: "REVOKED_SIGNER", reason_codes: ["SIGNER_CERTIFICATE_REVOKED"],
+                                remediation: "Reject the asset and request a new signature from a non-revoked credential."
+                            }
                         }
                     }
                 };
@@ -590,7 +627,12 @@
                             summary: "The signed content or assertion hashes failed validation.",
                             reasons: ["The active manifest contains assertion.dataHash.mismatch evidence."],
                             standard_validation_state: "Invalid",
-                            evidence_codes: ["assertion.dataHash.mismatch"]
+                            evidence_codes: ["assertion.dataHash.mismatch"],
+                            enforcement_decision: {
+                                action: "BLOCK", policy_id: "provo-default-enforcement", policy_version: "1.0",
+                                evaluated_verdict: "TAMPERED", reason_codes: ["CRYPTOGRAPHIC_INTEGRITY_FAILURE"],
+                                remediation: "Reject the asset and request an untampered, newly validated original."
+                            }
                         }
                     }
                 };
@@ -640,7 +682,12 @@
                             summary: "All security evidence required by the prototype policy is present.",
                             reasons: ["Signature, signer trust, revocation, and timestamp evidence passed."],
                             standard_validation_state: "Valid",
-                            evidence_codes: ["claimSignature.validated", "signingCredential.trusted", "signingCredential.notRevoked", "timeStamp.validated", "timeStamp.trusted"]
+                            evidence_codes: ["claimSignature.validated", "signingCredential.trusted", "signingCredential.notRevoked", "timeStamp.validated", "timeStamp.trusted"],
+                            enforcement_decision: {
+                                action: "ALLOW", policy_id: "provo-default-enforcement", policy_version: "1.0",
+                                evaluated_verdict: "HARDENED_VALID", reason_codes: ["PROVENANCE_POLICY_PASSED"],
+                                remediation: "No enforcement remediation is required."
+                            }
                         }
                     }
                 };
@@ -672,7 +719,12 @@
                             summary: "No C2PA manifest was found, so provenance cannot be established.",
                             reasons: ["The asset contains no discoverable C2PA manifest."],
                             standard_validation_state: "NoManifestFound",
-                            evidence_codes: []
+                            evidence_codes: [],
+                            enforcement_decision: {
+                                action: "QUARANTINE", policy_id: "provo-default-enforcement", policy_version: "1.0",
+                                evaluated_verdict: "NO_PROVENANCE", reason_codes: ["PROVENANCE_MANIFEST_MISSING"],
+                                remediation: "Treat the asset as provenance-unknown and request a signed source when policy requires provenance."
+                            }
                         }
                     }
                 };
@@ -704,7 +756,12 @@
                     verdict: "VALID_WITH_GAPS", severity: "warning", hardened_valid: false,
                     summary: "The SDK state is Valid, but an additional exclusion requires review.",
                     reasons: ["Pipeline structure requires review."],
-                    standard_validation_state: "Valid", evidence_codes: [code]
+                    standard_validation_state: "Valid", evidence_codes: [code],
+                    enforcement_decision: {
+                        action: "ALLOW_WITH_WARNING", policy_id: "provo-default-enforcement", policy_version: "1.0",
+                        evaluated_verdict: "VALID_WITH_GAPS", reason_codes: ["PROVENANCE_EVIDENCE_INCOMPLETE"],
+                        remediation: "Preserve the warning and obtain the missing trust evidence before high-risk use."
+                    }
                 };
             }
             activeTelemetryPayload = mockResult;

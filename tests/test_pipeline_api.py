@@ -25,6 +25,9 @@ class PipelineApiTests(unittest.TestCase):
             self.assertEqual(result["pipeline_audit"]["coverage"]["jpeg_exclusion_coverage"], "checked")
             self.assertGreater(result["pipeline_audit"]["statistics"]["excluded_bytes"], 0)
             self.assertFalse(result["hardened_verdict"]["hardened_valid"])
+            enforcement = result["hardened_verdict"]["enforcement_decision"]
+            self.assertIn(enforcement["action"], {"ALLOW_WITH_WARNING", "QUARANTINE", "BLOCK"})
+            self.assertTrue(enforcement["reason_codes"])
             self.assertEqual(list(Path(directory).iterdir()), [])
 
     def test_css_and_homepage_are_served_by_the_same_app(self):

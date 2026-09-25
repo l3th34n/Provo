@@ -84,6 +84,15 @@ class FrontendBackendContractTests(unittest.TestCase):
         self.assertIn('"VALID_WITH_GAPS"', APP)
         self.assertIn("Missing backend verdicts deliberately fail closed", APP)
 
+    def test_enforcement_decision_is_rendered_and_fails_closed(self):
+        for page in (HTML, COMPARISON):
+            self.assertIn('id="resEnforcementAction"', page)
+            self.assertIn('id="resEnforcementRemediation"', page)
+            self.assertIn('id="resEnforcementReasons"', page)
+            self.assertIn('id="resEnforcementPolicy"', page)
+        self.assertIn('reason_codes: ["MISSING_ENFORCEMENT_DECISION"]', APP)
+        self.assertIn('action: "BLOCK"', APP)
+
     def test_future_features_are_not_enabled_controls(self):
         roadmap_control = re.search(
             r'<input type="checkbox" id="toggleInjection"([^>]*)>', HTML

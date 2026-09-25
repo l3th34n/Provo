@@ -51,6 +51,7 @@ class VerdictEngineTests(unittest.TestCase):
             {"status": "no_manifest", "manifest_found": False}
         )
         self.assertEqual(result["verdict"], "NO_PROVENANCE")
+        self.assertEqual(result["enforcement_decision"]["action"], "QUARANTINE")
 
     def test_inspection_error(self):
         result = evaluate_hardened_verdict(
@@ -61,6 +62,7 @@ class VerdictEngineTests(unittest.TestCase):
             }
         )
         self.assertEqual(result["verdict"], "INSPECTION_ERROR")
+        self.assertEqual(result["enforcement_decision"]["action"], "BLOCK")
 
     def test_tamper_evidence_has_highest_precedence(self):
         result = evaluate_hardened_verdict(
@@ -120,6 +122,7 @@ class VerdictEngineTests(unittest.TestCase):
         )
         self.assertEqual(result["verdict"], "HARDENED_VALID")
         self.assertTrue(result["hardened_valid"])
+        self.assertEqual(result["enforcement_decision"]["action"], "ALLOW")
 
     def test_valid_state_without_positive_signature_evidence_has_gaps(self):
         result = evaluate_hardened_verdict(

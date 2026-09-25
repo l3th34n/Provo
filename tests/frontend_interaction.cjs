@@ -10,7 +10,10 @@ const key = 'provo.inspection.comparison.v1';
 const payload = {status: 'uploaded', filename: 'signed.jpg', file_size: 10, sha256: 'a'.repeat(64), c2pa: {
     manifest_found: true, validation_state: 'Valid', validation_results: {activeManifest: {
         success: [{code: 'claimSignature.validated'}], failure: [{code: 'signingCredential.untrusted'}]
-    }}, hardened_verdict: {verdict: 'UNTRUSTED_SIGNER'}
+    }}, hardened_verdict: {verdict: 'UNTRUSTED_SIGNER', enforcement_decision: {
+        action: 'QUARANTINE', policy_id: 'provo-default-enforcement', policy_version: '1.0',
+        reason_codes: ['SIGNER_TRUST_NOT_ESTABLISHED'], remediation: 'Hold the asset for review.'
+    }}
 }};
 class Element {
     constructor(attrs = '') {
@@ -26,6 +29,7 @@ class Element {
     addEventListener(name, fn) { this.events[name] = fn; }
     querySelector() { return this; }
     getAttribute(name) { return this.attrs[name]; }
+    setAttribute(name, value) { this.attrs[name] = String(value); }
     appendChild() {} replaceChildren() {} scrollIntoView() {} contains() { return false; }
     async trigger(name) { if (this.events[name]) await this.events[name]({preventDefault() {}, stopPropagation() {}}); }
 }
@@ -70,6 +74,8 @@ async function stage(app) {
     await home.ids.uploadForm.trigger('submit');
     assert(!home.ids.openComparisonPage.classList.contains('hidden'));
     assert.equal(home.ids.resExploitTitle.textContent, 'SIGNER TRUST NOT ESTABLISHED');
+    assert.equal(home.ids.resEnforcementAction.textContent, 'QUARANTINE');
+    assert.equal(home.ids.resEnforcementReasons.textContent, 'SIGNER_TRUST_NOT_ESTABLISHED');
     const report = boot('comparison.html', home.storage);
     assert(!report.ids.workbench.classList.contains('hidden'));
     assert.match(report.ids.comparisonSource.textContent, /UPLOADED FILE RESULT/);
@@ -77,6 +83,8 @@ async function stage(app) {
     for (const preset of ['revoked', 'modified', 'signed', 'ordinary', 'exclusion']) {
         await report.elements.find(e => e.attrs['data-eval'] === preset).trigger('click');
         assert.match(report.ids.comparisonSource.textContent, /SIMULATED PRESET/);
+        const expectedAction = {revoked: 'BLOCK', modified: 'BLOCK', signed: 'ALLOW', ordinary: 'QUARANTINE', exclusion: 'ALLOW WITH WARNING'};
+        assert.equal(report.ids.resEnforcementAction.textContent, expectedAction[preset]);
     }
     await report.ids.restoreUploadedResult.trigger('click');
     assert.equal(report.ids.provoVerdictBadge.textContent, 'UNTRUSTED SIGNER');
