@@ -10,9 +10,18 @@ from timestamp_checker import check_timestamp_security
 from pipeline_audit import audit_pipeline
 from verdict_engine import evaluate_hardened_verdict
 from exif_checker import SCOPE_NOTE, compare_exif
+from trust_score import calculate_provenance_trust_score
 
 
 logger = logging.getLogger("provo")
+
+
+def _add_policy_outputs(result):
+    """Attach the verdict first, then the score derived from disclosed evidence."""
+    verdict = evaluate_hardened_verdict(result)
+    result["hardened_verdict"] = verdict
+    result["provenance_trust_score"] = calculate_provenance_trust_score(result, verdict)
+    return result
 
 
 def _safe_exif_comparison(file_path, manifest_store=None, detailed_store=None):
@@ -50,8 +59,7 @@ def check_c2pa(file_path):
                     result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
                 else:
                     result["metadata_consistency"] = _safe_exif_comparison(file_path)
-                result["hardened_verdict"] = evaluate_hardened_verdict(result)
-                return result
+                return _add_policy_outputs(result)
 
             if not isinstance(active_id, str) or active_id not in manifests:
                 raise ValueError("The active manifest reference cannot be resolved")
@@ -111,8 +119,7 @@ def check_c2pa(file_path):
                 result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
             else:
                 result["metadata_consistency"] = _safe_exif_comparison(file_path)
-            result["hardened_verdict"] = evaluate_hardened_verdict(result)
-            return result
+            return _add_policy_outputs(result)
 
     except C2paError.ManifestNotFound:
         result = {
@@ -123,8 +130,7 @@ def check_c2pa(file_path):
             result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
         else:
             result["metadata_consistency"] = _safe_exif_comparison(file_path)
-        result["hardened_verdict"] = evaluate_hardened_verdict(result)
-        return result
+        return _add_policy_outputs(result)
 
     except (C2paError, ValueError, TypeError, OSError) as error:
         logger.warning("C2PA inspection failed: %s", error)
@@ -137,8 +143,7 @@ def check_c2pa(file_path):
             result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
         else:
             result["metadata_consistency"] = _safe_exif_comparison(file_path)
-        result["hardened_verdict"] = evaluate_hardened_verdict(result)
-        return result
+        return _add_policy_outputs(result)
 
     except Exception:
         logger.exception("Unexpected C2PA inspection failure")
@@ -151,5 +156,4 @@ def check_c2pa(file_path):
             result["metadata_consistency"] = _safe_exif_comparison(file_path, data, detailed_store)
         else:
             result["metadata_consistency"] = _safe_exif_comparison(file_path)
-        result["hardened_verdict"] = evaluate_hardened_verdict(result)
-        return result
+        return _add_policy_outputs(result)

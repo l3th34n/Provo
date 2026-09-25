@@ -13,7 +13,10 @@ const payload = {status: 'uploaded', filename: 'signed.jpg', file_size: 10, sha2
     }}, hardened_verdict: {verdict: 'UNTRUSTED_SIGNER', enforcement_decision: {
         action: 'QUARANTINE', policy_id: 'provo-default-enforcement', policy_version: '1.0',
         reason_codes: ['SIGNER_TRUST_NOT_ESTABLISHED'], remediation: 'Hold the asset for review.'
-    }}
+    }}, provenance_trust_score: {score: 45, maximum: 100, rating: 'WEAK', criteria: [
+        {id: 'manifest', label: 'C2PA manifest detected', weight: 10, earned: 10, passed: true}
+    ], adjustments: [{reason: 'An untrusted signer caps the score at 45.'}],
+        scope_note: 'Measures verified provenance evidence only; not scene truth.'}
 }};
 class Element {
     constructor(attrs = '') {
@@ -76,6 +79,8 @@ async function stage(app) {
     assert.equal(home.ids.resExploitTitle.textContent, 'SIGNER TRUST NOT ESTABLISHED');
     assert.equal(home.ids.resEnforcementAction.textContent, 'QUARANTINE');
     assert.equal(home.ids.resEnforcementReasons.textContent, 'SIGNER_TRUST_NOT_ESTABLISHED');
+    assert.equal(home.ids.resTrustScore.textContent, '45 / 100');
+    assert.equal(home.ids.resTrustRating.textContent, 'WEAK');
     const report = boot('comparison.html', home.storage);
     assert(!report.ids.workbench.classList.contains('hidden'));
     assert.match(report.ids.comparisonSource.textContent, /UPLOADED FILE RESULT/);
@@ -85,6 +90,7 @@ async function stage(app) {
         assert.match(report.ids.comparisonSource.textContent, /SIMULATED PRESET/);
         const expectedAction = {revoked: 'BLOCK', modified: 'BLOCK', signed: 'ALLOW', ordinary: 'QUARANTINE', exclusion: 'ALLOW WITH WARNING'};
         assert.equal(report.ids.resEnforcementAction.textContent, expectedAction[preset]);
+        assert.match(report.ids.resTrustScore.textContent, /\/ 100/);
     }
     await report.ids.restoreUploadedResult.trigger('click');
     assert.equal(report.ids.provoVerdictBadge.textContent, 'UNTRUSTED SIGNER');

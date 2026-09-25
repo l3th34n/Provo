@@ -73,6 +73,14 @@ versioned `provo-default-enforcement` policy. The action is one of `ALLOW`,
 codes and remediation guidance. Missing and unknown verdicts fail closed with
 `BLOCK`.
 
+Provenance Trust Score
+
+Each inspection also returns a transparent score from 0 to 100 for the strength
+and completeness of verified provenance evidence. Seven weighted criteria show
+exactly how points were earned, and serious hardened verdicts apply disclosed
+safety caps. The score is not an AI-generation probability and does not claim
+that the depicted content or event is true.
+
 Current scope
 
 The prototype interprets revocation and timestamp evidence returned by the

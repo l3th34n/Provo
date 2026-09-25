@@ -64,6 +64,11 @@
         const resEnforcementRemediation = document.getElementById("resEnforcementRemediation");
         const resEnforcementReasons = document.getElementById("resEnforcementReasons");
         const resEnforcementPolicy = document.getElementById("resEnforcementPolicy");
+        const resTrustRating = document.getElementById("resTrustRating");
+        const resTrustScore = document.getElementById("resTrustScore");
+        const resTrustCriteria = document.getElementById("resTrustCriteria");
+        const resTrustAdjustments = document.getElementById("resTrustAdjustments");
+        const resTrustScope = document.getElementById("resTrustScope");
         const resRawJson = document.getElementById("resRawJson");
 
         const resExifBadge = document.getElementById("resExifBadge");
@@ -481,6 +486,38 @@
                 : "UNKNOWN_VERDICT_FAILED_CLOSED";
             resEnforcementPolicy.textContent = `Policy: ${enforcement.policy_id || "unknown"} v${enforcement.policy_version || "unknown"}`;
 
+            // Transparent provenance-evidence score. This is deliberately not
+            // presented as an authenticity or AI-generation probability.
+            const trust = c2pa.provenance_trust_score;
+            const trustAvailable = trust && typeof trust === "object" && Number.isFinite(Number(trust.score));
+            const trustValue = trustAvailable ? Number(trust.score) : null;
+            const trustRating = trustAvailable ? String(trust.rating || "UNRATED").toUpperCase() : "NOT SCORED";
+            resTrustRating.textContent = trustRating;
+            resTrustRating.className = "status-indicator-badge " + (
+                trustValue >= 90 ? "badge-pass" : (trustValue >= 40 ? "badge-warn" : "badge-threat")
+            );
+            resTrustScore.textContent = trustAvailable ? `${trustValue} / ${trust.maximum || 100}` : "— / 100";
+            resTrustCriteria.replaceChildren();
+            const trustCriteria = trustAvailable && Array.isArray(trust.criteria) ? trust.criteria : [];
+            for (const criterion of trustCriteria) {
+                const item = document.createElement("li");
+                const earned = Number(criterion.earned) || 0;
+                const weight = Number(criterion.weight) || 0;
+                item.textContent = `${criterion.passed ? "PASS" : "NO CREDIT"} — ${criterion.label || criterion.id}: ${earned}/${weight}`;
+                resTrustCriteria.appendChild(item);
+            }
+            if (!trustCriteria.length) {
+                const item = document.createElement("li");
+                item.textContent = "No backend score breakdown was returned.";
+                resTrustCriteria.appendChild(item);
+            }
+            const adjustments = trustAvailable && Array.isArray(trust.adjustments) ? trust.adjustments : [];
+            resTrustAdjustments.textContent = adjustments.length
+                ? adjustments.map(item => item.reason || "A safety cap was applied.").join(" ")
+                : "No verdict safety cap was applied.";
+            resTrustScope.textContent = trust?.scope_note ||
+                "Measures verified provenance evidence only. It is not an AI-generation probability and does not establish scene truth.";
+
             if (legacyVerdictBadge) {
             // C2PA evidence without PROVO policy: not a competing or defective validator.
             const stateLower = validationState.toLowerCase();
@@ -764,9 +801,46 @@
                     }
                 };
             }
+            mockResult.c2pa.provenance_trust_score = simulatedTrustScore(type);
             activeTelemetryPayload = mockResult;
             renderInspectionResults(mockResult);
             document.getElementById("intercept-matrix").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function simulatedTrustScore(type) {
+            const definitions = [
+                ["manifest", "C2PA manifest detected", 10],
+                ["standard_validation", "Standard validation state is Valid", 15],
+                ["claim_signature", "Active claim signature validated", 20],
+                ["signer_trust", "Active signer trust established", 15],
+                ["revocation", "Credential not revoked", 15],
+                ["timestamp", "Trusted timestamp validated", 10],
+                ["pipeline", "Pipeline audit completed without flags", 15]
+            ];
+            const passed = {
+                revoked: new Set(["manifest", "standard_validation", "claim_signature", "timestamp", "pipeline"]),
+                modified: new Set(["manifest", "revocation", "pipeline"]),
+                signed: new Set(definitions.map(item => item[0])),
+                ordinary: new Set(),
+                exclusion: new Set(["manifest", "standard_validation", "claim_signature", "signer_trust", "revocation", "timestamp"])
+            }[type] || new Set();
+            const criteria = definitions.map(([id, label, weight]) => ({
+                id, label, weight, passed: passed.has(id), earned: passed.has(id) ? weight : 0,
+                evidence: "Simulated demonstration criterion; no uploaded bytes were inspected."
+            }));
+            const rawScore = criteria.reduce((total, item) => total + item.earned, 0);
+            const cap = {revoked: 15, modified: 10, ordinary: 0}[type];
+            const score = Number.isFinite(cap) ? Math.min(rawScore, cap) : rawScore;
+            const adjustments = Number.isFinite(cap) ? [{
+                type: "verdict_cap", maximum: cap,
+                reason: `The simulated ${type} verdict caps the score at ${cap}.`
+            }] : [];
+            return {
+                score, maximum: 100, raw_score: rawScore,
+                rating: score >= 90 ? "STRONG" : (score >= 70 ? "MODERATE" : (score >= 40 ? "WEAK" : "MINIMAL")),
+                score_version: "1.0-demo", criteria, adjustments,
+                scope_note: "SIMULATED DEMONSTRATION SCORE — no uploaded bytes were inspected. This is not an AI-generation probability."
+            };
         }
 
         // The dedicated comparison page starts with the executed upload result.
