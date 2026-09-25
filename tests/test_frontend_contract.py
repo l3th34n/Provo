@@ -93,6 +93,16 @@ class FrontendBackendContractTests(unittest.TestCase):
         self.assertIn('reason_codes: ["MISSING_ENFORCEMENT_DECISION"]', APP)
         self.assertIn('action: "BLOCK"', APP)
 
+    def test_transparent_trust_score_is_rendered_with_scope_warning(self):
+        for page in (HTML, COMPARISON):
+            self.assertIn('id="resTrustGauge"', page)
+            self.assertIn('id="resTrustScore"', page)
+            self.assertIn('id="resTrustCriteria"', page)
+            self.assertIn('id="resTrustAdjustments"', page)
+            self.assertIn('id="resTrustScope"', page)
+        self.assertIn("It is not an AI-generation probability", APP)
+        self.assertIn('style.setProperty("--trust-angle"', APP)
+
     def test_future_features_are_not_enabled_controls(self):
         roadmap_control = re.search(
             r'<input type="checkbox" id="toggleInjection"([^>]*)>', HTML

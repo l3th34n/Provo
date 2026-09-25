@@ -28,6 +28,10 @@ class PipelineApiTests(unittest.TestCase):
             enforcement = result["hardened_verdict"]["enforcement_decision"]
             self.assertIn(enforcement["action"], {"ALLOW_WITH_WARNING", "QUARANTINE", "BLOCK"})
             self.assertTrue(enforcement["reason_codes"])
+            score = result["provenance_trust_score"]
+            self.assertGreaterEqual(score["score"], 0)
+            self.assertLessEqual(score["score"], 100)
+            self.assertEqual(sum(item["earned"] for item in score["criteria"]), score["raw_score"])
             self.assertEqual(list(Path(directory).iterdir()), [])
 
     def test_css_and_homepage_are_served_by_the_same_app(self):
@@ -41,8 +45,12 @@ class PipelineApiTests(unittest.TestCase):
 
     def test_real_modified_and_unsigned_samples(self):
         from c2pa_checker import check_c2pa
-        self.assertEqual(check_c2pa(ROOT / "tests/samples/modified.jpg")["hardened_verdict"]["verdict"], "TAMPERED")
-        self.assertEqual(check_c2pa(ROOT / "tests/samples/ordinary.jpg")["hardened_verdict"]["verdict"], "NO_PROVENANCE")
+        modified = check_c2pa(ROOT / "tests/samples/modified.jpg")
+        unsigned = check_c2pa(ROOT / "tests/samples/ordinary.jpg")
+        self.assertEqual(modified["hardened_verdict"]["verdict"], "TAMPERED")
+        self.assertLessEqual(modified["provenance_trust_score"]["score"], 10)
+        self.assertEqual(unsigned["hardened_verdict"]["verdict"], "NO_PROVENANCE")
+        self.assertEqual(unsigned["provenance_trust_score"]["score"], 0)
 
 
 if __name__ == "__main__":
