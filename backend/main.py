@@ -76,7 +76,11 @@ def frontend_stylesheet():
             detail="frontend/style.css or frontend/script.css not found"
         )
 
-    return FileResponse(css_file, media_type="text/css")
+    return FileResponse(
+        css_file,
+        media_type="text/css",
+        headers={"Cache-Control": "no-cache"},
+    )
 
 
 # --------------------------------

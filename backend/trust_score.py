@@ -20,7 +20,6 @@ _VERDICT_CAPS = {
     "REVOKED_SIGNER": (15, "Revoked signer evidence caps the score at 15."),
     "CREDENTIAL_INVALID": (20, "An invalid signing credential caps the score at 20."),
     "POLICY_VIOLATION": (30, "A hardened policy violation caps the score at 30."),
-    "UNTRUSTED_SIGNER": (45, "An untrusted signer caps the score at 45."),
     "TIMESTAMP_INVALID": (50, "An invalid timestamp caps the score at 50."),
     "INSPECTION_ERROR": (0, "An incomplete inspection cannot earn provenance trust."),
     "NO_PROVENANCE": (0, "No manifest means no verifiable provenance evidence was available."),
