@@ -55,6 +55,19 @@ class ProvenanceTrustScoreTests(unittest.TestCase):
         self.assertEqual(score["score"], 0)
         self.assertIn("not an AI-generation probability", score["scope_note"])
 
+    def test_untrusted_signer_loses_criterion_points_without_verdict_cap(self):
+        result = complete_result()
+        result["validation_results"]["activeManifest"]["success"] = [
+            {"code": "claimSignature.validated"}
+        ]
+        score = calculate_provenance_trust_score(result, {"verdict": "UNTRUSTED_SIGNER"})
+        criteria = {item["id"]: item for item in score["criteria"]}
+        self.assertFalse(criteria["signer_trust"]["passed"])
+        self.assertEqual(score["raw_score"], 85)
+        self.assertEqual(score["score"], 85)
+        self.assertEqual(score["evaluated_verdict"], "UNTRUSTED_SIGNER")
+        self.assertEqual(score["adjustments"], [])
+
     def test_ingredient_success_does_not_score_as_active_manifest_evidence(self):
         result = complete_result()
         result["validation_results"]["activeManifest"]["success"] = []
