@@ -40,9 +40,12 @@ class FrontendBackendContractTests(unittest.TestCase):
         self.assertTrue((ROOT / "frontend" / "telemetry.js").is_file())
 
     def test_frontend_assets_are_served_by_fastapi(self):
-        self.assertIn('href="style.css"', HTML)
-        self.assertIn("this.href = 'script.css'", HTML)
+        self.assertIn('href="style.css?v=provenance-score-v1"', HTML)
+        self.assertIn("this.href = 'script.css?v=provenance-score-v1'", HTML)
+        self.assertIn('src="/frontend/app.js?v=provenance-score-v1"', HTML)
+        self.assertIn('src="/frontend/app.js?v=provenance-score-v1"', COMPARISON)
         self.assertIn('@app.get("/style.css"', MAIN)
+        self.assertIn('headers={"Cache-Control": "no-cache"}', MAIN)
         self.assertIn('app.mount("/frontend"', MAIN)
 
     def test_every_backend_verdict_has_a_frontend_presentation(self):
